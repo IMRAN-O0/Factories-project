@@ -1,0 +1,41 @@
+[
+  {
+    "username": "admin",
+    "password": "admin123",
+    "role": "admin",
+    "permissions": [
+      "view",
+      "edit",
+      "delete",
+      "print",
+      "manage_users"
+    ]
+  },
+  {
+    "username": "supervisor",
+    "password": "sup123",
+    "role": "supervisor",
+    "permissions": [
+      "view",
+      "edit",
+      "print"
+    ]
+  },
+  {
+    "username": "inventory",
+    "password": "inv123",
+    "role": "inventory",
+    "permissions": [
+      "view",
+      "edit"
+    ]
+  },
+  {
+    "username": "viewer",
+    "password": "view123",
+    "role": "viewer",
+    "permissions": [
+      "view"
+    ]
+  }
+]
