@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const STEPS = ['الخدمة', 'الموعد', 'بياناتك', 'التأكيد'];
+const STEPS = ['الخدمة', 'العبوة', 'الموعد', 'بياناتك', 'التأكيد'];
 
 export default function Stepper({ current }) {
   return (

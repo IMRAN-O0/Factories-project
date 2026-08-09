@@ -2,7 +2,9 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
+import CursorGlow from './components/CursorGlow.jsx';
 import ScrollToTop from './components/layout/ScrollToTop.jsx';
+import ScrollProgress from './components/layout/ScrollProgress.jsx';
 import PageTransition from './components/layout/PageTransition.jsx';
 import Home from './pages/Home.jsx';
 import ServicesPage from './pages/ServicesPage.jsx';
@@ -17,6 +19,8 @@ export default function App() {
   return (
     <div className="overflow-x-hidden">
       <ScrollToTop />
+      <ScrollProgress />
+      <CursorGlow />
       <Header />
       <main>
         <AnimatePresence mode="wait" initial={false}>

@@ -128,7 +128,7 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="mt-6 w-full rounded-full bg-brand-600 py-3.5 text-base font-semibold text-white transition-colors hover:bg-brand-700"
+            className="mt-6 w-full rounded-full bg-brand-600 py-3.5 text-base font-semibold text-white transition-all hover:bg-brand-700 active:scale-[0.98]"
           >
             إرسال الطلب
           </button>

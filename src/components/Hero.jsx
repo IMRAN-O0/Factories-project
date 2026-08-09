@@ -50,13 +50,13 @@ export default function Hero() {
           <motion.div variants={item} className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               to="/booking"
-              className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-600/20 transition-transform hover:-translate-y-0.5 hover:bg-brand-700"
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-600/20 transition-all hover:-translate-y-0.5 hover:bg-brand-700 active:scale-95"
             >
               احجز موعد مجاناً
             </Link>
             <Link
               to="/services"
-              className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-ink-200 px-8 py-3.5 text-base font-semibold text-ink-800 transition-colors hover:border-brand-600 hover:text-brand-600"
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-ink-200 px-8 py-3.5 text-base font-semibold text-ink-800 transition-all hover:border-brand-600 hover:text-brand-600 active:scale-95"
             >
               تعرّف على خدماتنا
             </Link>

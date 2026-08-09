@@ -98,3 +98,35 @@ body {
   color: white;
   border-color: transparent;
 }
+
+.cursor-glow {
+  background: radial-gradient(
+    circle,
+    rgba(152, 198, 76, 0.32) 0%,
+    rgba(152, 198, 76, 0.16) 40%,
+    rgba(152, 198, 76, 0) 72%
+  );
+  filter: blur(18px);
+  will-change: transform;
+  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  animation: cursor-glow-morph 9s ease-in-out infinite;
+}
+
+@keyframes cursor-glow-morph {
+  0%,
+  100% {
+    border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  }
+  33% {
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+  }
+  66% {
+    border-radius: 35% 65% 55% 45% / 60% 35% 65% 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow {
+    display: none;
+  }
+}
