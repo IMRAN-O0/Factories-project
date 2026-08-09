@@ -45,7 +45,7 @@ export default function Header() {
         <div className="hidden lg:block">
           <a
             href="#contact"
-            className="inline-flex items-center rounded-full bg-ink-800 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-600"
+            className="inline-flex items-center rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
           >
             احجز استشارة
           </a>
@@ -78,7 +78,7 @@ export default function Header() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="mt-4 inline-flex items-center justify-center rounded-full bg-ink-800 px-6 py-3 text-sm font-semibold text-white"
+              className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white"
             >
               احجز استشارة
             </a>

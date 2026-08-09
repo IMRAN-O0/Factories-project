@@ -8,6 +8,13 @@ const LINKS = [
   { href: '#contact', label: 'تواصل معنا' },
 ];
 
+const LEGAL_INFO = [
+  { label: 'السجل التجاري', value: '7002138936' },
+  { label: 'الرقم الضريبي', value: '300029859300003' },
+];
+
+const CONTACT_EMAIL = 'info@awalhelm.com';
+
 const SOCIAL = [
   {
     name: 'Instagram',
@@ -50,10 +57,10 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink-900 pt-16 pb-8">
+    <footer className="bg-brand-950 pt-16 pb-8">
       <div className="container-px mx-auto">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-          <div>
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+          <div className="md:col-span-1">
             <img src={logoWhite} alt="مصنع أول حلم" className="h-12 w-auto" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
               مصنع أول حلم لصناعة مستحضرات التجميل — نحوّل أفكاركم إلى علامات
@@ -61,7 +68,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="md:mx-auto">
+          <div>
             <h4 className="text-sm font-bold uppercase tracking-widest text-white/80">روابط سريعة</h4>
             <ul className="mt-5 space-y-3">
               {LINKS.map((l) => (
@@ -71,6 +78,22 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-white/80">معلومات المصنع</h4>
+            <ul className="mt-5 space-y-3">
+              {LEGAL_INFO.map((item) => (
+                <li key={item.label} className="text-sm text-white/60">
+                  {item.label}: <span dir="ltr" className="text-white/80">{item.value}</span>
+                </li>
+              ))}
+              <li className="text-sm text-white/60">
+                <a href={`mailto:${CONTACT_EMAIL}`} className="transition-colors hover:text-brand-400">
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
             </ul>
           </div>
 

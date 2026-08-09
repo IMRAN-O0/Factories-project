@@ -1,4 +1,5 @@
 import logoGreen from '../assets/logo-green.png';
+import ImagePlaceholder from './ImagePlaceholder.jsx';
 
 export default function Hero() {
   return (
@@ -47,6 +48,10 @@ export default function Hero() {
               تعرّف على خدماتنا
             </a>
           </div>
+        </div>
+
+        <div className="mx-auto mt-16 max-w-5xl">
+          <ImagePlaceholder aspect="aspect-[16/7]" label="صورة رئيسية للمصنع أو المنتجات" />
         </div>
       </div>
     </section>

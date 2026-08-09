@@ -1,4 +1,4 @@
-import logoGreen from '../assets/logo-green.png';
+import logoWhite from '../assets/logo-white.png';
 
 const POINTS = [
   'التزام كامل بمعايير الجودة والسلامة في كل مراحل التصنيع',
@@ -12,14 +12,14 @@ export default function About() {
     <section id="about" className="section-py bg-white">
       <div className="container-px mx-auto grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <div className="relative order-2 lg:order-1">
-          <div className="relative overflow-hidden rounded-3xl bg-ink-900 p-10 md:p-14 aspect-[4/5] flex flex-col justify-between">
-            <div className="absolute -bottom-10 -left-10 h-56 w-56 rounded-full bg-brand-600/20 blur-2xl" />
-            <img src={logoGreen} alt="" aria-hidden="true" className="h-14 w-auto opacity-90" />
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 to-brand-700 p-10 md:p-14 aspect-[4/5] flex flex-col justify-between">
+            <div className="absolute -bottom-10 -left-10 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
+            <img src={logoWhite} alt="" aria-hidden="true" className="h-14 w-auto opacity-90" />
             <div className="relative">
               <p className="text-2xl font-bold leading-relaxed text-white md:text-3xl">
                 "نصنع الثقة قبل أن نصنع المنتج"
               </p>
-              <p className="mt-4 text-sm text-white/60">فلسفتنا في مصنع أول حلم لصناعة مستحضرات التجميل</p>
+              <p className="mt-4 text-sm text-white/75">فلسفتنا في مصنع أول حلم لصناعة مستحضرات التجميل</p>
             </div>
           </div>
         </div>

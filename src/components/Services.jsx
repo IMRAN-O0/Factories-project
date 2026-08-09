@@ -1,3 +1,5 @@
+import ImagePlaceholder from './ImagePlaceholder.jsx';
+
 const SERVICES = [
   {
     number: '01',
@@ -62,16 +64,19 @@ export default function Services() {
           {SERVICES.map((s) => (
             <div
               key={s.number}
-              className="group relative rounded-2xl border border-ink-100 bg-white p-7 shadow-soft transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg"
+              className="group relative overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg"
             >
-              <span className="absolute left-6 top-6 text-xs font-bold text-ink-100 transition-colors group-hover:text-brand-100">
-                {s.number}
-              </span>
-              <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white">
-                {s.icon}
+              <ImagePlaceholder aspect="aspect-[4/3]" label={`صورة ${s.title}`} className="rounded-none border-0 border-b-2 border-dashed border-brand-200" />
+              <div className="relative p-7">
+                <span className="absolute left-6 top-6 text-xs font-bold text-ink-100 transition-colors group-hover:text-brand-100">
+                  {s.number}
+                </span>
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+                  {s.icon}
+                </div>
+                <h3 className="mt-6 text-lg font-bold text-ink-900">{s.title}</h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-ink-400">{s.desc}</p>
               </div>
-              <h3 className="mt-6 text-lg font-bold text-ink-900">{s.title}</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-ink-400">{s.desc}</p>
             </div>
           ))}
         </div>
