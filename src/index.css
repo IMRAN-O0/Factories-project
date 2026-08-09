@@ -1,3 +1,5 @@
+@import 'react-day-picker/style.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -56,4 +58,43 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.rdp-root {
+  --rdp-accent-color: theme('colors.brand.600');
+  --rdp-accent-background-color: theme('colors.brand.50');
+  --rdp-today-color: theme('colors.brand.700');
+  --rdp-day-width: 44px;
+  --rdp-day-height: 44px;
+  --rdp-day_button-width: 40px;
+  --rdp-day_button-height: 40px;
+  font-family: 'Tajawal', sans-serif;
+  width: 100%;
+  max-width: 100%;
+}
+
+.rdp-months {
+  width: 100%;
+  justify-content: center;
+}
+
+.rdp-month_caption {
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 800;
+  color: theme('colors.ink.900');
+}
+
+.rdp-weekday {
+  color: theme('colors.ink.400');
+  font-weight: 600;
+}
+
+.rdp-day_button:hover:not([disabled]) {
+  background-color: theme('colors.brand.50');
+}
+
+.rdp-selected .rdp-day_button {
+  background-color: theme('colors.brand.600');
+  color: white;
+  border-color: transparent;
 }

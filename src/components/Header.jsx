@@ -1,54 +1,77 @@
 import { useEffect, useState } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import logoBlack from '../assets/logo-black.png';
 
 const NAV_LINKS = [
-  { href: '#home', label: 'الرئيسية' },
-  { href: '#services', label: 'خدماتنا' },
-  { href: '#about', label: 'من نحن' },
-  { href: '#why-us', label: 'لماذا نحن' },
-  { href: '#contact', label: 'تواصل معنا' },
+  { to: '/', label: 'الرئيسية' },
+  { to: '/services', label: 'خدماتنا' },
+  { to: '/about', label: 'من نحن' },
+  { to: '/contact', label: 'تواصل معنا' },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/90 backdrop-blur-md shadow-soft' : 'bg-transparent'
+        scrolled ? 'bg-white/90 backdrop-blur-md shadow-soft' : 'bg-white/60 backdrop-blur-sm'
       }`}
     >
       <div className="container-px mx-auto flex h-20 items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 shrink-0">
+        <Link to="/" className="flex items-center gap-2 shrink-0">
           <img src={logoBlack} alt="مصنع أول حلم" className="h-11 w-auto md:h-12" />
-        </a>
+        </Link>
 
         <nav className="hidden lg:flex items-center gap-9">
           {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-ink-600 hover:text-brand-600 transition-colors"
+            <NavLink
+              key={link.to}
+              to={link.to}
+              end={link.to === '/'}
+              className={({ isActive }) =>
+                `relative py-1 text-sm font-medium transition-colors ${
+                  isActive ? 'text-brand-600' : 'text-ink-600 hover:text-brand-600'
+                }`
+              }
             >
-              {link.label}
-            </a>
+              {({ isActive }) => (
+                <>
+                  {link.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1.5 right-0 left-0 h-0.5 rounded-full bg-brand-600"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </>
+              )}
+            </NavLink>
           ))}
         </nav>
 
         <div className="hidden lg:block">
-          <a
-            href="#contact"
+          <Link
+            to="/booking"
             className="inline-flex items-center rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
           >
-            احجز استشارة
-          </a>
+            احجز موعد
+          </Link>
         </div>
 
         <button
@@ -63,27 +86,35 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden bg-white border-t border-ink-100 shadow-soft">
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          className="lg:hidden bg-white border-t border-ink-100 shadow-soft overflow-hidden"
+        >
           <nav className="container-px mx-auto flex flex-col py-4">
             {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="py-3 text-base font-medium text-ink-700 border-b border-ink-50 last:border-none"
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.to === '/'}
+                className={({ isActive }) =>
+                  `py-3 text-base font-medium border-b border-ink-50 last:border-none ${
+                    isActive ? 'text-brand-600' : 'text-ink-700'
+                  }`
+                }
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
-            <a
-              href="#contact"
-              onClick={() => setOpen(false)}
+            <Link
+              to="/booking"
               className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white"
             >
-              احجز استشارة
-            </a>
+              احجز موعد
+            </Link>
           </nav>
-        </div>
+        </motion.div>
       )}
     </header>
   );

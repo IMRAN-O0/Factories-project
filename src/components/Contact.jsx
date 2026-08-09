@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Reveal from './Reveal.jsx';
 
 const CONTACT_EMAIL = 'info@awalhelm.com';
 const CONTACT_PHONE = '+966 5X XXX XXXX';
@@ -21,9 +22,9 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section-py bg-ink-50/60">
+    <section className="section-py bg-ink-50/60">
       <div className="container-px mx-auto grid grid-cols-1 gap-14 lg:grid-cols-2">
-        <div>
+        <Reveal>
           <span className="text-sm font-semibold uppercase tracking-widest text-brand-600">تواصل معنا</span>
           <h2 className="mt-3 text-3xl font-extrabold text-ink-900 md:text-4xl text-balance">
             جاهزون لتحويل فكرتك إلى منتج
@@ -79,8 +80,9 @@ export default function Contact() {
               <span className="text-ink-700 group-hover:text-brand-700">راسلنا عبر واتساب</span>
             </a>
           </div>
-        </div>
+        </Reveal>
 
+        <Reveal delay={0.1}>
         <form onSubmit={handleSubmit} className="rounded-2xl bg-white p-8 shadow-soft">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="sm:col-span-1">
@@ -129,6 +131,7 @@ export default function Contact() {
             إرسال الطلب
           </button>
         </form>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom';
 import logoWhite from '../assets/logo-white.png';
 
 const LINKS = [
-  { href: '#home', label: 'الرئيسية' },
-  { href: '#services', label: 'خدماتنا' },
-  { href: '#about', label: 'من نحن' },
-  { href: '#why-us', label: 'لماذا نحن' },
-  { href: '#contact', label: 'تواصل معنا' },
+  { href: '/', label: 'الرئيسية' },
+  { href: '/services', label: 'خدماتنا' },
+  { href: '/about', label: 'من نحن' },
+  { href: '/booking', label: 'حجز موعد' },
+  { href: '/contact', label: 'تواصل معنا' },
 ];
 
 const LEGAL_INFO = [
@@ -73,9 +74,9 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {LINKS.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-sm text-white/60 transition-colors hover:text-brand-400">
+                  <Link to={l.href} className="text-sm text-white/60 transition-colors hover:text-brand-400">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
