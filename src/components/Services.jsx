@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion';
 import ImagePlaceholder from './ImagePlaceholder.jsx';
+import Reveal from './Reveal.jsx';
 
 const SERVICES = [
   {
@@ -48,23 +50,40 @@ const SERVICES = [
   },
 ];
 
-export default function Services() {
-  return (
-    <section id="services" className="section-py bg-ink-50/60">
-      <div className="container-px mx-auto">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-brand-600">خدماتنا</span>
-          <h2 className="mt-3 text-3xl font-extrabold text-ink-900 md:text-4xl">رحلتك معنا في أربع خطوات</h2>
-          <p className="mt-4 text-ink-400">
-            من أول فكرة حتى منتج جاهز على الرف، نوفر لك تصنيعاً متكاملاً لمستحضرات التجميل تحت علامتك الخاصة.
-          </p>
-        </div>
+const grid = {
+  animate: { transition: { staggerChildren: 0.1 } },
+};
+const card = {
+  initial: { opacity: 0, y: 26 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+};
 
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+export default function Services({ withHeading = true }) {
+  return (
+    <section className="section-py bg-ink-50/60">
+      <div className="container-px mx-auto">
+        {withHeading && (
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <span className="text-sm font-semibold uppercase tracking-widest text-brand-600">خدماتنا</span>
+            <h2 className="mt-3 text-3xl font-extrabold text-ink-900 md:text-4xl">رحلتك معنا في أربع خطوات</h2>
+            <p className="mt-4 text-ink-400">
+              من أول فكرة حتى منتج جاهز على الرف، نوفر لك تصنيعاً متكاملاً لمستحضرات التجميل تحت علامتك الخاصة.
+            </p>
+          </Reveal>
+        )}
+
+        <motion.div
+          variants={grid}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: '-80px' }}
+          className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {SERVICES.map((s) => (
-            <div
+            <motion.div
               key={s.number}
-              className="group relative overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg"
+              variants={card}
+              className="group relative overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft transition-all hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-lg"
             >
               <ImagePlaceholder aspect="aspect-[4/3]" label={`صورة ${s.title}`} className="rounded-none border-0 border-b-2 border-dashed border-brand-200" />
               <div className="relative p-7">
@@ -77,9 +96,9 @@ export default function Services() {
                 <h3 className="mt-6 text-lg font-bold text-ink-900">{s.title}</h3>
                 <p className="mt-2.5 text-sm leading-relaxed text-ink-400">{s.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

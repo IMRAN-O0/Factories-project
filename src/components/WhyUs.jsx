@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion';
+import Reveal from './Reveal.jsx';
+
 const FEATURES = [
   {
     title: 'جودة موثوقة',
@@ -61,18 +64,30 @@ const FEATURES = [
   },
 ];
 
+const grid = { animate: { transition: { staggerChildren: 0.08 } } };
+const cell = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+};
+
 export default function WhyUs() {
   return (
-    <section id="why-us" className="section-py bg-white">
+    <section className="section-py bg-white">
       <div className="container-px mx-auto">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-brand-600">لماذا نحن</span>
           <h2 className="mt-3 text-3xl font-extrabold text-ink-900 md:text-4xl">شريك تصنيع تثق به علامتك</h2>
-        </div>
+        </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          variants={grid}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: '-80px' }}
+          className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {FEATURES.map((f) => (
-            <div key={f.title} className="flex items-start gap-4">
+            <motion.div key={f.title} variants={cell} className="flex items-start gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
                 {f.icon}
               </div>
@@ -80,9 +95,9 @@ export default function WhyUs() {
                 <h3 className="font-bold text-ink-900">{f.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-400">{f.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
