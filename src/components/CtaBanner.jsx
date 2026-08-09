@@ -17,7 +17,7 @@ export default function CtaBanner() {
             </p>
             <Link
               to="/booking"
-              className="relative mt-8 inline-flex items-center justify-center rounded-full bg-white px-9 py-3.5 text-base font-semibold text-brand-700 transition-transform hover:-translate-y-0.5 hover:shadow-xl"
+              className="relative mt-8 inline-flex items-center justify-center rounded-full bg-white px-9 py-3.5 text-base font-semibold text-brand-700 transition-transform hover:-translate-y-0.5 hover:shadow-xl active:scale-95"
             >
               احجز موعدك الآن
             </Link>

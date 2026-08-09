@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import PageHeader from '../components/PageHeader.jsx';
 import Stepper from '../components/booking/Stepper.jsx';
 import ServiceStep, { SERVICE_OPTIONS } from '../components/booking/ServiceStep.jsx';
+import PackagingStep, { PACKAGING_OPTIONS } from '../components/booking/PackagingStep.jsx';
 import DateTimeStep from '../components/booking/DateTimeStep.jsx';
 import DetailsStep from '../components/booking/DetailsStep.jsx';
 import ReviewStep from '../components/booking/ReviewStep.jsx';
 import SuccessScreen from '../components/booking/SuccessScreen.jsx';
 
 const CONTACT_EMAIL = 'info@awalhelm.com';
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = 5;
 
 const stepVariants = {
   enter: (dir) => ({ opacity: 0, x: dir > 0 ? 32 : -32 }),
@@ -32,16 +33,30 @@ export default function BookingPage() {
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1);
   const [service, setService] = useState('');
+  const [packaging, setPackaging] = useState('');
   const [date, setDate] = useState(undefined);
   const [time, setTime] = useState('');
   const [form, setForm] = useState({ name: '', phone: '', email: '', notes: '' });
+  const [logoFiles, setLogoFiles] = useState([]);
+  const [designFiles, setDesignFiles] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const stepTopRef = useRef(null);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    stepTopRef.current?.scrollIntoView({ behavior: 'auto', block: 'start' });
+  }, [step, submitted]);
 
   const canProceed =
     (step === 1 && !!service) ||
-    (step === 2 && !!date && !!time) ||
-    (step === 3 && !!form.name && !!form.phone) ||
-    step === 4;
+    (step === 2 && !!packaging) ||
+    (step === 3 && !!date && !!time) ||
+    (step === 4 && !!form.name && !!form.phone) ||
+    step === 5;
 
   const goNext = () => {
     if (!canProceed) return;
@@ -56,9 +71,13 @@ export default function BookingPage() {
 
   const handleSubmit = () => {
     const serviceLabel = SERVICE_OPTIONS.find((s) => s.id === service)?.title ?? service;
+    const packagingLabel = PACKAGING_OPTIONS.find((p) => p.id === packaging)?.title ?? packaging;
+    const attachments = [...logoFiles, ...designFiles].map((f) => f.name);
     const subject = encodeURIComponent(`طلب حجز موعد من ${form.name}`);
     const body = encodeURIComponent(
-      `الخدمة: ${serviceLabel}\nالتاريخ: ${formatDate(date)}\nالوقت: ${time}\n\nالاسم: ${form.name}\nرقم الجوال: ${form.phone}\nالبريد الإلكتروني: ${form.email || '—'}\n\nملاحظات:\n${form.notes || '—'}`
+      `الخدمة: ${serviceLabel}\nنوع العبوة: ${packagingLabel}\nالتاريخ: ${formatDate(date)}\nالوقت: ${time}\n\nالاسم: ${form.name}\nرقم الجوال: ${form.phone}\nالبريد الإلكتروني: ${form.email || '—'}\n\nملاحظات:\n${form.notes || '—'}${
+        attachments.length ? `\n\nملفات سيتم إرفاقها من العميل:\n${attachments.join('\n')}` : ''
+      }`
     );
     const link = document.createElement('a');
     link.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
@@ -76,6 +95,7 @@ export default function BookingPage() {
 
       <section className="section-py bg-white">
         <div className="container-px mx-auto max-w-4xl">
+          <div ref={stepTopRef} className="scroll-mt-28" />
           {!submitted && (
             <div className="mb-14">
               <Stepper current={step} />
@@ -99,11 +119,31 @@ export default function BookingPage() {
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {step === 1 && <ServiceStep value={service} onChange={setService} />}
-                  {step === 2 && (
+                  {step === 2 && <PackagingStep value={packaging} onChange={setPackaging} />}
+                  {step === 3 && (
                     <DateTimeStep date={date} onDateChange={setDate} time={time} onTimeChange={setTime} />
                   )}
-                  {step === 3 && <DetailsStep form={form} onChange={setForm} />}
-                  {step === 4 && <ReviewStep service={service} date={date} time={time} form={form} />}
+                  {step === 4 && (
+                    <DetailsStep
+                      form={form}
+                      onChange={setForm}
+                      logoFiles={logoFiles}
+                      onLogoChange={setLogoFiles}
+                      designFiles={designFiles}
+                      onDesignChange={setDesignFiles}
+                    />
+                  )}
+                  {step === 5 && (
+                    <ReviewStep
+                      service={service}
+                      packaging={packaging}
+                      date={date}
+                      time={time}
+                      form={form}
+                      logoFiles={logoFiles}
+                      designFiles={designFiles}
+                    />
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -128,7 +168,7 @@ export default function BookingPage() {
                   type="button"
                   onClick={goNext}
                   disabled={!canProceed}
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-40"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:active:scale-100"
                 >
                   التالي
                   <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 rotate-180">
@@ -139,7 +179,7 @@ export default function BookingPage() {
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-700"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-700 active:scale-95"
                 >
                   إرسال طلب الحجز
                 </button>

@@ -68,7 +68,7 @@ export default function Header() {
         <div className="hidden lg:block">
           <Link
             to="/booking"
-            className="inline-flex items-center rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+            className="inline-flex items-center rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-brand-700 hover:-translate-y-0.5 active:scale-95"
           >
             احجز موعد
           </Link>
@@ -109,7 +109,7 @@ export default function Header() {
             ))}
             <Link
               to="/booking"
-              className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white"
+              className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-transform active:scale-95"
             >
               احجز موعد
             </Link>
