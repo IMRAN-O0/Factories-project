@@ -102,9 +102,9 @@ body {
 .cursor-glow {
   background: radial-gradient(
     circle,
-    rgba(152, 198, 76, 0.32) 0%,
-    rgba(152, 198, 76, 0.16) 40%,
-    rgba(152, 198, 76, 0) 72%
+    rgba(152, 198, 76, 0.22) 0%,
+    rgba(152, 198, 76, 0.1) 40%,
+    rgba(152, 198, 76, 0) 70%
   );
   filter: blur(18px);
   will-change: transform;

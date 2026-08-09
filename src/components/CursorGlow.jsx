@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
-const GLOW_SIZE = 460;
+const GLOW_SIZE = 300;
 const HALF = GLOW_SIZE / 2;
 
 export default function CursorGlow() {
