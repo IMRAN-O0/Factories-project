@@ -13,8 +13,8 @@ export default function About() {
   return (
     <section className="section-py bg-white">
       <div className="container-px mx-auto grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
-        <Reveal className="relative order-2 lg:order-1" y={30}>
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 to-brand-700 p-10 md:p-14 aspect-[4/5] flex flex-col justify-between">
+        <Reveal className="relative order-2 mx-auto w-full max-w-md lg:order-1 lg:mx-0" y={30}>
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 to-brand-700 p-10 md:p-12 aspect-[4/5] flex flex-col justify-between">
             <div className="absolute -bottom-10 -left-10 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
             <img src={logoWhite} alt="" aria-hidden="true" className="h-14 w-auto opacity-90" />
             <div className="relative">
