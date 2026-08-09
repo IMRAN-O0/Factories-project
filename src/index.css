@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/tajawal-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./fonts/tajawal-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/tajawal-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./fonts/tajawal-800.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('./fonts/tajawal-900.woff2') format('woff2');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings: 'ss01';
+}
+
+@layer utilities {
+  .container-px {
+    @apply px-6 md:px-10 lg:px-16;
+  }
+  .section-py {
+    @apply py-20 md:py-28;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
