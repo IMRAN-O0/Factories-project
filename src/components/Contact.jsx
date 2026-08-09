@@ -18,7 +18,9 @@ export default function Contact() {
     const body = encodeURIComponent(
       `الاسم: ${form.name}\nرقم الجوال: ${form.phone}\n\nالرسالة:\n${form.message}`
     );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    const link = document.createElement('a');
+    link.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    link.click();
   };
 
   return (

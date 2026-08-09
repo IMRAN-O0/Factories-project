@@ -60,7 +60,9 @@ export default function BookingPage() {
     const body = encodeURIComponent(
       `الخدمة: ${serviceLabel}\nالتاريخ: ${formatDate(date)}\nالوقت: ${time}\n\nالاسم: ${form.name}\nرقم الجوال: ${form.phone}\nالبريد الإلكتروني: ${form.email || '—'}\n\nملاحظات:\n${form.notes || '—'}`
     );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    const link = document.createElement('a');
+    link.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    link.click();
     setSubmitted(true);
   };
 
