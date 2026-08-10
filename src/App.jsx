@@ -5,6 +5,7 @@ import Footer from './components/Footer.jsx';
 import CursorGlow from './components/CursorGlow.jsx';
 import ScrollToTop from './components/layout/ScrollToTop.jsx';
 import ScrollProgress from './components/layout/ScrollProgress.jsx';
+import SmoothScroll from './components/layout/SmoothScroll.jsx';
 import PageTransition from './components/layout/PageTransition.jsx';
 import Home from './pages/Home.jsx';
 import ServicesPage from './pages/ServicesPage.jsx';
@@ -18,6 +19,7 @@ export default function App() {
 
   return (
     <div className="overflow-x-hidden">
+      <SmoothScroll />
       <ScrollToTop />
       <ScrollProgress />
       <CursorGlow />

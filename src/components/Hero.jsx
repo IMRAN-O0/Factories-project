@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import logoGreen from '../assets/logo-green.png';
 import heroImage from '../assets/stock/hero-lab.jpg';
+import SplitHeading from './SplitHeading.jsx';
 
 const container = {
   animate: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
@@ -56,11 +57,11 @@ export default function Hero() {
             من الفكرة إلى المنتج النهائي
           </motion.span>
 
-          <motion.h1 variants={item} className="mt-7 text-balance text-4xl font-extrabold leading-[1.2] text-ink-900 sm:text-5xl md:text-6xl">
-            نحوّل حلمك إلى علامة تجارية
+          <h1 className="mt-7 text-balance text-4xl font-extrabold leading-[1.2] text-ink-900 sm:text-5xl md:text-6xl">
+            <SplitHeading text="نحوّل حلمك إلى علامة تجارية" delay={0.15} />
             <br />
-            <span className="text-brand-600">لمستحضرات التجميل</span>
-          </motion.h1>
+            <SplitHeading text="لمستحضرات التجميل" className="text-brand-600" delay={0.4} />
+          </h1>
 
           <motion.p variants={item} className="text-balance mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-400 md:text-xl">
             مصنع أول حلم يرافقك في كل خطوة: تطوير التركيبات، التصنيع الخاص
