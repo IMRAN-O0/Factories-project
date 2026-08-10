@@ -64,7 +64,7 @@ export default function WhyUs() {
           {items.map((f, i) => (
             <motion.div key={f.title} variants={cell} className="flex items-start gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950/40 dark:text-brand-400">
-                {ICONS[i]}
+                {Reflect.get(ICONS, i)}
               </div>
               <div>
                 <h3 className="font-bold text-ink-900 dark:text-night-50">{f.title}</h3>

@@ -69,7 +69,7 @@ export default function Footer() {
               {LINK_ROUTES.map((href, i) => (
                 <li key={href}>
                   <Link to={href} className="text-sm text-white/60 transition-colors hover:text-brand-400">
-                    {t(LINK_KEYS[i])}
+                    {t(Reflect.get(LINK_KEYS, i))}
                   </Link>
                 </li>
               ))}

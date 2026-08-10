@@ -10,7 +10,12 @@ function getInitialLang() {
 }
 
 function getByPath(obj, path) {
-  return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
+  return path.split('.').reduce((acc, key) => {
+    if (acc && typeof acc === 'object' && Object.prototype.hasOwnProperty.call(acc, key)) {
+      return Reflect.get(acc, key);
+    }
+    return undefined;
+  }, obj);
 }
 
 export function LanguageProvider({ children }) {
@@ -25,7 +30,8 @@ export function LanguageProvider({ children }) {
   const toggleLang = () => setLang((l) => (l === 'ar' ? 'en' : 'ar'));
 
   const t = (key) => {
-    const value = getByPath(translations[lang], key);
+    const dict = lang === 'ar' ? translations.ar : translations.en;
+    const value = getByPath(dict, key);
     if (value === undefined) return getByPath(translations.ar, key) ?? key;
     return value;
   };

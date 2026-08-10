@@ -62,7 +62,7 @@ export default function ServiceStep({ value, onChange }) {
                   active ? 'bg-brand-600 text-white' : 'bg-brand-50 text-brand-600 dark:bg-brand-950/60 dark:text-brand-400'
                 }`}
               >
-                {SERVICE_ICONS[opt.id]}
+                {Reflect.get(SERVICE_ICONS, opt.id)}
               </span>
               <span>
                 <span className="block font-bold text-ink-900 dark:text-night-50">{opt.title}</span>

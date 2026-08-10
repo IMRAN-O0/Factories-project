@@ -68,7 +68,7 @@ export default function Services({ withHeading = true }) {
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
-                  src={IMAGES[i]}
+                  src={Reflect.get(IMAGES, i)}
                   alt={s.title}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -79,7 +79,7 @@ export default function Services({ withHeading = true }) {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div className="glass -mt-14 flex h-16 w-16 items-center justify-center rounded-xl text-brand-600 shadow-soft dark:text-brand-400">
-                  {ICONS[i]}
+                  {Reflect.get(ICONS, i)}
                 </div>
                 <h3 className="mt-6 text-lg font-bold text-ink-900 dark:text-night-50">{s.title}</h3>
                 <p className="mt-2.5 text-sm leading-relaxed text-ink-400 dark:text-night-200">{s.desc}</p>

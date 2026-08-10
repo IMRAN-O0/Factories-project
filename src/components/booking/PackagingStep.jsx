@@ -88,7 +88,7 @@ export default function PackagingStep({ value, onChange }) {
                   active ? 'bg-brand-600 text-white' : 'bg-brand-50 text-brand-600 dark:bg-brand-950/60 dark:text-brand-400'
                 }`}
               >
-                {PACKAGING_ICONS[opt.id]}
+                {Reflect.get(PACKAGING_ICONS, opt.id)}
               </span>
               <span className="font-bold text-ink-900 dark:text-night-50">{opt.title}</span>
             </motion.button>
