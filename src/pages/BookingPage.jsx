@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import PageHeader from '../components/PageHeader.jsx';
 import Stepper from '../components/booking/Stepper.jsx';
-import ServiceStep, { SERVICE_OPTIONS } from '../components/booking/ServiceStep.jsx';
-import PackagingStep, { PACKAGING_OPTIONS } from '../components/booking/PackagingStep.jsx';
+import ServiceStep from '../components/booking/ServiceStep.jsx';
+import PackagingStep from '../components/booking/PackagingStep.jsx';
 import DateTimeStep from '../components/booking/DateTimeStep.jsx';
 import DetailsStep from '../components/booking/DetailsStep.jsx';
 import ReviewStep from '../components/booking/ReviewStep.jsx';
 import SuccessScreen from '../components/booking/SuccessScreen.jsx';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 const CONTACT_EMAIL = 'info@awalhelm.com';
 const TOTAL_STEPS = 5;
@@ -18,9 +19,9 @@ const stepVariants = {
   exit: (dir) => ({ opacity: 0, x: dir > 0 ? -32 : 32 }),
 };
 
-function formatDate(date) {
+function formatDate(date, isRTL) {
   if (!date) return '';
-  return new Intl.DateTimeFormat('ar-SA-u-nu-latn', {
+  return new Intl.DateTimeFormat(isRTL ? 'ar-SA-u-nu-latn' : 'en-US', {
     calendar: 'gregory',
     weekday: 'long',
     day: 'numeric',
@@ -30,6 +31,7 @@ function formatDate(date) {
 }
 
 export default function BookingPage() {
+  const { t, isRTL } = useLanguage();
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1);
   const [service, setService] = useState('');
@@ -70,13 +72,14 @@ export default function BookingPage() {
   };
 
   const handleSubmit = () => {
-    const serviceLabel = SERVICE_OPTIONS.find((s) => s.id === service)?.title ?? service;
-    const packagingLabel = PACKAGING_OPTIONS.find((p) => p.id === packaging)?.title ?? packaging;
+    const serviceLabel = t('booking.service.options').find((s) => s.id === service)?.title ?? service;
+    const packagingLabel = t('booking.packaging.options').find((p) => p.id === packaging)?.title ?? packaging;
     const attachments = [...logoFiles, ...designFiles].map((f) => f.name);
-    const subject = encodeURIComponent(`طلب حجز موعد من ${form.name}`);
+    const e = t('booking.email');
+    const subject = encodeURIComponent(`${e.subjectPrefix} ${form.name}`);
     const body = encodeURIComponent(
-      `الخدمة: ${serviceLabel}\nنوع العبوة: ${packagingLabel}\nالتاريخ: ${formatDate(date)}\nالوقت: ${time}\n\nالاسم: ${form.name}\nاسم العلامة التجارية: ${form.brand || '—'}\nرقم الجوال: ${form.phone}\nالبريد الإلكتروني: ${form.email || '—'}\n\nملاحظات:\n${form.notes || '—'}${
-        attachments.length ? `\n\nملفات سيتم إرفاقها من العميل:\n${attachments.join('\n')}` : ''
+      `${e.service}: ${serviceLabel}\n${e.packaging}: ${packagingLabel}\n${e.date}: ${formatDate(date, isRTL)}\n${e.time}: ${time}\n\n${e.name}: ${form.name}\n${e.brand}: ${form.brand || '—'}\n${e.phone}: ${form.phone}\n${e.email}: ${form.email || '—'}\n\n${e.notes}:\n${form.notes || '—'}${
+        attachments.length ? `\n\n${e.attachments}:\n${attachments.join('\n')}` : ''
       }`
     );
     const link = document.createElement('a');
@@ -85,15 +88,14 @@ export default function BookingPage() {
     setSubmitted(true);
   };
 
+  const p = t('pages.booking');
+  const nav = t('booking.nav');
+
   return (
     <>
-      <PageHeader
-        eyebrow="حجز موعد"
-        title="احجز استشارتك المجانية"
-        description="خطوات بسيطة لتحديد موعدك مع فريق مصنع أول حلم لمناقشة فكرة منتجك."
-      />
+      <PageHeader eyebrow={p.eyebrow} title={p.title} description={p.description} />
 
-      <section className="mesh-bg section-py">
+      <section className="mesh-bg section-py dark:bg-night-900">
         <div className="container-px mx-auto max-w-4xl">
           <div ref={stepTopRef} className="scroll-mt-28" />
           {!submitted && (
@@ -155,12 +157,12 @@ export default function BookingPage() {
                 type="button"
                 onClick={goBack}
                 disabled={step === 1}
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-ink-600 transition-opacity disabled:opacity-0"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-ink-600 transition-opacity disabled:opacity-0 dark:text-night-100"
               >
                 <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
                   <path d="M4 12h16M10 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                رجوع
+                {nav.back}
               </button>
 
               {step < TOTAL_STEPS ? (
@@ -170,8 +172,8 @@ export default function BookingPage() {
                   disabled={!canProceed}
                   className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:active:scale-100"
                 >
-                  التالي
-                  <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 rotate-180">
+                  {nav.next}
+                  <svg viewBox="0 0 24 24" fill="none" className={`h-4 w-4 ${isRTL ? 'rotate-180' : ''}`}>
                     <path d="M4 12h16M14 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
@@ -181,7 +183,7 @@ export default function BookingPage() {
                   onClick={handleSubmit}
                   className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-700 active:scale-95"
                 >
-                  إرسال طلب الحجز
+                  {nav.submit}
                 </button>
               )}
             </div>

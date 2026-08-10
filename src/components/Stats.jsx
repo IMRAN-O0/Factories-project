@@ -1,12 +1,6 @@
 import { motion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
-
-const CAPABILITIES = [
-  { label: 'عناية بالبشرة', desc: 'كريمات، سيروم، مرطبات، وأقنعة' },
-  { label: 'عناية بالشعر', desc: 'شامبو، بلسم، وزيوت علاجية' },
-  { label: 'العناية اليومية', desc: 'مستحضرات استحمام وعناية عامة' },
-  { label: 'المكياج', desc: 'منتجات تجميل وألوان متنوعة' },
-];
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 const grid = { animate: { transition: { staggerChildren: 0.08 } } };
 const cell = {
@@ -15,12 +9,17 @@ const cell = {
 };
 
 export default function Stats() {
+  const { t } = useLanguage();
+  const items = t('stats.items');
+
   return (
-    <section className="mesh-bg py-16 md:py-20">
+    <section className="mesh-bg py-16 dark:bg-night-900 md:py-20">
       <div className="container-px mx-auto">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-brand-600">قدراتنا التصنيعية</span>
-          <h2 className="mt-3 text-2xl font-extrabold text-ink-900 md:text-3xl">نصنع من أجل كل فئات مستحضرات التجميل</h2>
+          <span className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+            {t('stats.eyebrow')}
+          </span>
+          <h2 className="mt-3 text-2xl font-extrabold text-ink-900 dark:text-night-50 md:text-3xl">{t('stats.title')}</h2>
         </Reveal>
 
         <motion.div
@@ -30,14 +29,14 @@ export default function Stats() {
           viewport={{ once: true, margin: '-80px' }}
           className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-4"
         >
-          {CAPABILITIES.map((c) => (
+          {items.map((c) => (
             <motion.div
               key={c.label}
               variants={cell}
               className="glass rounded-2xl p-6 text-center transition-all hover:-translate-y-1 hover:shadow-lg"
             >
-              <p className="text-lg font-bold text-brand-700">{c.label}</p>
-              <p className="mt-2 text-sm text-ink-400">{c.desc}</p>
+              <p className="text-lg font-bold text-brand-700 dark:text-brand-400">{c.label}</p>
+              <p className="mt-2 text-sm text-ink-400 dark:text-night-200">{c.desc}</p>
             </motion.div>
           ))}
         </motion.div>

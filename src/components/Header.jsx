@@ -3,18 +3,25 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import logoBlack from '../assets/logo-black.png';
 import logoGreen from '../assets/logo-green-full.png';
-
-const NAV_LINKS = [
-  { to: '/', label: 'الصفحة الرئيسية' },
-  { to: '/services', label: 'خدماتنا' },
-  { to: '/about', label: 'من نحن' },
-  { to: '/contact', label: 'تواصل معنا' },
-];
+import logoWhite from '../assets/logo-white.png';
+import { useTheme } from '../context/ThemeContext.jsx';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
+  const { lang, toggleLang, t } = useLanguage();
+
+  const NAV_LINKS = [
+    { to: '/', label: t('nav.home') },
+    { to: '/services', label: t('nav.services') },
+    { to: '/about', label: t('nav.about') },
+    { to: '/contact', label: t('nav.contact') },
+  ];
+
+  const hoverLogo = theme === 'dark' ? logoWhite : logoBlack;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -41,7 +48,7 @@ export default function Header() {
             className="h-11 w-auto transition-opacity duration-200 md:h-12 group-hover:opacity-0"
           />
           <img
-            src={logoBlack}
+            src={hoverLogo}
             alt=""
             aria-hidden="true"
             className="absolute inset-y-0 right-0 h-11 w-auto opacity-0 transition-opacity duration-200 md:h-12 group-hover:opacity-100"
@@ -56,7 +63,7 @@ export default function Header() {
               end={link.to === '/'}
               className={({ isActive }) =>
                 `relative py-1 text-sm font-medium transition-colors ${
-                  isActive ? 'text-brand-600' : 'text-ink-600 hover:text-brand-600'
+                  isActive ? 'text-brand-600' : 'text-ink-600 hover:text-brand-600 dark:text-night-100 dark:hover:text-brand-400'
                 }`
               }
             >
@@ -66,7 +73,7 @@ export default function Header() {
                   {isActive && (
                     <motion.span
                       layoutId="nav-underline"
-                      className="absolute -bottom-1.5 right-0 left-0 h-0.5 rounded-full bg-brand-600"
+                      className="absolute -bottom-1.5 right-0 left-0 h-0.5 rounded-full bg-brand-600 dark:bg-brand-400"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -76,32 +83,103 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggleLang}
+            className="rounded-full border border-ink-200 px-3.5 py-2 text-xs font-semibold text-ink-600 transition-colors hover:border-brand-400 hover:text-brand-600 dark:border-night-400 dark:text-night-100 dark:hover:border-brand-400 dark:hover:text-brand-400"
+          >
+            {t('lang.switchTo')}
+          </button>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? t('theme.toggleToLight') : t('theme.toggleToDark')}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink-200 text-ink-600 transition-colors hover:border-brand-400 hover:text-brand-600 dark:border-night-400 dark:text-night-100 dark:hover:border-brand-400 dark:hover:text-brand-400"
+          >
+            {theme === 'dark' ? (
+              <svg viewBox="0 0 24 24" fill="none" className="h-4.5 w-4.5">
+                <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.8" />
+                <path
+                  d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" className="h-4.5 w-4.5">
+                <path
+                  d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
+          </button>
           <Link
             to="/booking"
             className="inline-flex items-center rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-brand-700 hover:-translate-y-0.5 active:scale-95"
           >
-            احجز موعد
+            {t('nav.bookNow')}
           </Link>
         </div>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="lg:hidden flex flex-col gap-1.5 p-2"
-          aria-label="فتح القائمة"
-        >
-          <span className={`h-0.5 w-6 bg-ink-800 transition-transform ${open ? 'translate-y-2 rotate-45' : ''}`} />
-          <span className={`h-0.5 w-6 bg-ink-800 transition-opacity ${open ? 'opacity-0' : ''}`} />
-          <span className={`h-0.5 w-6 bg-ink-800 transition-transform ${open ? '-translate-y-2 -rotate-45' : ''}`} />
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            type="button"
+            onClick={toggleLang}
+            className="rounded-full border border-ink-200 px-3 py-1.5 text-xs font-semibold text-ink-600 dark:border-night-400 dark:text-night-100"
+          >
+            {t('lang.switchTo')}
+          </button>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? t('theme.toggleToLight') : t('theme.toggleToDark')}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink-200 text-ink-600 dark:border-night-400 dark:text-night-100"
+          >
+            {theme === 'dark' ? (
+              <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
+                <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.8" />
+                <path
+                  d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
+                <path
+                  d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
+          </button>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="flex flex-col gap-1.5 p-2"
+            aria-label={t('nav.openMenu')}
+          >
+            <span className={`h-0.5 w-6 bg-ink-800 transition-transform dark:bg-night-50 ${open ? 'translate-y-2 rotate-45' : ''}`} />
+            <span className={`h-0.5 w-6 bg-ink-800 transition-opacity dark:bg-night-50 ${open ? 'opacity-0' : ''}`} />
+            <span className={`h-0.5 w-6 bg-ink-800 transition-transform dark:bg-night-50 ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+          </button>
+        </div>
       </div>
 
       {open && (
         <motion.div
+          key={lang}
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="lg:hidden bg-white border-t border-ink-100 shadow-soft overflow-hidden"
+          className="lg:hidden bg-white border-t border-ink-100 shadow-soft overflow-hidden dark:bg-night-800 dark:border-night-600"
         >
           <nav className="container-px mx-auto flex flex-col py-4">
             {NAV_LINKS.map((link) => (
@@ -110,8 +188,8 @@ export default function Header() {
                 to={link.to}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  `py-3 text-base font-medium border-b border-ink-50 last:border-none ${
-                    isActive ? 'text-brand-600' : 'text-ink-700'
+                  `py-3 text-base font-medium border-b border-ink-50 last:border-none dark:border-night-700 ${
+                    isActive ? 'text-brand-600' : 'text-ink-700 dark:text-night-100'
                   }`
                 }
               >
@@ -122,7 +200,7 @@ export default function Header() {
               to="/booking"
               className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-transform active:scale-95"
             >
-              احجز موعد
+              {t('nav.bookNow')}
             </Link>
           </nav>
         </motion.div>

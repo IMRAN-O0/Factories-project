@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import Reveal from './Reveal.jsx';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 const CONTACT_EMAIL = 'info@awalhelm.com';
 const CONTACT_PHONE = '+966 5X XXX XXXX';
 const WHATSAPP_LINK = 'https://wa.me/9665XXXXXXXX';
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [form, setForm] = useState({ name: '', brand: '', phone: '', message: '' });
 
   const handleChange = (e) => {
@@ -14,41 +16,45 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`طلب استشارة من ${form.name || 'زائر الموقع'}`);
+    const e2 = t('contact.email');
+    const subject = encodeURIComponent(`${e2.subjectPrefix} ${form.name || e2.subjectFallback}`);
     const body = encodeURIComponent(
-      `الاسم: ${form.name}\nاسم العلامة التجارية: ${form.brand || '—'}\nرقم الجوال: ${form.phone}\n\nالرسالة:\n${form.message}`
+      `${e2.name}: ${form.name}\n${e2.brand}: ${form.brand || '—'}\n${e2.phone}: ${form.phone}\n\n${e2.message}:\n${form.message}`
     );
     const link = document.createElement('a');
     link.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
     link.click();
   };
 
+  const f = t('contact.form');
+
   return (
-    <section className="mesh-bg section-py">
+    <section className="mesh-bg section-py dark:bg-night-900">
       <div className="container-px mx-auto grid grid-cols-1 gap-14 lg:grid-cols-2">
         <Reveal>
-          <span className="text-sm font-semibold uppercase tracking-widest text-brand-600">تواصل معنا</span>
-          <h2 className="mt-3 text-3xl font-extrabold text-ink-900 md:text-4xl text-balance">
-            جاهزون لتحويل فكرتك إلى منتج
+          <span className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
+            {t('contact.eyebrow')}
+          </span>
+          <h2 className="mt-3 text-3xl font-extrabold text-ink-900 dark:text-night-50 md:text-4xl text-balance">
+            {t('contact.title')}
           </h2>
-          <p className="mt-5 leading-loose text-ink-400">
-            راسلنا اليوم واحصل على استشارة مجانية حول تصنيع مستحضرات التجميل
-            الخاصة بعلامتك. فريقنا جاهز للإجابة على كل استفساراتك.
-          </p>
+          <p className="mt-5 leading-loose text-ink-400 dark:text-night-200">{t('contact.desc')}</p>
 
           <div className="mt-8 space-y-5">
             <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-4 group">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white dark:bg-brand-950/50 dark:text-brand-400">
                 <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
                   <path d="M4 6h16v12H4V6Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
                   <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
-              <span className="text-ink-700 group-hover:text-brand-700">{CONTACT_EMAIL}</span>
+              <span className="text-ink-700 dark:text-night-100 group-hover:text-brand-700 dark:group-hover:text-brand-400">
+                {CONTACT_EMAIL}
+              </span>
             </a>
 
             <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} className="flex items-center gap-4 group">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white dark:bg-brand-950/50 dark:text-brand-400">
                 <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
                   <path
                     d="M6 3h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2C10.5 19 5 13.5 5 5a2 2 0 0 1 1-2Z"
@@ -58,7 +64,7 @@ export default function Contact() {
                   />
                 </svg>
               </span>
-              <span dir="ltr" className="text-ink-700 group-hover:text-brand-700">
+              <span dir="ltr" className="text-ink-700 dark:text-night-100 group-hover:text-brand-700 dark:group-hover:text-brand-400">
                 {CONTACT_PHONE}
               </span>
             </a>
@@ -69,7 +75,7 @@ export default function Contact() {
               rel="noopener noreferrer"
               className="flex items-center gap-4 group"
             >
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white dark:bg-brand-950/50 dark:text-brand-400">
                 <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
                   <path
                     d="M20 12a8 8 0 1 1-3.6-6.66L20 4l-1.2 4.2A7.96 7.96 0 0 1 20 12Z"
@@ -79,71 +85,73 @@ export default function Contact() {
                   />
                 </svg>
               </span>
-              <span className="text-ink-700 group-hover:text-brand-700">راسلنا عبر واتساب</span>
+              <span className="text-ink-700 dark:text-night-100 group-hover:text-brand-700 dark:group-hover:text-brand-400">
+                {t('contact.whatsappLabel')}
+              </span>
             </a>
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
-        <form onSubmit={handleSubmit} className="glass rounded-2xl p-8">
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <div className="sm:col-span-1">
-              <label className="mb-1.5 block text-sm font-medium text-ink-700">الاسم الثلاثي</label>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-                className="w-full rounded-xl border border-ink-100 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500"
-                placeholder="مثال: عبدالله محمد العتيبي"
-              />
+          <form onSubmit={handleSubmit} className="glass rounded-2xl p-8">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <div className="sm:col-span-1">
+                <label className="mb-1.5 block text-sm font-medium text-ink-700 dark:text-night-100">{f.name}</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500 dark:border-night-600 dark:bg-night-800 dark:text-night-50"
+                  placeholder={f.namePlaceholder}
+                />
+              </div>
+              <div className="sm:col-span-1">
+                <label className="mb-1.5 block text-sm font-medium text-ink-700 dark:text-night-100">{f.phone}</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                  dir="ltr"
+                  className="w-full rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500 dark:border-night-600 dark:bg-night-800 dark:text-night-50"
+                  placeholder={f.phonePlaceholder}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="mb-1.5 block text-sm font-medium text-ink-700 dark:text-night-100">{f.brand}</label>
+                <input
+                  type="text"
+                  name="brand"
+                  value={form.brand}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500 dark:border-night-600 dark:bg-night-800 dark:text-night-50"
+                  placeholder={f.brandPlaceholder}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="mb-1.5 block text-sm font-medium text-ink-700 dark:text-night-100">{f.message}</label>
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  className="w-full resize-none rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500 dark:border-night-600 dark:bg-night-800 dark:text-night-50"
+                  placeholder={f.messagePlaceholder}
+                />
+              </div>
             </div>
-            <div className="sm:col-span-1">
-              <label className="mb-1.5 block text-sm font-medium text-ink-700">رقم الجوال</label>
-              <input
-                type="tel"
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                required
-                dir="ltr"
-                className="w-full rounded-xl border border-ink-100 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500"
-                placeholder="05XXXXXXXX"
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm font-medium text-ink-700">اسم العلامة التجارية (اختياري)</label>
-              <input
-                type="text"
-                name="brand"
-                value={form.brand}
-                onChange={handleChange}
-                className="w-full rounded-xl border border-ink-100 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500"
-                placeholder="اسم علامتك التجارية إن وُجد"
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label className="mb-1.5 block text-sm font-medium text-ink-700">رسالتك</label>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                className="w-full resize-none rounded-xl border border-ink-100 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500"
-                placeholder="أخبرنا عن فكرتك أو منتجك..."
-              />
-            </div>
-          </div>
 
-          <button
-            type="submit"
-            className="mt-6 w-full rounded-full bg-brand-600 py-3.5 text-base font-semibold text-white transition-all hover:bg-brand-700 active:scale-[0.98]"
-          >
-            إرسال الطلب
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="mt-6 w-full rounded-full bg-brand-600 py-3.5 text-base font-semibold text-white transition-all hover:bg-brand-700 active:scale-[0.98]"
+            >
+              {f.submit}
+            </button>
+          </form>
         </Reveal>
       </div>
     </section>

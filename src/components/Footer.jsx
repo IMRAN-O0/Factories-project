@@ -1,17 +1,13 @@
 import { Link } from 'react-router-dom';
 import logoWhite from '../assets/logo-white.png';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
-const LINKS = [
-  { href: '/', label: 'الصفحة الرئيسية' },
-  { href: '/services', label: 'خدماتنا' },
-  { href: '/about', label: 'من نحن' },
-  { href: '/booking', label: 'حجز موعد' },
-  { href: '/contact', label: 'تواصل معنا' },
-];
+const LINK_ROUTES = ['/', '/services', '/about', '/booking', '/contact'];
+const LINK_KEYS = ['nav.home', 'nav.services', 'nav.about', 'nav.bookNow', 'nav.contact'];
 
-const LEGAL_INFO = [
-  { label: 'السجل التجاري', value: '7002138936' },
-  { label: 'الرقم الضريبي', value: '300029859300003' },
+const LEGAL_KEYS = [
+  { key: 'footer.cr', value: '7002138936' },
+  { key: 'footer.taxNumber', value: '300029859300003' },
 ];
 
 const CONTACT_EMAIL = 'info@awalhelm.com';
@@ -56,26 +52,24 @@ const SOCIAL = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
-    <footer className="bg-brand-950 pt-16 pb-8">
+    <footer className="bg-brand-950 pt-16 pb-8 dark:bg-night-950">
       <div className="container-px mx-auto">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           <div className="md:col-span-1">
             <img src={logoWhite} alt="مصنع أول حلم" className="h-12 w-auto" />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
-              مصنع أول حلم لصناعة مستحضرات التجميل — نحوّل أفكاركم إلى علامات
-              تجارية متكاملة، بجودة تصنيعية موثوقة.
-            </p>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">{t('footer.tagline')}</p>
           </div>
 
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-widest text-white/80">روابط سريعة</h4>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-white/80">{t('footer.quickLinks')}</h4>
             <ul className="mt-5 space-y-3">
-              {LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link to={l.href} className="text-sm text-white/60 transition-colors hover:text-brand-400">
-                    {l.label}
+              {LINK_ROUTES.map((href, i) => (
+                <li key={href}>
+                  <Link to={href} className="text-sm text-white/60 transition-colors hover:text-brand-400">
+                    {t(LINK_KEYS[i])}
                   </Link>
                 </li>
               ))}
@@ -83,11 +77,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-widest text-white/80">معلومات المصنع</h4>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-white/80">{t('footer.factoryInfo')}</h4>
             <ul className="mt-5 space-y-3">
-              {LEGAL_INFO.map((item) => (
-                <li key={item.label} className="text-sm text-white/60">
-                  {item.label}: <span dir="ltr" className="text-white/80">{item.value}</span>
+              {LEGAL_KEYS.map((item) => (
+                <li key={item.key} className="text-sm text-white/60">
+                  {t(item.key)}: <span dir="ltr" className="text-white/80">{item.value}</span>
                 </li>
               ))}
               <li className="text-sm text-white/60">
@@ -99,7 +93,7 @@ export default function Footer() {
           </div>
 
           <div className="md:ms-auto">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-white/80">تابعنا</h4>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-white/80">{t('footer.followUs')}</h4>
             <div className="mt-5 flex gap-3">
               {SOCIAL.map((s) => (
                 <a
@@ -116,8 +110,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row">
-          <p>© {year} مصنع أول حلم لصناعة مستحضرات التجميل. جميع الحقوق محفوظة.</p>
-          <p>صُنع بفخر لدعم الصناعة الوطنية</p>
+          <p>{t('footer.copyright')(year)}</p>
+          <p>{t('footer.madeWith')}</p>
         </div>
       </div>
     </footer>

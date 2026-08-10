@@ -1,9 +1,8 @@
-import { SERVICE_OPTIONS } from './ServiceStep.jsx';
-import { PACKAGING_OPTIONS } from './PackagingStep.jsx';
+import { useLanguage } from '../../context/LanguageContext.jsx';
 
-function formatDate(date) {
+function formatDate(date, isRTL) {
   if (!date) return '—';
-  return new Intl.DateTimeFormat('ar-SA-u-nu-latn', {
+  return new Intl.DateTimeFormat(isRTL ? 'ar-SA-u-nu-latn' : 'en-US', {
     calendar: 'gregory',
     weekday: 'long',
     day: 'numeric',
@@ -13,47 +12,49 @@ function formatDate(date) {
 }
 
 export default function ReviewStep({ service, packaging, date, time, form, logoFiles, designFiles }) {
-  const serviceLabel = SERVICE_OPTIONS.find((s) => s.id === service)?.title ?? '—';
-  const packagingLabel = PACKAGING_OPTIONS.find((p) => p.id === packaging)?.title ?? '—';
+  const { t, isRTL } = useLanguage();
+  const r = t('booking.review');
+  const serviceLabel = t('booking.service.options').find((s) => s.id === service)?.title ?? r.empty;
+  const packagingLabel = t('booking.packaging.options').find((p) => p.id === packaging)?.title ?? r.empty;
 
   const rows = [
-    { label: 'الخدمة', value: serviceLabel },
-    { label: 'نوع العبوة', value: packagingLabel },
-    { label: 'التاريخ', value: formatDate(date) },
-    { label: 'الوقت', value: time || '—' },
-    { label: 'الاسم الثلاثي', value: form.name },
-    { label: 'اسم العلامة التجارية', value: form.brand || '—' },
-    { label: 'رقم الجوال', value: form.phone, dir: 'ltr' },
+    { label: r.service, value: serviceLabel },
+    { label: r.packaging, value: packagingLabel },
+    { label: r.date, value: formatDate(date, isRTL) },
+    { label: r.time, value: time || r.empty },
+    { label: r.name, value: form.name },
+    { label: r.brand, value: form.brand || r.empty },
+    { label: r.phone, value: form.phone, dir: 'ltr' },
   ];
 
   const attachments = [...logoFiles, ...designFiles];
 
   return (
     <div>
-      <h2 className="text-center text-2xl font-extrabold text-ink-900">مراجعة الطلب</h2>
-      <p className="mt-2 text-center text-ink-400">تأكد من بياناتك قبل الإرسال، سنتواصل معك لتأكيد الموعد نهائياً</p>
+      <h2 className="text-center text-2xl font-extrabold text-ink-900 dark:text-night-50">{r.title}</h2>
+      <p className="mt-2 text-center text-ink-400 dark:text-night-200">{r.subtitle}</p>
 
-      <div className="glass mx-auto mt-10 max-w-xl divide-y divide-white/40 overflow-hidden rounded-2xl">
-        {rows.map((r) => (
-          <div key={r.label} className="flex items-center justify-between px-6 py-4">
-            <span className="text-sm text-ink-400">{r.label}</span>
-            <span dir={r.dir} className="font-semibold text-ink-900">
-              {r.value}
+      <div className="glass mx-auto mt-10 max-w-xl divide-y divide-white/40 dark:divide-white/10 overflow-hidden rounded-2xl">
+        {rows.map((row) => (
+          <div key={row.label} className="flex items-center justify-between px-6 py-4">
+            <span className="text-sm text-ink-400 dark:text-night-200">{row.label}</span>
+            <span dir={row.dir} className="font-semibold text-ink-900 dark:text-night-50">
+              {row.value}
             </span>
           </div>
         ))}
         {form.notes && (
           <div className="px-6 py-4">
-            <span className="block text-sm text-ink-400">ملاحظات</span>
-            <span className="mt-1 block text-ink-700">{form.notes}</span>
+            <span className="block text-sm text-ink-400 dark:text-night-200">{r.notes}</span>
+            <span className="mt-1 block text-ink-700 dark:text-night-100">{form.notes}</span>
           </div>
         )}
         {attachments.length > 0 && (
           <div className="px-6 py-4">
-            <span className="block text-sm text-ink-400">المرفقات المختارة</span>
+            <span className="block text-sm text-ink-400 dark:text-night-200">{r.attachments}</span>
             <ul className="mt-1.5 space-y-1">
               {attachments.map((f, i) => (
-                <li key={`${f.name}-${i}`} className="text-sm text-ink-700">
+                <li key={`${f.name}-${i}`} className="text-sm text-ink-700 dark:text-night-100">
                   {f.name}
                 </li>
               ))}
@@ -62,9 +63,9 @@ export default function ReviewStep({ service, packaging, date, time, form, logoF
         )}
       </div>
 
-      <p className="mx-auto mt-6 max-w-xl text-center text-xs text-ink-400">
-        هذا طلب حجز موعد استشارة، وليس تأكيداً نهائياً — سيتواصل معك فريقنا لتثبيت الموعد
-        {attachments.length > 0 && '، ولا تنسَ إرفاق ملفاتك عند الرد على رسالتنا أو عبر واتساب'}.
+      <p className="mx-auto mt-6 max-w-xl text-center text-xs text-ink-400 dark:text-night-200">
+        {r.disclaimer}
+        {attachments.length > 0 && r.disclaimerAttachments}.
       </p>
     </div>
   );

@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
-
-const STEPS = ['الخدمة', 'العبوة', 'الموعد', 'بياناتك', 'التأكيد'];
+import { useLanguage } from '../../context/LanguageContext.jsx';
 
 export default function Stepper({ current }) {
+  const { t } = useLanguage();
+  const steps = t('booking.steps');
+
   return (
     <div className="mx-auto flex max-w-2xl items-center justify-between">
-      {STEPS.map((label, i) => {
+      {steps.map((label, i) => {
         const stepNum = i + 1;
         const isDone = stepNum < current;
         const isActive = stepNum === current;
@@ -16,7 +18,9 @@ export default function Stepper({ current }) {
                 animate={{ scale: isActive ? 1.1 : 1 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 className={`flex h-9 w-9 items-center justify-center rounded-full border-2 text-sm font-bold transition-colors duration-300 ${
-                  isDone || isActive ? 'border-brand-600 bg-brand-600 text-white' : 'border-ink-200 bg-white text-ink-400'
+                  isDone || isActive
+                    ? 'border-brand-600 bg-brand-600 text-white'
+                    : 'border-ink-200 bg-white text-ink-400 dark:border-night-600 dark:bg-night-800 dark:text-night-200'
                 }`}
               >
                 {isDone ? (
@@ -31,10 +35,12 @@ export default function Stepper({ current }) {
                   stepNum
                 )}
               </motion.div>
-              <span className={`text-xs font-medium ${isActive ? 'text-brand-700' : 'text-ink-400'}`}>{label}</span>
+              <span className={`text-xs font-medium ${isActive ? 'text-brand-700 dark:text-brand-400' : 'text-ink-400 dark:text-night-200'}`}>
+                {label}
+              </span>
             </div>
-            {stepNum !== STEPS.length && (
-              <div className="mx-2 h-0.5 flex-1 bg-ink-100 md:mx-3">
+            {stepNum !== steps.length && (
+              <div className="mx-2 h-0.5 flex-1 bg-ink-100 dark:bg-night-700 md:mx-3">
                 <motion.div
                   initial={false}
                   animate={{ width: isDone ? '100%' : '0%' }}
