@@ -21,7 +21,8 @@ export default function ReviewStep({ service, packaging, date, time, form, logoF
     { label: 'نوع العبوة', value: packagingLabel },
     { label: 'التاريخ', value: formatDate(date) },
     { label: 'الوقت', value: time || '—' },
-    { label: 'الاسم', value: form.name },
+    { label: 'الاسم الثلاثي', value: form.name },
+    { label: 'اسم العلامة التجارية', value: form.brand || '—' },
     { label: 'رقم الجوال', value: form.phone, dir: 'ltr' },
   ];
 

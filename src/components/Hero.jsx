@@ -1,7 +1,10 @@
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import logoGreen from '../assets/logo-green.png';
 import ImagePlaceholder from './ImagePlaceholder.jsx';
+
+const Hero3D = lazy(() => import('./Hero3D.jsx'));
 
 const container = {
   animate: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
@@ -12,6 +15,16 @@ const item = {
 };
 
 export default function Hero() {
+  const [show3D, setShow3D] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    setShow3D(mq.matches);
+    const handler = (e) => setShow3D(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
   return (
     <section className="relative isolate overflow-hidden bg-white pt-32 pb-24 md:pt-44 md:pb-32">
       {/* decorative background */}
@@ -25,6 +38,12 @@ export default function Hero() {
           className="absolute -left-24 bottom-0 h-[26rem] w-auto opacity-[0.06] hidden md:block"
         />
       </div>
+
+      {show3D && (
+        <Suspense fallback={null}>
+          <Hero3D />
+        </Suspense>
+      )}
 
       <div className="container-px mx-auto">
         <motion.div variants={container} initial="initial" animate="animate" className="mx-auto max-w-4xl text-center">

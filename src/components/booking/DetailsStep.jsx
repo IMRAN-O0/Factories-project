@@ -10,7 +10,7 @@ export default function DetailsStep({ form, onChange, logoFiles, onLogoChange, d
 
       <div className="mx-auto mt-10 grid max-w-xl grid-cols-1 gap-5 sm:grid-cols-2">
         <div className="sm:col-span-1">
-          <label className="mb-1.5 block text-sm font-medium text-ink-700">الاسم الكامل</label>
+          <label className="mb-1.5 block text-sm font-medium text-ink-700">الاسم الثلاثي</label>
           <input
             type="text"
             name="name"
@@ -18,7 +18,7 @@ export default function DetailsStep({ form, onChange, logoFiles, onLogoChange, d
             onChange={handle}
             required
             className="w-full rounded-xl border border-ink-100 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500"
-            placeholder="اسمك الكامل"
+            placeholder="مثال: عبدالله محمد العتيبي"
           />
         </div>
         <div className="sm:col-span-1">
@@ -32,6 +32,17 @@ export default function DetailsStep({ form, onChange, logoFiles, onLogoChange, d
             dir="ltr"
             className="w-full rounded-xl border border-ink-100 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500"
             placeholder="05XXXXXXXX"
+          />
+        </div>
+        <div className="sm:col-span-2">
+          <label className="mb-1.5 block text-sm font-medium text-ink-700">اسم العلامة التجارية (اختياري)</label>
+          <input
+            type="text"
+            name="brand"
+            value={form.brand}
+            onChange={handle}
+            className="w-full rounded-xl border border-ink-100 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500"
+            placeholder="اسم علامتك التجارية إن وُجد"
           />
         </div>
         <div className="sm:col-span-2">

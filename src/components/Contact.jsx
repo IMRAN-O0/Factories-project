@@ -6,7 +6,7 @@ const CONTACT_PHONE = '+966 5X XXX XXXX';
 const WHATSAPP_LINK = 'https://wa.me/9665XXXXXXXX';
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', phone: '', message: '' });
+  const [form, setForm] = useState({ name: '', brand: '', phone: '', message: '' });
 
   const handleChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -16,7 +16,7 @@ export default function Contact() {
     e.preventDefault();
     const subject = encodeURIComponent(`طلب استشارة من ${form.name || 'زائر الموقع'}`);
     const body = encodeURIComponent(
-      `الاسم: ${form.name}\nرقم الجوال: ${form.phone}\n\nالرسالة:\n${form.message}`
+      `الاسم: ${form.name}\nاسم العلامة التجارية: ${form.brand || '—'}\nرقم الجوال: ${form.phone}\n\nالرسالة:\n${form.message}`
     );
     const link = document.createElement('a');
     link.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
@@ -88,7 +88,7 @@ export default function Contact() {
         <form onSubmit={handleSubmit} className="rounded-2xl bg-white p-8 shadow-soft">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="sm:col-span-1">
-              <label className="mb-1.5 block text-sm font-medium text-ink-700">الاسم</label>
+              <label className="mb-1.5 block text-sm font-medium text-ink-700">الاسم الثلاثي</label>
               <input
                 type="text"
                 name="name"
@@ -96,7 +96,7 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 className="w-full rounded-xl border border-ink-100 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500"
-                placeholder="اسمك الكامل"
+                placeholder="مثال: عبدالله محمد العتيبي"
               />
             </div>
             <div className="sm:col-span-1">
@@ -110,6 +110,17 @@ export default function Contact() {
                 dir="ltr"
                 className="w-full rounded-xl border border-ink-100 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500"
                 placeholder="05XXXXXXXX"
+              />
+            </div>
+            <div className="sm:col-span-2">
+              <label className="mb-1.5 block text-sm font-medium text-ink-700">اسم العلامة التجارية (اختياري)</label>
+              <input
+                type="text"
+                name="brand"
+                value={form.brand}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-ink-100 px-4 py-3 text-sm outline-none transition-colors focus:border-brand-500"
+                placeholder="اسم علامتك التجارية إن وُجد"
               />
             </div>
             <div className="sm:col-span-2">
