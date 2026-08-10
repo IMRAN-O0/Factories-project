@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import logoWhite from '../assets/logo-white.png';
 
 const LINKS = [
-  { href: '/', label: 'الرئيسية' },
+  { href: '/', label: 'الصفحة الرئيسية' },
   { href: '/services', label: 'خدماتنا' },
   { href: '/about', label: 'من نحن' },
   { href: '/booking', label: 'حجز موعد' },

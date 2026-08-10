@@ -36,7 +36,7 @@ export default function BookingPage() {
   const [packaging, setPackaging] = useState('');
   const [date, setDate] = useState(undefined);
   const [time, setTime] = useState('');
-  const [form, setForm] = useState({ name: '', phone: '', email: '', notes: '' });
+  const [form, setForm] = useState({ name: '', brand: '', phone: '', email: '', notes: '' });
   const [logoFiles, setLogoFiles] = useState([]);
   const [designFiles, setDesignFiles] = useState([]);
   const [submitted, setSubmitted] = useState(false);
@@ -75,7 +75,7 @@ export default function BookingPage() {
     const attachments = [...logoFiles, ...designFiles].map((f) => f.name);
     const subject = encodeURIComponent(`طلب حجز موعد من ${form.name}`);
     const body = encodeURIComponent(
-      `الخدمة: ${serviceLabel}\nنوع العبوة: ${packagingLabel}\nالتاريخ: ${formatDate(date)}\nالوقت: ${time}\n\nالاسم: ${form.name}\nرقم الجوال: ${form.phone}\nالبريد الإلكتروني: ${form.email || '—'}\n\nملاحظات:\n${form.notes || '—'}${
+      `الخدمة: ${serviceLabel}\nنوع العبوة: ${packagingLabel}\nالتاريخ: ${formatDate(date)}\nالوقت: ${time}\n\nالاسم: ${form.name}\nاسم العلامة التجارية: ${form.brand || '—'}\nرقم الجوال: ${form.phone}\nالبريد الإلكتروني: ${form.email || '—'}\n\nملاحظات:\n${form.notes || '—'}${
         attachments.length ? `\n\nملفات سيتم إرفاقها من العميل:\n${attachments.join('\n')}` : ''
       }`
     );

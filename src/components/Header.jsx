@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import logoBlack from '../assets/logo-black.png';
+import logoGreen from '../assets/logo-green-full.png';
 
 const NAV_LINKS = [
-  { to: '/', label: 'الرئيسية' },
+  { to: '/', label: 'الصفحة الرئيسية' },
   { to: '/services', label: 'خدماتنا' },
   { to: '/about', label: 'من نحن' },
   { to: '/contact', label: 'تواصل معنا' },
@@ -33,8 +34,18 @@ export default function Header() {
       }`}
     >
       <div className="container-px mx-auto flex h-20 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 shrink-0">
-          <img src={logoBlack} alt="مصنع أول حلم" className="h-11 w-auto md:h-12" />
+        <Link to="/" className="group relative flex h-11 shrink-0 items-center md:h-12">
+          <img
+            src={logoGreen}
+            alt="مصنع أول حلم"
+            className="h-11 w-auto transition-opacity duration-200 md:h-12 group-hover:opacity-0"
+          />
+          <img
+            src={logoBlack}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-y-0 right-0 h-11 w-auto opacity-0 transition-opacity duration-200 md:h-12 group-hover:opacity-100"
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-9">
