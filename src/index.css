@@ -98,6 +98,55 @@ body {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
+/* iOS-style "liquid glass": layered translucency + specular rim highlight */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(26px) saturate(200%);
+  -webkit-backdrop-filter: blur(26px) saturate(200%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.glass-nav-scrolled {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 8px 30px rgba(31, 41, 20, 0.08);
+}
+
+.dark .glass-nav {
+  background: rgba(10, 13, 8, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.dark .glass-nav-scrolled {
+  background: rgba(10, 13, 8, 0.68);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(22px) saturate(200%);
+  -webkit-backdrop-filter: blur(22px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 10px rgba(31, 41, 20, 0.06);
+}
+
+.dark .glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 .mesh-bg {
   background-image:
     radial-gradient(circle at 15% 20%, rgba(152, 198, 76, 0.35), transparent 45%),
