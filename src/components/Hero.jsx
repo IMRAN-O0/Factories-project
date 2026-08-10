@@ -30,9 +30,9 @@ export default function Hero() {
       </div>
 
       <motion.div
-        animate={{ y: [0, -14, 0] }}
+        animate={{ y: [0, -10, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-        className="glass pointer-events-none absolute -right-6 top-16 hidden w-48 rounded-2xl p-4 md:block lg:top-24 lg:w-56"
+        className="glass pointer-events-none absolute right-4 top-20 hidden w-48 rounded-2xl p-4 md:block lg:top-28 lg:right-6 lg:w-56"
       >
         <div className="flex items-center gap-3">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white">
