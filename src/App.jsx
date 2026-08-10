@@ -7,6 +7,7 @@ import ScrollToTop from './components/layout/ScrollToTop.jsx';
 import ScrollProgress from './components/layout/ScrollProgress.jsx';
 import SmoothScroll from './components/layout/SmoothScroll.jsx';
 import PageTransition from './components/layout/PageTransition.jsx';
+import RouteLoader from './components/layout/RouteLoader.jsx';
 import Home from './pages/Home.jsx';
 import ServicesPage from './pages/ServicesPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
@@ -23,6 +24,7 @@ export default function App() {
       <ScrollToTop />
       <ScrollProgress />
       <CursorGlow />
+      <RouteLoader />
       <Header />
       <main>
         <AnimatePresence mode="wait" initial={false}>
