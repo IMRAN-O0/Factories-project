@@ -46,6 +46,8 @@ html {
 
 body {
   font-feature-settings: 'ss01';
+  @apply bg-white text-ink-900 dark:bg-night-900 dark:text-night-50;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @layer utilities {
@@ -84,12 +86,32 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
+.dark .glass {
+  background: rgba(23, 29, 21, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.dark .glass-strong {
+  background: rgba(23, 29, 21, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
 .mesh-bg {
   background-image:
     radial-gradient(circle at 15% 20%, rgba(152, 198, 76, 0.35), transparent 45%),
     radial-gradient(circle at 85% 15%, rgba(245, 230, 211, 0.6), transparent 40%),
     radial-gradient(circle at 75% 80%, rgba(126, 170, 54, 0.25), transparent 45%),
     radial-gradient(circle at 10% 85%, rgba(217, 233, 185, 0.55), transparent 45%);
+}
+
+.dark .mesh-bg {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(152, 198, 76, 0.14), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(92, 107, 82, 0.16), transparent 40%),
+    radial-gradient(circle at 75% 80%, rgba(126, 170, 54, 0.1), transparent 45%),
+    radial-gradient(circle at 10% 85%, rgba(44, 53, 39, 0.35), transparent 45%);
 }
 
 .rdp-root {
@@ -129,6 +151,26 @@ body {
   background-color: theme('colors.brand.600');
   color: white;
   border-color: transparent;
+}
+
+.dark .rdp-root {
+  --rdp-accent-background-color: theme('colors.brand.950');
+}
+
+.dark .rdp-month_caption {
+  color: theme('colors.night.50');
+}
+
+.dark .rdp-weekday {
+  color: theme('colors.night.200');
+}
+
+.dark .rdp-day_button {
+  color: theme('colors.night.100');
+}
+
+.dark .rdp-day_button:hover:not([disabled]) {
+  background-color: theme('colors.brand.950');
 }
 
 .cursor-glow {

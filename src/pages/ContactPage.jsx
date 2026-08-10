@@ -1,14 +1,14 @@
 import PageHeader from '../components/PageHeader.jsx';
 import Contact from '../components/Contact.jsx';
+import { useLanguage } from '../context/LanguageContext.jsx';
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+  const p = t('pages.contact');
+
   return (
     <>
-      <PageHeader
-        eyebrow="تواصل معنا"
-        title="لنبدأ رحلتك التصنيعية"
-        description="فريقنا جاهز للإجابة على كل استفساراتك حول تصنيع مستحضرات التجميل الخاصة بعلامتك."
-      />
+      <PageHeader eyebrow={p.eyebrow} title={p.title} description={p.description} />
       <Contact />
     </>
   );
