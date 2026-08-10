@@ -30,7 +30,7 @@ export default function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/90 backdrop-blur-md shadow-soft' : 'bg-white/60 backdrop-blur-sm'
+        scrolled ? 'glass-strong shadow-soft' : 'glass border-transparent shadow-none'
       }`}
     >
       <div className="container-px mx-auto flex h-20 items-center justify-between">

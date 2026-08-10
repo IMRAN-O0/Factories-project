@@ -16,7 +16,7 @@ const cell = {
 
 export default function Stats() {
   return (
-    <section className="bg-brand-50/60 py-16 md:py-20">
+    <section className="mesh-bg py-16 md:py-20">
       <div className="container-px mx-auto">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-brand-600">قدراتنا التصنيعية</span>
@@ -34,7 +34,7 @@ export default function Stats() {
             <motion.div
               key={c.label}
               variants={cell}
-              className="rounded-2xl border border-brand-200 bg-white p-6 text-center shadow-soft transition-colors hover:-translate-y-1 hover:border-brand-500"
+              className="glass rounded-2xl p-6 text-center transition-all hover:-translate-y-1 hover:shadow-lg"
             >
               <p className="text-lg font-bold text-brand-700">{c.label}</p>
               <p className="mt-2 text-sm text-ink-400">{c.desc}</p>

@@ -24,7 +24,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="section-py bg-ink-50/60">
+    <section className="mesh-bg section-py">
       <div className="container-px mx-auto grid grid-cols-1 gap-14 lg:grid-cols-2">
         <Reveal>
           <span className="text-sm font-semibold uppercase tracking-widest text-brand-600">تواصل معنا</span>
@@ -85,7 +85,7 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={0.1}>
-        <form onSubmit={handleSubmit} className="rounded-2xl bg-white p-8 shadow-soft">
+        <form onSubmit={handleSubmit} className="glass rounded-2xl p-8">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="sm:col-span-1">
               <label className="mb-1.5 block text-sm font-medium text-ink-700">الاسم الثلاثي</label>

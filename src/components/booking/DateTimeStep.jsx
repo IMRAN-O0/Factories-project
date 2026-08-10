@@ -14,7 +14,7 @@ export default function DateTimeStep({ date, onDateChange, time, onTimeChange })
       <p className="mt-2 text-center text-ink-400">نعمل من السبت إلى الخميس، وسنؤكد الموعد معك خلال 24 ساعة</p>
 
       <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div className="flex justify-center rounded-2xl border border-ink-100 bg-white p-4 shadow-soft">
+        <div className="glass flex justify-center rounded-2xl p-4">
           <DayPicker
             mode="single"
             dir="rtl"

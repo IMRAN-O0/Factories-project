@@ -1,10 +1,7 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import logoGreen from '../assets/logo-green.png';
-import ImagePlaceholder from './ImagePlaceholder.jsx';
-
-const Hero3D = lazy(() => import('./Hero3D.jsx'));
+import heroImage from '../assets/stock/hero-lab.jpg';
 
 const container = {
   animate: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
@@ -15,22 +12,11 @@ const item = {
 };
 
 export default function Hero() {
-  const [show3D, setShow3D] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
-    setShow3D(mq.matches);
-    const handler = (e) => setShow3D(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, []);
-
   return (
     <section className="relative isolate overflow-hidden bg-white pt-32 pb-24 md:pt-44 md:pb-32">
       {/* decorative background */}
+      <div className="mesh-bg pointer-events-none absolute inset-0 -z-10" />
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-40 -left-40 h-[32rem] w-[32rem] rounded-full bg-brand-100 blur-3xl opacity-70" />
-        <div className="absolute top-1/3 -right-32 h-[26rem] w-[26rem] rounded-full bg-brand-50 blur-3xl" />
         <img
           src={logoGreen}
           alt=""
@@ -39,11 +25,27 @@ export default function Hero() {
         />
       </div>
 
-      {show3D && (
-        <Suspense fallback={null}>
-          <Hero3D />
-        </Suspense>
-      )}
+      <motion.div
+        animate={{ y: [0, -14, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+        className="glass pointer-events-none absolute -right-6 top-16 hidden w-48 rounded-2xl p-4 md:block lg:top-24 lg:w-56"
+      >
+        <div className="flex items-center gap-3">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white">
+            <svg viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+              <path
+                fillRule="evenodd"
+                d="M16.7 5.3a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4l2.3 2.29 6.3-6.29a1 1 0 0 1 1.4 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </span>
+          <div>
+            <p className="text-sm font-bold text-ink-900">تصنيع خاص</p>
+            <p className="text-xs text-ink-400">100% باسم علامتك</p>
+          </div>
+        </div>
+      </motion.div>
 
       <div className="container-px mx-auto">
         <motion.div variants={container} initial="initial" animate="animate" className="mx-auto max-w-4xl text-center">
@@ -86,9 +88,13 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-16 max-w-5xl"
+          className="glass mx-auto mt-16 max-w-5xl overflow-hidden rounded-3xl p-2"
         >
-          <ImagePlaceholder aspect="aspect-[16/7]" label="صورة رئيسية للمصنع أو المنتجات" />
+          <img
+            src={heroImage}
+            alt="مختبر تطوير التركيبات في مصنع أول حلم"
+            className="aspect-[16/7] w-full rounded-2xl object-cover"
+          />
         </motion.div>
       </div>
     </section>
