@@ -33,7 +33,7 @@ export default function ReviewStep({ service, packaging, date, time, form, logoF
       <h2 className="text-center text-2xl font-extrabold text-ink-900">مراجعة الطلب</h2>
       <p className="mt-2 text-center text-ink-400">تأكد من بياناتك قبل الإرسال، سنتواصل معك لتأكيد الموعد نهائياً</p>
 
-      <div className="mx-auto mt-10 max-w-xl divide-y divide-ink-100 overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-soft">
+      <div className="glass mx-auto mt-10 max-w-xl divide-y divide-white/40 overflow-hidden rounded-2xl">
         {rows.map((r) => (
           <div key={r.label} className="flex items-center justify-between px-6 py-4">
             <span className="text-sm text-ink-400">{r.label}</span>

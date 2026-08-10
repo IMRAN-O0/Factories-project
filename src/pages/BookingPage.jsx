@@ -93,7 +93,7 @@ export default function BookingPage() {
         description="خطوات بسيطة لتحديد موعدك مع فريق مصنع أول حلم لمناقشة فكرة منتجك."
       />
 
-      <section className="section-py bg-white">
+      <section className="mesh-bg section-py">
         <div className="container-px mx-auto max-w-4xl">
           <div ref={stepTopRef} className="scroll-mt-28" />
           {!submitted && (

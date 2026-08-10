@@ -1,13 +1,19 @@
 import { Link } from 'react-router-dom';
 import Reveal from './Reveal.jsx';
-import ImagePlaceholder from './ImagePlaceholder.jsx';
+import aboutImg from '../assets/stock/about.jpg';
 
 export default function AboutTeaser() {
   return (
     <section className="section-py bg-white">
       <div className="container-px mx-auto grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <Reveal y={30}>
-          <ImagePlaceholder aspect="aspect-[4/5]" label="صورة المصنع أو الفريق" />
+          <div className="glass overflow-hidden rounded-3xl p-2">
+            <img
+              src={aboutImg}
+              alt="فريق مصنع أول حلم"
+              className="aspect-[4/5] w-full rounded-2xl object-cover"
+            />
+          </div>
         </Reveal>
 
         <Reveal delay={0.1}>

@@ -60,6 +60,38 @@ body {
   }
 }
 
+.glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(31, 41, 20, 0.08);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 40px rgba(31, 41, 20, 0.1);
+}
+
+.glass-dark {
+  background: rgba(13, 20, 8, 0.35);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.mesh-bg {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(152, 198, 76, 0.35), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(245, 230, 211, 0.6), transparent 40%),
+    radial-gradient(circle at 75% 80%, rgba(126, 170, 54, 0.25), transparent 45%),
+    radial-gradient(circle at 10% 85%, rgba(217, 233, 185, 0.55), transparent 45%);
+}
+
 .rdp-root {
   --rdp-accent-color: theme('colors.brand.600');
   --rdp-accent-background-color: theme('colors.brand.50');
