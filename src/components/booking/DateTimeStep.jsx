@@ -16,7 +16,7 @@ export default function DateTimeStep({ date, onDateChange, time, onTimeChange })
       <p className="mt-2 text-center text-ink-400 dark:text-night-200">{dt.subheading}</p>
 
       <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div className="glass flex justify-center rounded-2xl p-4">
+        <div className="glass relative flex justify-center rounded-2xl p-4">
           <DayPicker
             mode="single"
             dir={isRTL ? 'rtl' : 'ltr'}

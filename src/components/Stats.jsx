@@ -33,7 +33,7 @@ export default function Stats() {
             <motion.div
               key={c.label}
               variants={cell}
-              className="glass rounded-2xl p-6 text-center transition-all hover:-translate-y-1 hover:shadow-lg"
+              className="glass relative rounded-2xl p-6 text-center transition-all hover:-translate-y-1 hover:shadow-lg"
             >
               <p className="text-lg font-bold text-brand-700 dark:text-brand-400">{c.label}</p>
               <p className="mt-2 text-sm text-ink-400 dark:text-night-200">{c.desc}</p>

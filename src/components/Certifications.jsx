@@ -91,7 +91,7 @@ export default function Certifications() {
             <motion.div
               key={b.title}
               variants={cell}
-              className="glass dark:glass-dark flex flex-col items-center gap-3 rounded-2xl p-6 text-center transition-transform hover:-translate-y-1"
+              className="glass dark:glass-dark relative flex flex-col items-center gap-3 rounded-2xl p-6 text-center transition-transform hover:-translate-y-1"
             >
               <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">
                 {Reflect.get(BADGE_ICONS, i)}

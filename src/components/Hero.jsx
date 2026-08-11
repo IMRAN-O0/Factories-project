@@ -93,7 +93,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="glass mx-auto mt-16 max-w-5xl overflow-hidden rounded-3xl p-2"
+          className="glass relative mx-auto mt-16 max-w-5xl overflow-hidden rounded-3xl p-2"
         >
           <img src={heroImage} alt={t('hero.imageAlt')} className="aspect-[16/7] w-full rounded-2xl object-cover" />
         </motion.div>

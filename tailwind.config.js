@@ -40,6 +40,7 @@ export default {
       },
       fontFamily: {
         arabic: ['"Tajawal"', 'sans-serif'],
+        display: ['"Markazi Text"', '"Tajawal"', 'serif'],
       },
       boxShadow: {
         soft: '0 4px 30px rgba(0,0,0,0.06)',

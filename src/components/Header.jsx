@@ -181,7 +181,7 @@ export default function Header() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="glass-pill mx-4 mt-1 overflow-hidden rounded-2xl lg:hidden"
+          className="glass-pill relative mx-4 mt-1 overflow-hidden rounded-2xl lg:hidden"
         >
           <nav className="container-px mx-auto flex flex-col py-2">
             {NAV_LINKS.map((link) => (
