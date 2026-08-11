@@ -1,5 +1,6 @@
 import { getSupabaseAdmin } from './_lib/supabaseAdmin.js';
 import { sendNotification, escapeHtml } from './_lib/email.js';
+import { isNonEmptyString, isOptionalString, isValidText } from './_lib/validate.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -9,8 +10,11 @@ export default async function handler(req, res) {
 
   const { name, brand, phone, message } = req.body || {};
 
-  if (!name || !phone || !message) {
+  if (!isNonEmptyString(name) || !isNonEmptyString(phone) || !isValidText(message) || !message?.trim()) {
     return res.status(400).json({ error: 'الاسم ورقم الجوال والرسالة مطلوبة' });
+  }
+  if (!isOptionalString(brand)) {
+    return res.status(400).json({ error: 'بيانات غير صالحة' });
   }
 
   const supabase = getSupabaseAdmin();

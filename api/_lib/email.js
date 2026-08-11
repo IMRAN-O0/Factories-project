@@ -1,11 +1,7 @@
 import { Resend } from 'resend';
+import escapeHtml from 'escape-html';
 
-export function escapeHtml(value) {
-  return String(value).replace(
-    /[&<>"']/g,
-    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]
-  );
-}
+export { escapeHtml };
 
 export async function sendNotification({ subject, html }) {
   const apiKey = process.env.RESEND_API_KEY;

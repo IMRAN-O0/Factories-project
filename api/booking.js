@@ -1,8 +1,10 @@
 import { getSupabaseAdmin } from './_lib/supabaseAdmin.js';
 import { sendNotification, escapeHtml } from './_lib/email.js';
+import { isNonEmptyString, isOptionalString, isValidText, sanitizeFileRefs } from './_lib/validate.js';
 
 const BUCKET = 'booking-uploads';
 const SIGNED_URL_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
+const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -20,18 +22,32 @@ export default async function handler(req, res) {
     phone,
     email,
     notes,
-    logoFiles = [],
-    designFiles = [],
+    logoFiles,
+    designFiles,
   } = req.body || {};
 
-  if (!service || !packaging || !date || !time || !name || !phone) {
+  if (
+    !isNonEmptyString(service) ||
+    !isNonEmptyString(packaging) ||
+    !isNonEmptyString(date, 20) ||
+    !DATE_ONLY.test(date) ||
+    !isNonEmptyString(time, 50) ||
+    !isNonEmptyString(name) ||
+    !isNonEmptyString(phone)
+  ) {
     return res.status(400).json({ error: 'الرجاء تعبئة جميع الحقول المطلوبة' });
+  }
+  if (!isOptionalString(brand) || !isOptionalString(email) || !isValidText(notes)) {
+    return res.status(400).json({ error: 'بيانات غير صالحة' });
   }
 
   const supabase = getSupabaseAdmin();
   if (!supabase) {
     return res.status(500).json({ error: 'الخدمة غير مهيأة بعد، يرجى التواصل عبر الواتساب أو البريد مباشرة' });
   }
+
+  const safeLogoFiles = sanitizeFileRefs(logoFiles);
+  const safeDesignFiles = sanitizeFileRefs(designFiles);
 
   const { data, error } = await supabase
     .from('booking_submissions')
@@ -45,8 +61,8 @@ export default async function handler(req, res) {
       phone,
       email: email || null,
       notes: notes || null,
-      logo_files: logoFiles,
-      design_files: designFiles,
+      logo_files: safeLogoFiles,
+      design_files: safeDesignFiles,
     })
     .select('id')
     .single();
@@ -55,7 +71,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'تعذر حفظ طلبك، حاول مرة أخرى' });
   }
 
-  const allFiles = [...logoFiles, ...designFiles];
+  const allFiles = [...safeLogoFiles, ...safeDesignFiles];
   const links = await Promise.all(
     allFiles.map(async (f) => {
       const { data: signed } = await supabase.storage.from(BUCKET).createSignedUrl(f.path, SIGNED_URL_TTL_SECONDS);
