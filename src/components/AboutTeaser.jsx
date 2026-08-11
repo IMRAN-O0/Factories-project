@@ -10,7 +10,7 @@ export default function AboutTeaser() {
     <section className="section-py bg-white dark:bg-night-900">
       <div className="container-px mx-auto grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <Reveal y={30}>
-          <div className="glass overflow-hidden rounded-3xl p-2">
+          <div className="glass relative overflow-hidden rounded-3xl p-2">
             <img
               src={aboutImg}
               alt={t('aboutTeaser.imageAlt')}

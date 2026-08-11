@@ -40,6 +40,23 @@
   src: url('./fonts/tajawal-900.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'Markazi Text';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('./fonts/markazi-arabic.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+FB50-FDFF, U+FE70-FEFC;
+}
+@font-face {
+  font-family: 'Markazi Text';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('./fonts/markazi-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+2000-206F;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -48,6 +65,12 @@ body {
   font-feature-settings: 'ss01';
   @apply bg-white text-ink-900 dark:bg-night-900 dark:text-night-50;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1,
+h2 {
+  font-family: 'Markazi Text', 'Tajawal', serif;
+  letter-spacing: 0.01em;
 }
 
 @layer utilities {
@@ -62,55 +85,126 @@ body {
   }
 }
 
+/*
+ * "Liquid glass" material system (iOS-style): a translucent, blurred base
+ * plus two pseudo-elements per surface —
+ *   ::before = a masked gradient ring that reads as a faint chromatic edge
+ *              (light catching the rim of real glass, tinted by the brand hue)
+ *   ::after  = a soft top-down specular sheen, blended so text underneath
+ *              stays fully legible
+ * Both are pointer-events:none and purely decorative.
+ */
+/*
+ * Deliberately no shared `position` rule here: several usages already carry
+ * their own Tailwind `absolute`/`relative` utility (equal specificity to a
+ * bare class selector, so whichever comes later in the stylesheet would win
+ * and could silently override a needed `absolute`). Each usage sets its own
+ * position in JSX instead; this only isolates the stacking context.
+ */
+.glass,
+.glass-strong,
+.glass-dark,
+.glass-pill {
+  isolation: isolate;
+}
+
+.glass::before,
+.glass-strong::before,
+.glass-dark::before,
+.glass-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(146, 214, 255, 0.75) 14%,
+    rgba(152, 198, 76, 0.7) 30%,
+    rgba(255, 255, 255, 0.1) 48%,
+    rgba(255, 196, 110, 0.7) 66%,
+    rgba(126, 170, 54, 0.75) 84%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.glass::after,
+.glass-strong::after,
+.glass-dark::after,
+.glass-pill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background:
+    radial-gradient(130% 90% at 18% -25%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 48%),
+    radial-gradient(90% 70% at 100% 120%, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0) 45%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 42%);
+  pointer-events: none;
+}
+
 .glass {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 8px 32px rgba(31, 41, 20, 0.08);
+  background: rgba(255, 255, 255, 0.38);
+  backdrop-filter: blur(24px) saturate(220%) brightness(1.08) contrast(1.05);
+  -webkit-backdrop-filter: blur(24px) saturate(220%) brightness(1.08) contrast(1.05);
+  box-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.7),
+    0 24px 48px -16px rgba(31, 41, 20, 0.22),
+    0 4px 14px rgba(31, 41, 20, 0.08);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 12px 40px rgba(31, 41, 20, 0.1);
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(30px) saturate(220%) brightness(1.08) contrast(1.05);
+  -webkit-backdrop-filter: blur(30px) saturate(220%) brightness(1.08) contrast(1.05);
+  box-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.8),
+    0 28px 56px -18px rgba(31, 41, 20, 0.24),
+    0 6px 16px rgba(31, 41, 20, 0.1);
 }
 
 .glass-dark {
-  background: rgba(13, 20, 8, 0.35);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  background: rgba(13, 20, 8, 0.32);
+  backdrop-filter: blur(24px) saturate(200%) brightness(1.05);
+  -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.4);
 }
 
 .dark .glass {
-  background: rgba(23, 29, 21, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  background: rgba(23, 29, 21, 0.6);
+  box-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.06),
+    0 24px 48px -16px rgba(0, 0, 0, 0.5);
 }
 
 .dark .glass-strong {
-  background: rgba(23, 29, 21, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  background: rgba(23, 29, 21, 0.82);
+  box-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.08),
+    0 28px 56px -18px rgba(0, 0, 0, 0.55);
 }
 
 /* iOS-style "liquid glass": layered translucency + specular rim highlight */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(26px) saturate(200%);
-  -webkit-backdrop-filter: blur(26px) saturate(200%);
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(28px) saturate(240%) brightness(1.08) contrast(1.05);
+  -webkit-backdrop-filter: blur(28px) saturate(240%) brightness(1.08) contrast(1.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .glass-nav-scrolled {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(32px) saturate(200%);
-  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(34px) saturate(240%) brightness(1.08) contrast(1.05);
+  -webkit-backdrop-filter: blur(34px) saturate(240%) brightness(1.08) contrast(1.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.65);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.85),
@@ -118,13 +212,13 @@ body {
 }
 
 .dark .glass-nav {
-  background: rgba(10, 13, 8, 0.4);
+  background: rgba(10, 13, 8, 0.42);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .dark .glass-nav-scrolled {
-  background: rgba(10, 13, 8, 0.68);
+  background: rgba(10, 13, 8, 0.7);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
@@ -132,19 +226,19 @@ body {
 }
 
 .glass-pill {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(22px) saturate(200%);
-  -webkit-backdrop-filter: blur(22px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(26px) saturate(240%) brightness(1.08) contrast(1.05);
+  -webkit-backdrop-filter: blur(26px) saturate(240%) brightness(1.08) contrast(1.05);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 2px 10px rgba(31, 41, 20, 0.06);
+    0 4px 16px rgba(31, 41, 20, 0.08);
 }
 
 .dark .glass-pill {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(26px) saturate(260%) brightness(1.25) contrast(1.1);
+  -webkit-backdrop-filter: blur(26px) saturate(260%) brightness(1.25) contrast(1.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .mesh-bg {
@@ -251,5 +345,69 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .cursor-glow {
     display: none;
+  }
+}
+
+/* Custom interactive cursor: a ring that scales/tints on hover, plus a small
+ * fixed dot for precise position feedback. Native cursor is hidden only while
+ * this is active (desktop pointer + motion allowed), toggled in JS. */
+html.cursor-none-active,
+html.cursor-none-active * {
+  cursor: none !important;
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(126, 170, 54, 0.75);
+  background: rgba(152, 198, 76, 0.1);
+  transition: background-color 0.25s ease, border-color 0.25s ease, mix-blend-mode 0.1s;
+}
+
+.cursor-ring[data-variant='link'] {
+  background: rgba(152, 198, 76, 0.18);
+  border-color: rgba(126, 170, 54, 0.95);
+}
+
+.cursor-ring[data-variant='image'] {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.85);
+  mix-blend-mode: difference;
+}
+
+.dark .cursor-ring {
+  border-color: rgba(163, 209, 101, 0.8);
+  background: rgba(163, 209, 101, 0.12);
+}
+
+.dark .cursor-ring[data-variant='image'] {
+  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cursor-dot {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+}
+
+.cursor-dot::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(126, 170, 54, 0.9);
+}
+
+.dark .cursor-dot::before {
+  background: rgba(163, 209, 101, 0.95);
+}
+
+@media (pointer: coarse) {
+  html.cursor-none-active,
+  html.cursor-none-active * {
+    cursor: auto !important;
   }
 }

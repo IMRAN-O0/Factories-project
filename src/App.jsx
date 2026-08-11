@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import CursorGlow from './components/CursorGlow.jsx';
+import CursorRing from './components/CursorRing.jsx';
 import ScrollToTop from './components/layout/ScrollToTop.jsx';
 import ScrollProgress from './components/layout/ScrollProgress.jsx';
 import SmoothScroll from './components/layout/SmoothScroll.jsx';
@@ -23,11 +24,12 @@ export default function App() {
   const location = useLocation();
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-clip">
       <SmoothScroll />
       <ScrollToTop />
       <ScrollProgress />
       <CursorGlow />
+      <CursorRing />
       <RouteLoader />
       <Analytics />
       <Header />

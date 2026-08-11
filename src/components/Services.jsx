@@ -78,7 +78,7 @@ export default function Services({ withHeading = true }) {
                 <span className="absolute left-6 top-6 text-xs font-bold text-ink-100 transition-colors group-hover:text-brand-100 dark:text-night-700">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <div className="glass -mt-14 flex h-16 w-16 items-center justify-center rounded-xl text-brand-600 shadow-soft dark:text-brand-400">
+                <div className="glass relative -mt-14 flex h-16 w-16 items-center justify-center rounded-xl text-brand-600 shadow-soft dark:text-brand-400">
                   {Reflect.get(ICONS, i)}
                 </div>
                 <h3 className="mt-6 text-lg font-bold text-ink-900 dark:text-night-50">{s.title}</h3>

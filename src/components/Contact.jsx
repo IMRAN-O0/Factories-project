@@ -117,7 +117,7 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <form onSubmit={handleSubmit} className="glass rounded-2xl p-8">
+          <form onSubmit={handleSubmit} className="glass relative rounded-2xl p-8">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div className="sm:col-span-1">
                 <label className="mb-1.5 block text-sm font-medium text-ink-700 dark:text-night-100">{f.name}</label>
