@@ -2,11 +2,16 @@ import { getSupabaseAdmin } from './_lib/supabaseAdmin.js';
 import { sendNotification, escapeHtml } from './_lib/email.js';
 import { isNonEmptyString, isOptionalString, isValidText, sanitizeHeaderValue } from './_lib/validate.js';
 import { isRateLimited } from './_lib/rateLimit.js';
+import { isSameOrigin } from './_lib/csrf.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  if (!isSameOrigin(req)) {
+    return res.status(403).json({ error: 'طلب غير مسموح' });
   }
 
   if (isRateLimited(req)) {

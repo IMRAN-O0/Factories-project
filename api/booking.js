@@ -8,6 +8,7 @@ import {
   sanitizeHeaderValue,
 } from './_lib/validate.js';
 import { isRateLimited } from './_lib/rateLimit.js';
+import { isSameOrigin } from './_lib/csrf.js';
 
 const BUCKET = 'booking-uploads';
 const SIGNED_URL_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
@@ -17,6 +18,10 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  if (!isSameOrigin(req)) {
+    return res.status(403).json({ error: 'طلب غير مسموح' });
   }
 
   if (isRateLimited(req)) {
