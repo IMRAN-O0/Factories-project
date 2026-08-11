@@ -1,5 +1,5 @@
 import { getSupabaseAdmin } from './_lib/supabaseAdmin.js';
-import { sendNotification, escapeHtml } from './_lib/email.js';
+import { sendNotification, escapeHtml, escapeHtmlMultiline } from './_lib/email.js';
 import {
   isNonEmptyString,
   isOptionalString,
@@ -92,7 +92,7 @@ export default async function handler(req, res) {
     allFiles.map(async (f) => {
       const { data: signed } = await supabase.storage.from(BUCKET).createSignedUrl(f.path, SIGNED_URL_TTL_SECONDS);
       return signed
-        ? `<li><a href="${signed.signedUrl}">${escapeHtml(f.name)}</a></li>`
+        ? `<li><a href="${escapeHtml(signed.signedUrl)}">${escapeHtml(f.name)}</a></li>`
         : `<li>${escapeHtml(f.name)}</li>`;
     })
   );
@@ -108,7 +108,7 @@ export default async function handler(req, res) {
       <p><strong>العلامة التجارية:</strong> ${escapeHtml(brand || '—')}</p>
       <p><strong>رقم الجوال:</strong> ${escapeHtml(phone)}</p>
       <p><strong>البريد الإلكتروني:</strong> ${escapeHtml(email || '—')}</p>
-      <p><strong>ملاحظات:</strong><br/>${escapeHtml(notes || '—').replace(/\n/g, '<br/>')}</p>
+      <p><strong>ملاحظات:</strong><br/>${escapeHtmlMultiline(notes || '—')}</p>
       ${allFiles.length ? `<p><strong>المرفقات:</strong></p><ul>${links.join('')}</ul>` : ''}
     `,
   });

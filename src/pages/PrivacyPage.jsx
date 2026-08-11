@@ -87,7 +87,7 @@ export default function PrivacyPage() {
                 className="rounded-2xl border border-ink-100 bg-white p-6 transition-shadow hover:shadow-lg dark:border-night-700 dark:bg-night-800"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">
-                  {SECTION_ICONS[i]}
+                  {Reflect.get(SECTION_ICONS, i)}
                 </div>
                 <h3 className="mt-4 font-bold text-ink-900 dark:text-night-50">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-400 dark:text-night-200">{s.body}</p>

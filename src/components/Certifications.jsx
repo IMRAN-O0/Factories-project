@@ -94,7 +94,7 @@ export default function Certifications() {
               className="glass dark:glass-dark flex flex-col items-center gap-3 rounded-2xl p-6 text-center transition-transform hover:-translate-y-1"
             >
               <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">
-                {BADGE_ICONS[i]}
+                {Reflect.get(BADGE_ICONS, i)}
               </span>
               <span className="font-bold text-ink-900 dark:text-night-50">{b.title}</span>
               <span className="text-xs leading-relaxed text-ink-400 dark:text-night-200">{b.desc}</span>

@@ -1,5 +1,5 @@
 import { getSupabaseAdmin } from './_lib/supabaseAdmin.js';
-import { sendNotification, escapeHtml } from './_lib/email.js';
+import { sendNotification, escapeHtml, escapeHtmlMultiline } from './_lib/email.js';
 import { isNonEmptyString, isOptionalString, isValidText, sanitizeHeaderValue } from './_lib/validate.js';
 import { isRateLimited } from './_lib/rateLimit.js';
 import { isSameOrigin } from './_lib/csrf.js';
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
       <p><strong>الاسم:</strong> ${escapeHtml(name)}</p>
       <p><strong>العلامة التجارية:</strong> ${escapeHtml(brand || '—')}</p>
       <p><strong>رقم الجوال:</strong> ${escapeHtml(phone)}</p>
-      <p><strong>الرسالة:</strong><br/>${escapeHtml(message).replace(/\n/g, '<br/>')}</p>
+      <p><strong>الرسالة:</strong><br/>${escapeHtmlMultiline(message)}</p>
     `,
   });
 
