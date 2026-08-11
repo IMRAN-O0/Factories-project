@@ -86,7 +86,7 @@ function TextPanel({ index, scrollYProgress, item }) {
   return (
     <motion.div style={{ opacity, x }} className="flex gap-5">
       <div className="glass flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-brand-600 dark:text-brand-400">
-        {ICONS[index]}
+        {Reflect.get(ICONS, index)}
       </div>
       <div>
         <span className="text-xs font-bold tracking-widest text-brand-600 dark:text-brand-400">
@@ -122,7 +122,7 @@ function PinnedScrolly({ items }) {
           <div className="glass relative aspect-[4/3] overflow-hidden rounded-3xl p-2">
             <div className="relative h-full w-full overflow-hidden rounded-2xl">
               {items.map((item, i) => (
-                <ImagePanel key={item.title} index={i} scrollYProgress={scrollYProgress} src={IMAGES[i]} alt={item.title} />
+                <ImagePanel key={item.title} index={i} scrollYProgress={scrollYProgress} src={Reflect.get(IMAGES, i)} alt={item.title} />
               ))}
             </div>
           </div>

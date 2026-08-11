@@ -35,7 +35,7 @@ export default function CursorRing() {
       const media = !interactive && e.target.closest('img, picture, video');
       const next = interactive ? 'link' : media ? 'image' : 'default';
       setVariant(next);
-      scale.set(SCALE_BY_VARIANT[next]);
+      scale.set(Reflect.get(SCALE_BY_VARIANT, next));
       dotOpacity.set(next === 'default' ? 1 : 0);
     };
     const handleEnter = () => setVisible(true);
