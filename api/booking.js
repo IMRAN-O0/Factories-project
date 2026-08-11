@@ -1,5 +1,5 @@
 import { getSupabaseAdmin } from './_lib/supabaseAdmin.js';
-import { sendNotification, escapeHtml, escapeHtmlMultiline } from './_lib/email.js';
+import { sendNotification } from './_lib/email.js';
 import {
   isNonEmptyString,
   isOptionalString,
@@ -88,29 +88,31 @@ export default async function handler(req, res) {
   }
 
   const allFiles = [...safeLogoFiles, ...safeDesignFiles];
-  const links = await Promise.all(
+  const attachmentLines = await Promise.all(
     allFiles.map(async (f) => {
       const { data: signed } = await supabase.storage.from(BUCKET).createSignedUrl(f.path, SIGNED_URL_TTL_SECONDS);
-      return signed
-        ? `<li><a href="${escapeHtml(signed.signedUrl)}">${escapeHtml(f.name)}</a></li>`
-        : `<li>${escapeHtml(f.name)}</li>`;
+      return signed ? `- ${f.name}: ${signed.signedUrl}` : `- ${f.name}`;
     })
   );
 
   await sendNotification({
     subject: `طلب حجز جديد من ${sanitizeHeaderValue(name)}`,
-    html: `
-      <h2>طلب حجز موعد جديد</h2>
-      <p><strong>الخدمة:</strong> ${escapeHtml(service)}</p>
-      <p><strong>نوع العبوة:</strong> ${escapeHtml(packaging)}</p>
-      <p><strong>التاريخ:</strong> ${escapeHtml(date)} — <strong>الوقت:</strong> ${escapeHtml(time)}</p>
-      <p><strong>الاسم:</strong> ${escapeHtml(name)}</p>
-      <p><strong>العلامة التجارية:</strong> ${escapeHtml(brand || '—')}</p>
-      <p><strong>رقم الجوال:</strong> ${escapeHtml(phone)}</p>
-      <p><strong>البريد الإلكتروني:</strong> ${escapeHtml(email || '—')}</p>
-      <p><strong>ملاحظات:</strong><br/>${escapeHtmlMultiline(notes || '—')}</p>
-      ${allFiles.length ? `<p><strong>المرفقات:</strong></p><ul>${links.join('')}</ul>` : ''}
-    `,
+    text: [
+      'طلب حجز موعد جديد',
+      '',
+      `الخدمة: ${service}`,
+      `نوع العبوة: ${packaging}`,
+      `التاريخ: ${date} — الوقت: ${time}`,
+      '',
+      `الاسم: ${name}`,
+      `العلامة التجارية: ${brand || '—'}`,
+      `رقم الجوال: ${phone}`,
+      `البريد الإلكتروني: ${email || '—'}`,
+      '',
+      'ملاحظات:',
+      notes || '—',
+      ...(attachmentLines.length ? ['', 'المرفقات:', ...attachmentLines] : []),
+    ].join('\n'),
   });
 
   return res.status(200).json({ id: data.id });

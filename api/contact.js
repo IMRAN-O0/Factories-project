@@ -1,5 +1,5 @@
 import { getSupabaseAdmin } from './_lib/supabaseAdmin.js';
-import { sendNotification, escapeHtml, escapeHtmlMultiline } from './_lib/email.js';
+import { sendNotification } from './_lib/email.js';
 import { isNonEmptyString, isOptionalString, isValidText, sanitizeHeaderValue } from './_lib/validate.js';
 import { isRateLimited } from './_lib/rateLimit.js';
 import { isSameOrigin } from './_lib/csrf.js';
@@ -44,13 +44,16 @@ export default async function handler(req, res) {
 
   await sendNotification({
     subject: `طلب استشارة جديد من ${sanitizeHeaderValue(name)}`,
-    html: `
-      <h2>طلب استشارة جديد</h2>
-      <p><strong>الاسم:</strong> ${escapeHtml(name)}</p>
-      <p><strong>العلامة التجارية:</strong> ${escapeHtml(brand || '—')}</p>
-      <p><strong>رقم الجوال:</strong> ${escapeHtml(phone)}</p>
-      <p><strong>الرسالة:</strong><br/>${escapeHtmlMultiline(message)}</p>
-    `,
+    text: [
+      'طلب استشارة جديد',
+      '',
+      `الاسم: ${name}`,
+      `العلامة التجارية: ${brand || '—'}`,
+      `رقم الجوال: ${phone}`,
+      '',
+      'الرسالة:',
+      message,
+    ].join('\n'),
   });
 
   return res.status(200).json({ id: data.id });
