@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header.jsx';
@@ -8,12 +9,15 @@ import ScrollProgress from './components/layout/ScrollProgress.jsx';
 import SmoothScroll from './components/layout/SmoothScroll.jsx';
 import PageTransition from './components/layout/PageTransition.jsx';
 import RouteLoader from './components/layout/RouteLoader.jsx';
-import Home from './pages/Home.jsx';
-import ServicesPage from './pages/ServicesPage.jsx';
-import AboutPage from './pages/AboutPage.jsx';
-import BookingPage from './pages/BookingPage.jsx';
-import ContactPage from './pages/ContactPage.jsx';
-import NotFoundPage from './pages/NotFoundPage.jsx';
+import Analytics from './components/Analytics.jsx';
+
+const Home = lazy(() => import('./pages/Home.jsx'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage.jsx'));
+const AboutPage = lazy(() => import('./pages/AboutPage.jsx'));
+const BookingPage = lazy(() => import('./pages/BookingPage.jsx'));
+const ContactPage = lazy(() => import('./pages/ContactPage.jsx'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage.jsx'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
 
 export default function App() {
   const location = useLocation();
@@ -25,18 +29,22 @@ export default function App() {
       <ScrollProgress />
       <CursorGlow />
       <RouteLoader />
+      <Analytics />
       <Header />
       <main>
-        <AnimatePresence mode="wait" initial={false}>
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-            <Route path="/services" element={<PageTransition><ServicesPage /></PageTransition>} />
-            <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
-            <Route path="/booking" element={<PageTransition><BookingPage /></PageTransition>} />
-            <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
-            <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
-          </Routes>
-        </AnimatePresence>
+        <Suspense fallback={<div className="min-h-screen bg-white dark:bg-night-900" />}>
+          <AnimatePresence mode="wait" initial={false}>
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+              <Route path="/services" element={<PageTransition><ServicesPage /></PageTransition>} />
+              <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+              <Route path="/booking" element={<PageTransition><BookingPage /></PageTransition>} />
+              <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+              <Route path="/privacy" element={<PageTransition><PrivacyPage /></PageTransition>} />
+              <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
+            </Routes>
+          </AnimatePresence>
+        </Suspense>
       </main>
       <Footer />
     </div>

@@ -9,8 +9,26 @@
       name="description"
       content="مصنع أول حلم لصناعة مستحضرات التجميل — من الفكرة إلى المنتج النهائي. تصنيع خاص (Private Label)، تطوير التركيبات، الهوية والتغليف، وإطلاق العلامات التجارية."
     />
+    <script>
+      (function () {
+        try {
+          var lang = localStorage.getItem('lang');
+          if (lang !== 'ar' && lang !== 'en') lang = 'ar';
+          document.documentElement.lang = lang;
+          document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+          var theme = localStorage.getItem('theme');
+          if (theme !== 'light' && theme !== 'dark') {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          if (theme === 'dark') document.documentElement.classList.add('dark');
+        } catch (e) {
+          /* localStorage unavailable (private mode, etc.) — fall back to the ar/rtl/light defaults already set */
+        }
+      })();
+    </script>
   </head>
-  <body class="font-arabic antialiased bg-white text-ink-800">
+  <body class="font-arabic antialiased bg-white text-ink-800 dark:bg-night-900 dark:text-night-50">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
