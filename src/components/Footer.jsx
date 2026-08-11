@@ -11,6 +11,7 @@ const LEGAL_KEYS = [
 ];
 
 const CONTACT_EMAIL = 'info@awalhelm.com';
+const CONTACT_PHONE = '+966 57 731 5331';
 
 const SOCIAL = [
   {
@@ -89,6 +90,11 @@ export default function Footer() {
                   {CONTACT_EMAIL}
                 </a>
               </li>
+              <li className="text-sm text-white/60">
+                <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} dir="ltr" className="inline-block transition-colors hover:text-brand-400">
+                  {CONTACT_PHONE}
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -111,7 +117,12 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row">
           <p>{t('footer.copyright')(year)}</p>
-          <p>{t('footer.madeWith')}</p>
+          <div className="flex items-center gap-4">
+            <Link to="/privacy" className="transition-colors hover:text-brand-400">
+              {t('footer.privacyLink')}
+            </Link>
+            <p>{t('footer.madeWith')}</p>
+          </div>
         </div>
       </div>
     </footer>

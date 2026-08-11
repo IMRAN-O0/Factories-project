@@ -9,6 +9,8 @@ import DetailsStep from '../components/booking/DetailsStep.jsx';
 import ReviewStep from '../components/booking/ReviewStep.jsx';
 import SuccessScreen from '../components/booking/SuccessScreen.jsx';
 import { useLanguage } from '../context/LanguageContext.jsx';
+import { isBackendConfigured } from '../lib/supabaseClient.js';
+import { uploadBookingFiles } from '../lib/uploadBookingFiles.js';
 
 const CONTACT_EMAIL = 'info@awalhelm.com';
 const TOTAL_STEPS = 5;
@@ -42,6 +44,8 @@ export default function BookingPage() {
   const [logoFiles, setLogoFiles] = useState([]);
   const [designFiles, setDesignFiles] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const stepTopRef = useRef(null);
   const isFirstRender = useRef(true);
 
@@ -71,9 +75,7 @@ export default function BookingPage() {
     setStep((s) => Math.max(s - 1, 1));
   };
 
-  const handleSubmit = () => {
-    const serviceLabel = t('booking.service.options').find((s) => s.id === service)?.title ?? service;
-    const packagingLabel = t('booking.packaging.options').find((p) => p.id === packaging)?.title ?? packaging;
+  const submitViaMailto = (serviceLabel, packagingLabel) => {
     const attachments = [...logoFiles, ...designFiles].map((f) => f.name);
     const e = t('booking.email');
     const subject = encodeURIComponent(`${e.subjectPrefix} ${form.name}`);
@@ -86,6 +88,49 @@ export default function BookingPage() {
     link.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
     link.click();
     setSubmitted(true);
+  };
+
+  const handleSubmit = async () => {
+    const serviceLabel = t('booking.service.options').find((s) => s.id === service)?.title ?? service;
+    const packagingLabel = t('booking.packaging.options').find((p) => p.id === packaging)?.title ?? packaging;
+
+    if (!isBackendConfigured) {
+      submitViaMailto(serviceLabel, packagingLabel);
+      return;
+    }
+
+    setSubmitting(true);
+    setSubmitError(false);
+    try {
+      const [uploadedLogos, uploadedDesigns] = await Promise.all([
+        uploadBookingFiles(logoFiles),
+        uploadBookingFiles(designFiles),
+      ]);
+
+      const res = await fetch('/api/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service: serviceLabel,
+          packaging: packagingLabel,
+          date: date ? date.toISOString().slice(0, 10) : '',
+          time,
+          name: form.name,
+          brand: form.brand,
+          phone: form.phone,
+          email: form.email,
+          notes: form.notes,
+          logoFiles: uploadedLogos,
+          designFiles: uploadedDesigns,
+        }),
+      });
+      if (!res.ok) throw new Error('request failed');
+      setSubmitted(true);
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const p = t('pages.booking');
@@ -181,12 +226,19 @@ export default function BookingPage() {
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-700 active:scale-95"
+                  disabled={submitting}
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-600 px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {nav.submit}
+                  {submitting ? nav.submitting : nav.submit}
                 </button>
               )}
             </div>
+          )}
+
+          {submitError && (
+            <p className="mx-auto mt-6 max-w-xl rounded-xl bg-red-50 px-4 py-3 text-center text-sm text-red-600 dark:bg-red-950/30 dark:text-red-400">
+              {t('booking.submitError')}
+            </p>
           )}
         </div>
       </section>

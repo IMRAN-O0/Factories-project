@@ -39,6 +39,23 @@ export const translations = {
         { title: 'دعم رؤية 2030', desc: 'مساهمة في توطين الصناعة ودعم الاقتصاد الوطني.' },
       ],
     },
+    certifications: {
+      eyebrow: 'شهاداتنا واعتماداتنا',
+      title: 'جودة موثّقة بمعايير عالمية',
+      subtitle: 'اعتمادات رسمية ورقابة صارمة تقف خلف كل منتج يخرج من مصنعنا.',
+      badges: [
+        { title: 'آيزو 9001', desc: 'نظام إدارة الجودة' },
+        { title: 'آيزو 45001', desc: 'الصحة والسلامة المهنية' },
+        { title: 'آيزو 14001', desc: 'نظام الإدارة البيئية' },
+        { title: 'الغذاء والدواء', desc: 'معتمدون من الهيئة العامة للغذاء والدواء' },
+        { title: 'صنع في السعودية', desc: 'منتج وطني بالكامل' },
+      ],
+      stats: [
+        { target: 50, label: 'عميل وعلامة تجارية' },
+        { target: 350000, label: 'منتج خلال عام واحد' },
+        { target: 10, label: 'سنوات خبرة في التصنيع' },
+      ],
+    },
     about: {
       eyebrow: 'من نحن',
       title: 'شريكك الصناعي في عالم مستحضرات التجميل',
@@ -114,6 +131,9 @@ export const translations = {
         message: 'رسالتك',
         messagePlaceholder: 'أخبرنا عن فكرتك أو منتجك...',
         submit: 'إرسال الطلب',
+        submitting: 'جارِ الإرسال...',
+        success: 'تم استلام رسالتك بنجاح، سنتواصل معك قريباً.',
+        error: 'حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.',
       },
       email: {
         subjectPrefix: 'طلب استشارة من',
@@ -133,6 +153,7 @@ export const translations = {
       taxNumber: 'الرقم الضريبي',
       copyright: (year) => `© ${year} مصنع أول حلم لصناعة مستحضرات التجميل. جميع الحقوق محفوظة.`,
       madeWith: 'صُنع بفخر لدعم الصناعة الوطنية',
+      privacyLink: 'سياسة الخصوصية',
     },
     pages: {
       services: {
@@ -161,10 +182,55 @@ export const translations = {
         description: 'يبدو أن الرابط الذي تبحث عنه غير متوفر.',
         cta: 'العودة للرئيسية',
       },
+      privacy: {
+        eyebrow: 'الخصوصية والثقة',
+        title: 'بياناتك أمانة عندنا',
+        description: 'قبل ما نصنع منتجك، نصنع الثقة — وهذا ينطبق على بياناتك بنفس القدر.',
+      },
+    },
+    privacy: {
+      updated: 'آخر تحديث: أغسطس 2026',
+      intro:
+        'في مصنع أول حلم، نؤمن أن الثقة تُبنى قبل أن يُصنع المنتج — ونفس المبدأ ينطبق تماماً على بياناتك. هذه الصفحة ليست نصاً قانونياً جامداً، بل شرح صريح وبسيط لكيفية تعاملنا مع أي معلومة تشاركها معنا.',
+      sections: [
+        {
+          title: 'ما الذي نجمعه',
+          body: 'نجمع فقط ما تشاركه معنا مباشرة: اسمك، رقم جوالك، بريدك الإلكتروني (إن قدّمته)، اسم علامتك التجارية، وتفاصيل طلب الحجز أو الاستشارة. لا نجمع بيانات دفع أو معلومات حساسة لا علاقة لها بخدمتنا.',
+        },
+        {
+          title: 'كيف نستخدمها',
+          body: 'نستخدم بياناتك حصراً للتواصل معك بخصوص طلبك، تأكيد موعدك، والرد على استفساراتك. لا نستخدمها لأي غرض تسويقي لم توافق عليه، ولا نبيعها لأي جهة على الإطلاق.',
+        },
+        {
+          title: 'كيف نحميها',
+          body: 'يصل إلى بياناتك فريق محدود ومخوّل داخل مصنع أول حلم فقط، ونحرص على تخزينها بطريقة آمنة وحذفها عند انتهاء الغرض منها.',
+        },
+        {
+          title: 'هل نشاركها مع أحد؟',
+          body: 'لا نشارك بياناتك مع أي طرف ثالث لأغراض تسويقية. قد نستعين بخدمات تقنية موثوقة (مثل خدمة إرسال البريد أو استضافة الموقع) لتشغيل الموقع فقط، وبأقل قدر ممكن من البيانات.',
+        },
+        {
+          title: 'ملفات تعريف الارتباط',
+          body: 'نستخدم فقط ملفات تعريف ارتباط أساسية لحفظ تفضيلاتك (مثل اللغة والوضع الليلي) على جهازك، ولا نستخدم أي تتبع إعلاني.',
+        },
+        {
+          title: 'حقوقك',
+          body: 'يحق لك في أي وقت أن تطلب معرفة البيانات التي نحتفظ بها عنك، أو تعديلها، أو حذفها بالكامل — فقط راسلنا وسنستجيب خلال أيام قليلة.',
+        },
+        {
+          title: 'مدة الاحتفاظ بالبيانات',
+          body: 'نحتفظ بمعلومات طلبك للمدة اللازمة لإتمام الخدمة والمتابعة معك فقط، ثم نتخلص منها بشكل آمن ما لم يطلب القانون خلاف ذلك.',
+        },
+        {
+          title: 'تواصل معنا',
+          body: 'لأي استفسار متعلق بخصوصيتك أو بياناتك، راسلنا مباشرة على info@awalhelm.com وسنكون سعداء بالرد.',
+        },
+      ],
     },
     booking: {
       steps: ['الخدمة', 'العبوة', 'الموعد', 'بياناتك', 'التأكيد'],
-      nav: { back: 'رجوع', next: 'التالي', submit: 'إرسال طلب الحجز' },
+      nav: { back: 'رجوع', next: 'التالي', submit: 'إرسال طلب الحجز', submitting: 'جارِ الإرسال...' },
+      submitError: 'حدث خطأ أثناء إرسال طلبك، يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.',
       service: {
         heading: 'ما الخدمة التي تحتاجها؟',
         subheading: 'اختر التصنيف الأقرب لفكرتك، يمكنك توضيح التفاصيل لاحقاً',
@@ -295,6 +361,23 @@ export const translations = {
         { title: 'Supporting Vision 2030', desc: 'Contributing to local industry development and the national economy.' },
       ],
     },
+    certifications: {
+      eyebrow: 'Certifications & Accreditations',
+      title: 'Quality Backed by International Standards',
+      subtitle: 'Official accreditations and strict oversight stand behind every product that leaves our factory.',
+      badges: [
+        { title: 'ISO 9001', desc: 'Quality Management System' },
+        { title: 'ISO 45001', desc: 'Occupational Health & Safety' },
+        { title: 'ISO 14001', desc: 'Environmental Management System' },
+        { title: 'SFDA', desc: 'Approved by the Saudi Food & Drug Authority' },
+        { title: 'Made in Saudi Arabia', desc: 'A fully national product' },
+      ],
+      stats: [
+        { target: 50, label: 'Clients & brands' },
+        { target: 350000, label: 'Products in one year' },
+        { target: 10, label: 'Years of manufacturing experience' },
+      ],
+    },
     about: {
       eyebrow: 'About Us',
       title: 'Your Industrial Partner in the World of Cosmetics',
@@ -370,6 +453,9 @@ export const translations = {
         message: 'Your Message',
         messagePlaceholder: 'Tell us about your idea or product...',
         submit: 'Send Message',
+        submitting: 'Sending...',
+        success: "Your message was received, we'll be in touch soon.",
+        error: 'Something went wrong while sending, please try again or reach us on WhatsApp.',
       },
       email: {
         subjectPrefix: 'Consultation request from',
@@ -389,6 +475,7 @@ export const translations = {
       taxNumber: 'Tax Number',
       copyright: (year) => `© ${year} Awal Helm Cosmetics Manufacturing Factory. All rights reserved.`,
       madeWith: 'Proudly made to support national industry',
+      privacyLink: 'Privacy Policy',
     },
     pages: {
       services: {
@@ -417,10 +504,55 @@ export const translations = {
         description: "It looks like the link you're looking for isn't available.",
         cta: 'Back to Home',
       },
+      privacy: {
+        eyebrow: 'Privacy & Trust',
+        title: 'Your Data Is Safe With Us',
+        description: 'Before we make your product, we make trust — and that applies just as much to your data.',
+      },
+    },
+    privacy: {
+      updated: 'Last updated: August 2026',
+      intro:
+        "At Awal Helm Factory, we believe trust is built before the product is made — and the same principle applies fully to your data. This page isn't rigid legal boilerplate; it's a plain, honest explanation of how we handle anything you share with us.",
+      sections: [
+        {
+          title: 'What We Collect',
+          body: "We only collect what you share with us directly: your name, phone number, email (if provided), brand name, and the details of your booking or consultation request. We don't collect payment data or sensitive information unrelated to our service.",
+        },
+        {
+          title: 'How We Use It',
+          body: "We use your data solely to contact you about your request, confirm your appointment, and respond to your questions. We never use it for marketing you haven't agreed to, and we never sell it to anyone.",
+        },
+        {
+          title: 'How We Protect It',
+          body: "Only a limited, authorized team within Awal Helm Factory can access your data. We store it securely and remove it once it's no longer needed.",
+        },
+        {
+          title: 'Do We Share It?',
+          body: "We don't share your data with any third party for marketing purposes. We may rely on trusted technical services (like email delivery or website hosting) purely to run the site, sharing the minimum data necessary.",
+        },
+        {
+          title: 'Cookies',
+          body: 'We only use essential cookies to remember your preferences (like language and dark mode) on your device — no advertising trackers.',
+        },
+        {
+          title: 'Your Rights',
+          body: "You can ask, at any time, to know what data we hold about you, correct it, or have it fully deleted — just email us and we'll respond within a few days.",
+        },
+        {
+          title: 'Data Retention',
+          body: 'We keep your request details only as long as needed to deliver the service and follow up with you, then dispose of them securely unless the law requires otherwise.',
+        },
+        {
+          title: 'Contact Us',
+          body: "For any question about your privacy or data, reach us directly at info@awalhelm.com — we're happy to help.",
+        },
+      ],
     },
     booking: {
       steps: ['Service', 'Packaging', 'Date', 'Details', 'Confirm'],
-      nav: { back: 'Back', next: 'Next', submit: 'Submit Booking Request' },
+      nav: { back: 'Back', next: 'Next', submit: 'Submit Booking Request', submitting: 'Submitting...' },
+      submitError: 'Something went wrong while submitting your request, please try again or reach us on WhatsApp.',
       service: {
         heading: 'What service do you need?',
         subheading: 'Choose the category closest to your idea, you can clarify details later',

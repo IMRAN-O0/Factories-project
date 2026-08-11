@@ -1,29 +1,53 @@
 import { useState } from 'react';
 import Reveal from './Reveal.jsx';
 import { useLanguage } from '../context/LanguageContext.jsx';
+import { isBackendConfigured } from '../lib/supabaseClient.js';
 
 const CONTACT_EMAIL = 'info@awalhelm.com';
-const CONTACT_PHONE = '+966 5X XXX XXXX';
-const WHATSAPP_LINK = 'https://wa.me/9665XXXXXXXX';
+const CONTACT_PHONE = '+966 57 731 5331';
+const WHATSAPP_LINK = 'https://wa.me/966577315331';
+
+function submitViaMailto(form, e2) {
+  const subject = encodeURIComponent(`${e2.subjectPrefix} ${form.name || e2.subjectFallback}`);
+  const body = encodeURIComponent(
+    `${e2.name}: ${form.name}\n${e2.brand}: ${form.brand || '—'}\n${e2.phone}: ${form.phone}\n\n${e2.message}:\n${form.message}`
+  );
+  const link = document.createElement('a');
+  link.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  link.click();
+}
 
 export default function Contact() {
   const { t } = useLanguage();
   const [form, setForm] = useState({ name: '', brand: '', phone: '', message: '' });
+  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
 
   const handleChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const e2 = t('contact.email');
-    const subject = encodeURIComponent(`${e2.subjectPrefix} ${form.name || e2.subjectFallback}`);
-    const body = encodeURIComponent(
-      `${e2.name}: ${form.name}\n${e2.brand}: ${form.brand || '—'}\n${e2.phone}: ${form.phone}\n\n${e2.message}:\n${form.message}`
-    );
-    const link = document.createElement('a');
-    link.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    link.click();
+
+    if (!isBackendConfigured) {
+      submitViaMailto(form, e2);
+      return;
+    }
+
+    setStatus('submitting');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error('request failed');
+      setStatus('success');
+      setForm({ name: '', brand: '', phone: '', message: '' });
+    } catch {
+      setStatus('error');
+    }
   };
 
   const f = t('contact.form');
@@ -147,10 +171,22 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="mt-6 w-full rounded-full bg-brand-600 py-3.5 text-base font-semibold text-white transition-all hover:bg-brand-700 active:scale-[0.98]"
+              disabled={status === 'submitting'}
+              className="mt-6 w-full rounded-full bg-brand-600 py-3.5 text-base font-semibold text-white transition-all hover:bg-brand-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {f.submit}
+              {status === 'submitting' ? f.submitting : f.submit}
             </button>
+
+            {status === 'success' && (
+              <p className="mt-4 rounded-xl bg-brand-50 px-4 py-3 text-sm text-brand-700 dark:bg-brand-950/40 dark:text-brand-400">
+                {f.success}
+              </p>
+            )}
+            {status === 'error' && (
+              <p className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600 dark:bg-red-950/30 dark:text-red-400">
+                {f.error}
+              </p>
+            )}
           </form>
         </Reveal>
       </div>
