@@ -1,11 +1,16 @@
 import { getSupabaseAdmin } from './_lib/supabaseAdmin.js';
 import { sendNotification, escapeHtml } from './_lib/email.js';
-import { isNonEmptyString, isOptionalString, isValidText } from './_lib/validate.js';
+import { isNonEmptyString, isOptionalString, isValidText, sanitizeHeaderValue } from './_lib/validate.js';
+import { isRateLimited } from './_lib/rateLimit.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  if (isRateLimited(req)) {
+    return res.status(429).json({ error: 'محاولات كثيرة جداً، يرجى المحاولة لاحقاً' });
   }
 
   const { name, brand, phone, message } = req.body || {};
@@ -33,7 +38,7 @@ export default async function handler(req, res) {
   }
 
   await sendNotification({
-    subject: `طلب استشارة جديد من ${name}`,
+    subject: `طلب استشارة جديد من ${sanitizeHeaderValue(name)}`,
     html: `
       <h2>طلب استشارة جديد</h2>
       <p><strong>الاسم:</strong> ${escapeHtml(name)}</p>
