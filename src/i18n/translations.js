@@ -25,7 +25,7 @@ export const translations = {
       ctaServices: 'تعرّف على خدماتنا',
       floatingTitle: 'تصنيع خاص',
       floatingDesc: '100% باسم علامتك',
-      imageAlt: 'مختبر تطوير التركيبات في مصنع أول حلم',
+      imageAlt: 'عبوة كريم وعلبة تغليف بلا علامة تجارية، جاهزة لهوية علامتك',
     },
     whyUs: {
       eyebrow: 'لماذا نحن',
@@ -60,7 +60,7 @@ export const translations = {
       eyebrow: 'من نحن',
       title: 'شريكك الصناعي في عالم مستحضرات التجميل',
       paragraph:
-        'مصنع أول حلم متخصص في تصنيع مستحضرات التجميل بجميع أنواعها؛ العناية بالبشرة، العناية بالشعر، منتجات العناية اليومية والمكياج، وذلك تحت علامتك التجارية الخاصة. نؤمن بأن كل فكرة تستحق أن تتحول إلى منتج حقيقي بجودة تنافس الأسواق العالمية، وبانسجام تام مع توجهات رؤية المملكة 2030 في دعم الصناعة الوطنية وتنويع الاقتصاد.',
+        'مصنع أول حلم متخصص في تصنيع مستحضرات التجميل بجميع أنواعها؛ العناية بالبشرة، العناية بالشعر، العناية الشخصية والمكياج، وذلك تحت علامتك التجارية الخاصة. نؤمن بأن كل فكرة تستحق أن تتحول إلى منتج حقيقي بجودة تنافس الأسواق العالمية، وبانسجام تام مع توجهات رؤية المملكة 2030 في دعم الصناعة الوطنية وتنويع الاقتصاد.',
       quote: '"نصنع الثقة قبل أن نصنع المنتج"',
       quoteAuthor: 'فلسفتنا في مصنع أول حلم لصناعة مستحضرات التجميل',
       points: [
@@ -85,7 +85,7 @@ export const translations = {
       items: [
         {
           title: 'تطوير التركيبات',
-          desc: 'نبتكر تركيبات كريمات، سيروم، لوشن، ومنتجات عناية بالبشرة والشعر مصمّمة خصيصاً لهوية علامتك ورغبات عملائك.',
+          desc: 'نبتكر تركيبات منتجات العناية بالبشرة والشعر، مصمّمة خصيصاً لهوية علامتك واحتياجات عملائك.',
         },
         {
           title: 'الهوية والتغليف',
@@ -103,11 +103,11 @@ export const translations = {
     },
     stats: {
       eyebrow: 'قدراتنا التصنيعية',
-      title: 'نصنع من أجل كل فئات مستحضرات التجميل',
+      title: 'خطوط إنتاج تغطي جميع فئات مستحضرات التجميل',
       items: [
-        { label: 'عناية بالبشرة', desc: 'كريمات، سيروم، مرطبات، وأقنعة' },
-        { label: 'عناية بالشعر', desc: 'شامبو، بلسم، وزيوت علاجية' },
-        { label: 'العناية اليومية', desc: 'مستحضرات استحمام وعناية عامة' },
+        { label: 'العناية بالبشرة', desc: 'كريمات، سيرومات، مرطبات، وأقنعة' },
+        { label: 'العناية بالشعر', desc: 'شامبو، بلسم، وزيوت علاجية' },
+        { label: 'العناية الشخصية', desc: 'منتجات الاستحمام والعناية بالجسم' },
         { label: 'المكياج', desc: 'منتجات تجميل وألوان متنوعة' },
       ],
     },
@@ -119,7 +119,7 @@ export const translations = {
     contact: {
       eyebrow: 'تواصل معنا',
       title: 'جاهزون لتحويل فكرتك إلى منتج',
-      desc: 'راسلنا اليوم واحصل على استشارة مجانية حول تصنيع مستحضرات التجميل الخاصة بعلامتك. فريقنا جاهز للإجابة على كل استفساراتك.',
+      desc: 'احصل على استشارة مجانية حول تصنيع مستحضرات التجميل الخاصة بعلامتك، وفريقنا جاهز للإجابة على جميع استفساراتك.',
       whatsappLabel: 'راسلنا عبر واتساب',
       form: {
         name: 'الاسم الثلاثي',
@@ -235,8 +235,8 @@ export const translations = {
         heading: 'ما الخدمة التي تحتاجها؟',
         subheading: 'اختر التصنيف الأقرب لفكرتك، يمكنك توضيح التفاصيل لاحقاً',
         options: [
-          { id: 'skincare', title: 'عناية بالبشرة', desc: 'كريمات، سيروم، مرطبات، وأقنعة' },
-          { id: 'haircare', title: 'عناية بالشعر', desc: 'شامبو، بلسم، وزيوت علاجية' },
+          { id: 'skincare', title: 'العناية بالبشرة', desc: 'كريمات، سيرومات، مرطبات، وأقنعة' },
+          { id: 'haircare', title: 'العناية بالشعر', desc: 'شامبو، بلسم، وزيوت علاجية' },
           { id: 'makeup', title: 'المكياج', desc: 'منتجات تجميل وألوان متنوعة' },
           { id: 'full', title: 'تصنيع خاص كامل', desc: 'استشارة عامة لعلامتك التجارية' },
         ],
@@ -347,7 +347,7 @@ export const translations = {
       ctaServices: 'Explore Our Services',
       floatingTitle: 'Private Label',
       floatingDesc: '100% under your brand',
-      imageAlt: 'Formulation development lab at Awal Helm Factory',
+      imageAlt: 'An unbranded cream jar and packaging box, ready for your brand identity',
     },
     whyUs: {
       eyebrow: 'Why Us',
@@ -382,7 +382,7 @@ export const translations = {
       eyebrow: 'About Us',
       title: 'Your Industrial Partner in the World of Cosmetics',
       paragraph:
-        'Awal Helm Factory specializes in manufacturing all types of cosmetics — skincare, haircare, daily care products, and makeup — under your own brand. We believe every idea deserves to become a real product with quality that rivals global markets, fully aligned with Saudi Vision 2030 in supporting national industry and economic diversification.',
+        'Awal Helm Factory specializes in manufacturing all types of cosmetics — skincare, haircare, personal care, and makeup — under your own brand. We believe every idea deserves to become a real product with quality that rivals global markets, fully aligned with Saudi Vision 2030 in supporting national industry and economic diversification.',
       quote: '"We build trust before we build the product"',
       quoteAuthor: 'Our philosophy at Awal Helm Cosmetics Manufacturing Factory',
       points: [
@@ -407,7 +407,7 @@ export const translations = {
       items: [
         {
           title: 'Formulation Development',
-          desc: 'We create creams, serums, lotions, and skin & hair care formulas designed specifically for your brand identity and your customers’ needs.',
+          desc: 'We create skin and hair care formulas designed specifically for your brand identity and your customers’ needs.',
         },
         {
           title: 'Identity & Packaging',
@@ -425,11 +425,11 @@ export const translations = {
     },
     stats: {
       eyebrow: 'Our Manufacturing Capabilities',
-      title: 'We Manufacture Every Category of Cosmetics',
+      title: 'Production Lines Covering Every Cosmetics Category',
       items: [
         { label: 'Skincare', desc: 'Creams, serums, moisturizers, and masks' },
         { label: 'Haircare', desc: 'Shampoo, conditioner, and treatment oils' },
-        { label: 'Daily Care', desc: 'Bath products and general care' },
+        { label: 'Personal Care', desc: 'Bath and body care products' },
         { label: 'Makeup', desc: 'Beauty products and a variety of colors' },
       ],
     },
@@ -441,7 +441,7 @@ export const translations = {
     contact: {
       eyebrow: 'Contact Us',
       title: 'Ready to Turn Your Idea Into a Product',
-      desc: 'Write to us today and get a free consultation on manufacturing your own cosmetics brand. Our team is ready to answer all your questions.',
+      desc: 'Get a free consultation on manufacturing your own cosmetics brand — our team is ready to answer all your questions.',
       whatsappLabel: 'Message us on WhatsApp',
       form: {
         name: 'Full Name',

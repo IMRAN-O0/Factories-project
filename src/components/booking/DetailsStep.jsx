@@ -12,7 +12,7 @@ export default function DetailsStep({ form, onChange, logoFiles, onLogoChange, d
 
   return (
     <div>
-      <h2 className="text-center text-2xl font-extrabold text-ink-900 dark:text-night-50">{d.heading}</h2>
+      <h2 className="text-center text-2xl font-bold text-ink-900 dark:text-night-50">{d.heading}</h2>
       <p className="mt-2 text-center text-ink-400 dark:text-night-200">{d.subheading}</p>
 
       <div className="mx-auto mt-10 grid max-w-xl grid-cols-1 gap-5 sm:grid-cols-2">

@@ -48,7 +48,7 @@ export default function Services({ withHeading = true }) {
             <span className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
               {t('services.eyebrow')}
             </span>
-            <h2 className="mt-3 text-3xl font-extrabold text-ink-900 dark:text-night-50 md:text-4xl">{t('services.title')}</h2>
+            <h2 className="mt-3 text-3xl font-bold text-ink-900 dark:text-night-50 md:text-4xl">{t('services.title')}</h2>
             <p className="mt-4 text-ink-400 dark:text-night-200">{t('services.desc')}</p>
           </Reveal>
         )}

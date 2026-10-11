@@ -39,8 +39,8 @@ export default {
         },
       },
       fontFamily: {
-        arabic: ['"Tajawal"', 'sans-serif'],
-        display: ['"Markazi Text"', '"Tajawal"', 'serif'],
+        arabic: ['"IBM Plex Sans Arabic"', 'sans-serif'],
+        display: ['"Alexandria"', '"IBM Plex Sans Arabic"', 'sans-serif'],
       },
       boxShadow: {
         soft: '0 4px 30px rgba(0,0,0,0.06)',

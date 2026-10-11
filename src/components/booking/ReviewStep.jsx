@@ -31,7 +31,7 @@ export default function ReviewStep({ service, packaging, date, time, form, logoF
 
   return (
     <div>
-      <h2 className="text-center text-2xl font-extrabold text-ink-900 dark:text-night-50">{r.title}</h2>
+      <h2 className="text-center text-2xl font-bold text-ink-900 dark:text-night-50">{r.title}</h2>
       <p className="mt-2 text-center text-ink-400 dark:text-night-200">{r.subtitle}</p>
 
       <div className="glass relative mx-auto mt-10 max-w-xl divide-y divide-white/40 dark:divide-white/10 overflow-hidden rounded-2xl">

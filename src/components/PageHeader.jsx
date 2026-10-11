@@ -13,7 +13,7 @@ export default function PageHeader({ eyebrow, title, description }) {
         >
           {eyebrow}
         </motion.span>
-        <h1 className="mt-3 text-balance text-3xl font-extrabold text-ink-900 dark:text-night-50 md:text-5xl">
+        <h1 className="mt-3 text-balance text-3xl font-bold text-ink-900 dark:text-night-50 md:text-5xl">
           <SplitHeading text={title} delay={0.05} />
         </h1>
         {description && (

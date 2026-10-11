@@ -60,7 +60,7 @@ export default function Hero() {
             {t('hero.badge')}
           </motion.span>
 
-          <h1 className="mt-7 text-balance text-4xl font-extrabold leading-[1.2] text-ink-900 dark:text-night-50 sm:text-5xl md:text-6xl">
+          <h1 className="mt-7 text-balance text-4xl font-bold leading-[1.2] text-ink-900 dark:text-night-50 sm:text-5xl md:text-6xl">
             <SplitHeading text={t('hero.titleLine1')} delay={0.15} />
             <br />
             <SplitHeading text={t('hero.titleLine2')} className="text-brand-600 dark:text-brand-400" delay={0.4} />
