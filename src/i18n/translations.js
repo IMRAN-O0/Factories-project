@@ -76,7 +76,7 @@ export const translations = {
       paragraph:
         'مصنع أول حلم متخصص في تصنيع مستحضرات التجميل بجميع أنواعها تحت علامتك التجارية الخاصة، بجودة تصنيعية موثوقة وانسجام تام مع توجهات رؤية المملكة 2030 في دعم الصناعة الوطنية.',
       cta: 'تعرّف علينا أكثر',
-      imageAlt: 'فريق مصنع أول حلم',
+      imageAlt: 'عبوات مستحضرات تجميل فاخرة بأغطية ذهبية',
     },
     services: {
       eyebrow: 'خدماتنا',
@@ -398,7 +398,7 @@ export const translations = {
       paragraph:
         'Awal Helm Factory specializes in manufacturing all types of cosmetics under your own brand, with reliable manufacturing quality fully aligned with Saudi Vision 2030 in supporting national industry.',
       cta: 'Learn More About Us',
-      imageAlt: 'The Awal Helm Factory team',
+      imageAlt: 'Premium cosmetic packaging with gold caps',
     },
     services: {
       eyebrow: 'Our Services',
