@@ -51,7 +51,7 @@ export default function WhyUs() {
           <span className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
             {t('whyUs.eyebrow')}
           </span>
-          <h2 className="mt-3 text-3xl font-extrabold text-ink-900 dark:text-night-50 md:text-4xl">{t('whyUs.title')}</h2>
+          <h2 className="mt-3 text-3xl font-bold text-ink-900 dark:text-night-50 md:text-4xl">{t('whyUs.title')}</h2>
         </Reveal>
 
         <motion.div

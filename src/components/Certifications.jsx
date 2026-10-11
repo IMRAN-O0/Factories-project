@@ -74,7 +74,7 @@ export default function Certifications() {
           <span className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
             {t('certifications.eyebrow')}
           </span>
-          <h2 className="mt-3 text-3xl font-extrabold text-ink-900 dark:text-night-50 md:text-4xl">
+          <h2 className="mt-3 text-3xl font-bold text-ink-900 dark:text-night-50 md:text-4xl">
             {t('certifications.title')}
           </h2>
           <p className="mt-4 text-ink-400 dark:text-night-200">{t('certifications.subtitle')}</p>

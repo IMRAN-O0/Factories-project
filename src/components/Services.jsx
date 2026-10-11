@@ -48,7 +48,7 @@ export default function Services({ withHeading = true }) {
             <span className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
               {t('services.eyebrow')}
             </span>
-            <h2 className="mt-3 text-3xl font-extrabold text-ink-900 dark:text-night-50 md:text-4xl">{t('services.title')}</h2>
+            <h2 className="mt-3 text-3xl font-bold text-ink-900 dark:text-night-50 md:text-4xl">{t('services.title')}</h2>
             <p className="mt-4 text-ink-400 dark:text-night-200">{t('services.desc')}</p>
           </Reveal>
         )}
@@ -58,7 +58,7 @@ export default function Services({ withHeading = true }) {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: '-80px' }}
-          className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10"
         >
           {items.map((s, i) => (
             <motion.div
@@ -75,7 +75,7 @@ export default function Services({ withHeading = true }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0" />
               </div>
               <div className="relative p-7">
-                <span className="absolute left-6 top-6 text-xs font-bold text-ink-100 transition-colors group-hover:text-brand-100 dark:text-night-700">
+                <span className="absolute end-7 top-7 font-display text-sm font-semibold tracking-wider text-brand-600/70 transition-colors group-hover:text-brand-600 dark:text-brand-400/70 dark:group-hover:text-brand-300">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div className="glass relative -mt-14 flex h-16 w-16 items-center justify-center rounded-xl text-brand-600 shadow-soft dark:text-brand-400">

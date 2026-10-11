@@ -23,7 +23,7 @@ export default function SuccessScreen() {
           <path d="m5 13 4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </motion.div>
-      <h2 className="mt-6 text-2xl font-extrabold text-ink-900 dark:text-night-50">{s.title}</h2>
+      <h2 className="mt-6 text-2xl font-bold text-ink-900 dark:text-night-50">{s.title}</h2>
       <p className="mt-3 leading-relaxed text-ink-400 dark:text-night-200">{s.desc}</p>
       <Link
         to="/"

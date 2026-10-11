@@ -1,5 +1,6 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { smoothScrollTo } from './layout/SmoothScroll.jsx';
 import Services from './Services.jsx';
 import formulationImg from '../assets/stock/formulation.jpg';
 import packagingImg from '../assets/stock/packaging.jpg';
@@ -30,100 +31,110 @@ const ICONS = [
   </svg>,
 ];
 
-// Builds a symmetric crossfade range for panel `index`: the fade-in window of
-// panel N exactly matches the fade-out window of panel N-1, so only two
-// panels are ever transitioning at once (never three), with a fully-settled
-// plateau in between. `lowValue` is the value used while inactive.
-function buildRange(index, lowValue) {
-  const segment = 1 / COUNT;
-  const margin = segment * 0.25;
-  const start = index * segment;
-  const end = (index + 1) * segment;
-  const isFirst = index === 0;
-  const isLast = index === COUNT - 1;
+const EASE = [0.22, 1, 0.36, 1];
 
-  const input = [];
-  const output = [];
-
-  if (isFirst) {
-    input.push(0);
-    output.push(1);
-  } else {
-    input.push(start - margin, start + margin);
-    output.push(lowValue, 1);
-  }
-
-  if (isLast) {
-    input.push(1);
-    output.push(1);
-  } else {
-    input.push(end - margin, end + margin);
-    output.push(1, lowValue);
-  }
-
-  return { input, output };
-}
-
-function ImagePanel({ index, scrollYProgress, src, alt }) {
-  const opacityRange = buildRange(index, 0);
-  const scaleRange = buildRange(index, 0.94);
-  const opacity = useTransform(scrollYProgress, opacityRange.input, opacityRange.output);
-  const scale = useTransform(scrollYProgress, scaleRange.input, scaleRange.output);
-
+function StepText({ index, item }) {
   return (
-    <motion.div style={{ opacity, scale }} className="absolute inset-0">
-      <img src={src} alt={alt} className="h-full w-full rounded-2xl object-cover" />
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/35 via-black/0 to-black/0" />
-    </motion.div>
-  );
-}
-
-function TextPanel({ index, scrollYProgress, item }) {
-  const opacityRange = buildRange(index, 0.3);
-  const opacity = useTransform(scrollYProgress, opacityRange.input, opacityRange.output);
-  const x = useTransform(opacity, [0.3, 1], [12, 0]);
-
-  return (
-    <motion.div style={{ opacity, x }} className="flex gap-5">
-      <div className="glass flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-brand-600 dark:text-brand-400">
-        {Reflect.get(ICONS, index)}
-      </div>
-      <div>
-        <span className="text-xs font-bold tracking-widest text-brand-600 dark:text-brand-400">
+    <>
+      <div className="flex items-center gap-4">
+        <div className="glass relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-brand-600 dark:text-brand-400">
+          {Reflect.get(ICONS, index)}
+        </div>
+        <span className="font-display text-5xl font-bold text-brand-600/25 dark:text-brand-400/25">
           {String(index + 1).padStart(2, '0')}
         </span>
-        <h3 className="mt-1 text-xl font-bold text-ink-900 dark:text-night-50 md:text-2xl">{item.title}</h3>
-        <p className="mt-2 max-w-md leading-relaxed text-ink-400 dark:text-night-200">{item.desc}</p>
       </div>
-    </motion.div>
+      <h3 className="mt-6 text-3xl font-bold text-ink-900 dark:text-night-50 xl:text-4xl">{item.title}</h3>
+      <p className="mt-4 max-w-md text-lg leading-loose text-ink-400 dark:text-night-200">{item.desc}</p>
+    </>
   );
 }
 
 function PinnedScrolly({ items }) {
   const sectionRef = useRef(null);
+  const [active, setActive] = useState(0);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] });
-  const railScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    const next = Math.min(COUNT - 1, Math.max(0, Math.floor(v * COUNT)));
+    setActive((prev) => (prev === next ? prev : next));
+  });
+
+  const goTo = (i) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    const distance = el.offsetHeight - window.innerHeight;
+    smoothScrollTo(top + ((i + 0.5) / COUNT) * distance);
+  };
 
   return (
-    <section ref={sectionRef} className="relative hidden motion-safe:lg:block" style={{ height: `${COUNT * 100}vh` }}>
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <div className="container-px mx-auto grid w-full grid-cols-2 items-center gap-16">
-          <div className="relative">
-            <div className="absolute -start-6 top-0 h-full w-px bg-ink-100 dark:bg-night-700">
-              <motion.div className="w-full origin-top bg-brand-500" style={{ scaleY: railScale, height: '100%' }} />
-            </div>
-            <div className="flex flex-col gap-16">
+    <section ref={sectionRef} className="relative hidden motion-safe:lg:block" style={{ height: `${COUNT * 75}vh` }}>
+      <div className="sticky top-0 h-screen overflow-hidden pt-20">
+        <div className="container-px mx-auto flex h-full flex-col justify-center gap-10 py-8">
+          <div>
+            <div className="flex flex-wrap justify-center gap-2">
               {items.map((item, i) => (
-                <TextPanel key={item.title} index={i} scrollYProgress={scrollYProgress} item={item} />
+                <button
+                  key={item.title}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  aria-current={active === i ? 'step' : undefined}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                    active === i
+                      ? 'bg-brand-600 text-white shadow-sm'
+                      : 'text-ink-600 hover:bg-white/60 hover:text-ink-900 dark:text-night-200 dark:hover:bg-white/10 dark:hover:text-night-50'
+                  }`}
+                >
+                  <span className="tabular-nums opacity-70">{String(i + 1).padStart(2, '0')}</span> {item.title}
+                </button>
               ))}
+            </div>
+            <div className="mx-auto mt-4 h-px max-w-xl bg-ink-100 dark:bg-night-700">
+              <motion.div className="h-full origin-left bg-brand-500 rtl:origin-right" style={{ scaleX: scrollYProgress }} />
             </div>
           </div>
 
-          <div className="glass relative aspect-[4/3] overflow-hidden rounded-3xl p-2">
-            <div className="relative h-full w-full overflow-hidden rounded-2xl">
+          <div className="grid grid-cols-2 items-center gap-16">
+            <div className="relative grid">
               {items.map((item, i) => (
-                <ImagePanel key={item.title} index={i} scrollYProgress={scrollYProgress} src={Reflect.get(IMAGES, i)} alt={item.title} />
+                <div key={item.title} aria-hidden="true" className="invisible col-start-1 row-start-1">
+                  <StepText index={i} item={item} />
+                </div>
               ))}
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={active}
+                  className="absolute inset-0 flex flex-col justify-center"
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.35, ease: EASE }}
+                >
+                  <StepText index={active} item={Reflect.get(items, active)} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <div
+              className="glass relative mx-auto aspect-[4/3] w-full rounded-3xl p-2"
+              style={{ maxWidth: 'calc((100vh - 18rem) * 4 / 3)' }}
+            >
+              <div className="relative h-full w-full overflow-hidden rounded-2xl">
+                <AnimatePresence initial={false}>
+                  <motion.img
+                    key={active}
+                    src={Reflect.get(IMAGES, active)}
+                    alt={Reflect.get(items, active).title}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.6, ease: EASE }}
+                  />
+                </AnimatePresence>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-black/0" />
+              </div>
             </div>
           </div>
         </div>
@@ -143,7 +154,7 @@ export default function ServicesScrolly() {
           <span className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
             {t('services.eyebrow')}
           </span>
-          <h2 className="mt-3 text-3xl font-extrabold text-ink-900 dark:text-night-50 md:text-4xl">{t('services.title')}</h2>
+          <h2 className="mt-3 text-3xl font-bold text-ink-900 dark:text-night-50 md:text-4xl">{t('services.title')}</h2>
           <p className="mt-4 text-ink-400 dark:text-night-200">{t('services.desc')}</p>
         </div>
       </div>

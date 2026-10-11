@@ -19,7 +19,7 @@ export default function Stats() {
           <span className="text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
             {t('stats.eyebrow')}
           </span>
-          <h2 className="mt-3 text-2xl font-extrabold text-ink-900 dark:text-night-50 md:text-3xl">{t('stats.title')}</h2>
+          <h2 className="mt-3 text-balance text-2xl font-bold text-ink-900 dark:text-night-50 md:text-3xl">{t('stats.title')}</h2>
         </Reveal>
 
         <motion.div

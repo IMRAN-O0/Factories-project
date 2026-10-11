@@ -12,7 +12,7 @@ export default function DateTimeStep({ date, onDateChange, time, onTimeChange })
 
   return (
     <div>
-      <h2 className="text-center text-2xl font-extrabold text-ink-900 dark:text-night-50">{dt.heading}</h2>
+      <h2 className="text-center text-2xl font-bold text-ink-900 dark:text-night-50">{dt.heading}</h2>
       <p className="mt-2 text-center text-ink-400 dark:text-night-200">{dt.subheading}</p>
 
       <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">

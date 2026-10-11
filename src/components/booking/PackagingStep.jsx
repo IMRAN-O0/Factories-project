@@ -59,7 +59,7 @@ export default function PackagingStep({ value, onChange }) {
 
   return (
     <div>
-      <h2 className="text-center text-2xl font-extrabold text-ink-900 dark:text-night-50">{t('booking.packaging.heading')}</h2>
+      <h2 className="text-center text-2xl font-bold text-ink-900 dark:text-night-50">{t('booking.packaging.heading')}</h2>
       <p className="mt-2 text-center text-ink-400 dark:text-night-200">{t('booking.packaging.subheading')}</p>
 
       <motion.div

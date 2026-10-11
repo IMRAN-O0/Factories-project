@@ -84,17 +84,17 @@ export default function Header() {
           </Link>
         </div>
 
-        <nav className="glass-pill absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 rounded-full p-1.5 lg:flex">
+        <nav className="glass-pill absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full p-2 lg:flex">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               end={link.to === '/'}
               className={({ isActive }) =>
-                `relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                `relative rounded-full px-5 py-2 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand-400/70 ${
                   isActive
-                    ? 'text-ink-900 dark:text-night-50'
-                    : 'text-ink-600 hover:text-ink-900 dark:text-night-200 dark:hover:text-night-50'
+                    ? 'text-brand-800 dark:text-brand-100'
+                    : 'text-ink-600 hover:bg-white/60 hover:text-ink-900 dark:text-night-200 dark:hover:bg-white/[0.06] dark:hover:text-night-50'
                 }`
               }
             >
@@ -103,7 +103,7 @@ export default function Header() {
                   {isActive && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 rounded-full bg-white shadow-sm dark:bg-white/10"
+                      className="nav-active-pill absolute inset-0 rounded-full"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
