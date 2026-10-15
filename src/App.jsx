@@ -14,6 +14,7 @@ import Analytics from './components/Analytics.jsx';
 
 const Home = lazy(() => import('./pages/Home.jsx'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage.jsx'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage.jsx'));
 const AboutPage = lazy(() => import('./pages/AboutPage.jsx'));
 const BookingPage = lazy(() => import('./pages/BookingPage.jsx'));
 const ContactPage = lazy(() => import('./pages/ContactPage.jsx'));
@@ -39,6 +40,7 @@ export default function App() {
             <Routes location={location} key={location.pathname}>
               <Route path="/" element={<PageTransition><Home /></PageTransition>} />
               <Route path="/services" element={<PageTransition><ServicesPage /></PageTransition>} />
+              <Route path="/products" element={<PageTransition><ProductsPage /></PageTransition>} />
               <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
               <Route path="/booking" element={<PageTransition><BookingPage /></PageTransition>} />
               <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />

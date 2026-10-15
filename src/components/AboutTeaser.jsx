@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Reveal from './Reveal.jsx';
-import aboutImg from '../assets/stock/about.jpg';
+import aboutImg from '../assets/profile/about-pump.jpg';
 import { useLanguage } from '../context/LanguageContext.jsx';
 
 export default function AboutTeaser() {
@@ -9,11 +9,12 @@ export default function AboutTeaser() {
   return (
     <section className="section-py bg-white dark:bg-night-900">
       <div className="container-px mx-auto grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
-        <Reveal y={30}>
+        <Reveal y={30} className="mx-auto w-full max-w-md">
           <div className="glass relative overflow-hidden rounded-3xl p-2">
             <img
               src={aboutImg}
               alt={t('aboutTeaser.imageAlt')}
+              loading="lazy"
               className="aspect-[4/5] w-full rounded-2xl object-cover"
             />
           </div>
@@ -26,6 +27,9 @@ export default function AboutTeaser() {
           <h2 className="mt-3 text-3xl font-bold text-ink-900 dark:text-night-50 md:text-4xl text-balance">
             {t('aboutTeaser.title')}
           </h2>
+          <p className="mt-5 border-s-4 border-brand-500 ps-4 text-lg font-medium leading-loose text-ink-700 dark:text-night-100">
+            {t('aboutTeaser.lead')}
+          </p>
           <p className="mt-5 leading-loose text-ink-400 dark:text-night-200">{t('aboutTeaser.paragraph')}</p>
           <Link
             to="/about"

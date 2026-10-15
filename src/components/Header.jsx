@@ -17,6 +17,7 @@ export default function Header() {
   const NAV_LINKS = [
     { to: '/', label: t('nav.home') },
     { to: '/services', label: t('nav.services') },
+    { to: '/products', label: t('nav.products') },
     { to: '/about', label: t('nav.about') },
     { to: '/contact', label: t('nav.contact') },
   ];
@@ -84,14 +85,14 @@ export default function Header() {
           </Link>
         </div>
 
-        <nav className="glass-pill absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full p-2 lg:flex">
+        <nav className="glass-pill relative hidden items-center gap-1 rounded-full p-1.5 lg:flex xl:absolute xl:left-1/2 xl:-translate-x-1/2 xl:gap-2 xl:p-2">
           {NAV_LINKS.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               end={link.to === '/'}
               className={({ isActive }) =>
-                `relative rounded-full px-5 py-2 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand-400/70 ${
+                `relative whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand-400/70 xl:px-5 ${
                   isActive
                     ? 'text-brand-800 dark:text-brand-100'
                     : 'text-ink-600 hover:bg-white/60 hover:text-ink-900 dark:text-night-200 dark:hover:bg-white/[0.06] dark:hover:text-night-50'

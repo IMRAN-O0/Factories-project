@@ -1,51 +1,6 @@
 import { motion } from 'framer-motion';
+import { PACKAGING_IMAGES } from '../media.js';
 import { useLanguage } from '../../context/LanguageContext.jsx';
-
-export const PACKAGING_ICONS = {
-  jar: (
-    <svg viewBox="0 0 24 24" fill="none" className="h-8 w-8">
-      <rect x="7" y="3" width="10" height="5" rx="1.5" stroke="currentColor" strokeWidth="1.6" />
-      <rect x="6" y="8" width="12" height="13" rx="2" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M6 11h12" stroke="currentColor" strokeWidth="1.6" />
-    </svg>
-  ),
-  bottle: (
-    <svg viewBox="0 0 24 24" fill="none" className="h-8 w-8">
-      <path d="M10 2h4v3.5l2 3V20a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V8.5l2-3V2Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-      <path d="M8 12h8" stroke="currentColor" strokeWidth="1.6" />
-    </svg>
-  ),
-  tube: (
-    <svg viewBox="0 0 24 24" fill="none" className="h-8 w-8">
-      <rect x="10.5" y="2" width="3" height="2.5" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M9 4.5h6l1.2 4.5v10a2 2 0 0 1-2 2h-4.4a2 2 0 0 1-2-2V9L9 4.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-      <path d="M7.5 21l9-1.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-    </svg>
-  ),
-  pump: (
-    <svg viewBox="0 0 24 24" fill="none" className="h-8 w-8">
-      <rect x="8" y="9" width="8" height="12" rx="2" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M10 9V6h4v3" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M10 6V4h2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      <path d="M12 4V2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  ),
-  spray: (
-    <svg viewBox="0 0 24 24" fill="none" className="h-8 w-8">
-      <rect x="7" y="10" width="8" height="11" rx="2" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M9 10V7h4v3" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M13 7h4l2 -2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      <path d="M15 5.5V4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  ),
-  other: (
-    <svg viewBox="0 0 24 24" fill="none" className="h-8 w-8">
-      <path d="M3 8l9-5 9 5-9 5-9-5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-      <path d="M3 8v8l9 5 9-5V8" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-      <path d="M12 13v8" stroke="currentColor" strokeWidth="1.6" />
-    </svg>
-  ),
-};
 
 const grid = { animate: { transition: { staggerChildren: 0.06 } } };
 const cell = {
@@ -66,7 +21,7 @@ export default function PackagingStep({ value, onChange }) {
         variants={grid}
         initial="initial"
         animate="animate"
-        className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-3"
+        className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-3"
       >
         {options.map((opt) => {
           const active = value === opt.id;
@@ -75,22 +30,38 @@ export default function PackagingStep({ value, onChange }) {
               key={opt.id}
               type="button"
               variants={cell}
-              whileTap={{ scale: 0.96 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => onChange(opt.id)}
-              className={`flex flex-col items-center gap-3 rounded-2xl border-2 p-6 text-center transition-all ${
+              aria-pressed={active}
+              className={`relative flex flex-col overflow-hidden rounded-2xl border-2 p-2 text-start transition-all ${
                 active
                   ? 'border-brand-600 bg-brand-50 shadow-md dark:bg-brand-950/40'
                   : 'border-ink-100 bg-white hover:border-brand-200 dark:border-night-600 dark:bg-night-800 dark:hover:border-brand-700'
               }`}
             >
-              <span
-                className={`flex h-14 w-14 items-center justify-center rounded-xl transition-colors ${
-                  active ? 'bg-brand-600 text-white' : 'bg-brand-50 text-brand-600 dark:bg-brand-950/60 dark:text-brand-400'
-                }`}
-              >
-                {Reflect.get(PACKAGING_ICONS, opt.id)}
+              <span className="block overflow-hidden rounded-xl bg-[#f6f1e4]">
+                <img
+                  src={Reflect.get(PACKAGING_IMAGES, opt.id)}
+                  alt=""
+                  aria-hidden="true"
+                  className={`aspect-square w-full object-cover transition-transform duration-500 ${active ? 'scale-105' : ''}`}
+                />
               </span>
-              <span className="font-bold text-ink-900 dark:text-night-50">{opt.title}</span>
+              {active && (
+                <span className="absolute end-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-brand-600 text-white shadow">
+                  <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                    <path
+                      fillRule="evenodd"
+                      d="M16.7 5.3a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 1 1 1.4-1.4l2.3 2.29 6.3-6.29a1 1 0 0 1 1.4 0Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+              )}
+              <span className="px-2 pb-2 pt-3">
+                <span className="block font-bold text-ink-900 dark:text-night-50">{opt.title}</span>
+                <span className="mt-1 block text-xs leading-relaxed text-ink-400 dark:text-night-200">{opt.desc}</span>
+              </span>
             </motion.button>
           );
         })}

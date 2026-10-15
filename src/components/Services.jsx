@@ -1,35 +1,11 @@
 import { motion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
-import formulationImg from '../assets/stock/formulation.jpg';
-import packagingImg from '../assets/stock/packaging.jpg';
-import manufacturingImg from '../assets/stock/manufacturing.jpg';
-import launchImg from '../assets/stock/launch.jpg';
+import JourneyIcon from './JourneyIcon.jsx';
+import { JOURNEY_IMAGES } from './media.js';
 import { useLanguage } from '../context/LanguageContext.jsx';
 
-const IMAGES = [formulationImg, packagingImg, manufacturingImg, launchImg];
-
-const ICONS = [
-  <svg key="1" viewBox="0 0 48 48" fill="none" className="h-9 w-9">
-    <path d="M20 6h8v8l6 12v10a6 6 0 0 1-6 6H20a6 6 0 0 1-6-6V26l6-12V6Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
-    <path d="M16 32h16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-  </svg>,
-  <svg key="2" viewBox="0 0 48 48" fill="none" className="h-9 w-9">
-    <rect x="8" y="14" width="32" height="26" rx="3" stroke="currentColor" strokeWidth="2.2" />
-    <path d="M8 22h32" stroke="currentColor" strokeWidth="2.2" />
-    <path d="M18 14V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5" stroke="currentColor" strokeWidth="2.2" />
-  </svg>,
-  <svg key="3" viewBox="0 0 48 48" fill="none" className="h-9 w-9">
-    <circle cx="24" cy="24" r="16" stroke="currentColor" strokeWidth="2.2" />
-    <path d="M24 16v8l6 4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>,
-  <svg key="4" viewBox="0 0 48 48" fill="none" className="h-9 w-9">
-    <path d="M24 6c6 6 9 13 9 20a9 9 0 1 1-18 0c0-7 3-14 9-20Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
-    <path d="M24 30v10" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-  </svg>,
-];
-
 const grid = {
-  animate: { transition: { staggerChildren: 0.1 } },
+  animate: { transition: { staggerChildren: 0.08 } },
 };
 const card = {
   initial: { opacity: 0, y: 26 },
@@ -58,18 +34,19 @@ export default function Services({ withHeading = true }) {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: '-80px' }}
-          className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10"
+          className="mt-14 flex flex-wrap justify-center gap-8 lg:gap-10"
         >
           {items.map((s, i) => (
             <motion.div
               key={s.title}
               variants={card}
-              className="glass group relative overflow-hidden rounded-2xl transition-all hover:-translate-y-1.5 hover:shadow-lg"
+              className="glass group relative w-full overflow-hidden rounded-2xl transition-all hover:-translate-y-1.5 hover:shadow-lg sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.875rem)]"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
-                  src={Reflect.get(IMAGES, i)}
+                  src={Reflect.get(JOURNEY_IMAGES, i)}
                   alt={s.title}
+                  loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-black/0" />
@@ -79,9 +56,14 @@ export default function Services({ withHeading = true }) {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div className="glass relative -mt-14 flex h-16 w-16 items-center justify-center rounded-xl text-brand-600 shadow-soft dark:text-brand-400">
-                  {Reflect.get(ICONS, i)}
+                  <JourneyIcon index={i} className="h-9 w-9" />
                 </div>
-                <h3 className="mt-6 text-lg font-bold text-ink-900 dark:text-night-50">{s.title}</h3>
+                {s.tag && (
+                  <p className="mt-5 font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-700/70 dark:text-brand-300/70">
+                    {s.tag}
+                  </p>
+                )}
+                <h3 className={`${s.tag ? 'mt-1.5' : 'mt-6'} text-lg font-bold text-ink-900 dark:text-night-50`}>{s.title}</h3>
                 <p className="mt-2.5 text-sm leading-relaxed text-ink-400 dark:text-night-200">{s.desc}</p>
               </div>
             </motion.div>

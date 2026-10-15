@@ -2,34 +2,9 @@ import { useRef, useState } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { smoothScrollTo } from './layout/SmoothScroll.jsx';
 import Services from './Services.jsx';
-import formulationImg from '../assets/stock/formulation.jpg';
-import packagingImg from '../assets/stock/packaging.jpg';
-import manufacturingImg from '../assets/stock/manufacturing.jpg';
-import launchImg from '../assets/stock/launch.jpg';
+import JourneyIcon from './JourneyIcon.jsx';
+import { JOURNEY_IMAGES } from './media.js';
 import { useLanguage } from '../context/LanguageContext.jsx';
-
-const IMAGES = [formulationImg, packagingImg, manufacturingImg, launchImg];
-const COUNT = 4;
-
-const ICONS = [
-  <svg key="1" viewBox="0 0 48 48" fill="none" className="h-8 w-8">
-    <path d="M20 6h8v8l6 12v10a6 6 0 0 1-6 6H20a6 6 0 0 1-6-6V26l6-12V6Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
-    <path d="M16 32h16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-  </svg>,
-  <svg key="2" viewBox="0 0 48 48" fill="none" className="h-8 w-8">
-    <rect x="8" y="14" width="32" height="26" rx="3" stroke="currentColor" strokeWidth="2.2" />
-    <path d="M8 22h32" stroke="currentColor" strokeWidth="2.2" />
-    <path d="M18 14V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5" stroke="currentColor" strokeWidth="2.2" />
-  </svg>,
-  <svg key="3" viewBox="0 0 48 48" fill="none" className="h-8 w-8">
-    <circle cx="24" cy="24" r="16" stroke="currentColor" strokeWidth="2.2" />
-    <path d="M24 16v8l6 4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>,
-  <svg key="4" viewBox="0 0 48 48" fill="none" className="h-8 w-8">
-    <path d="M24 6c6 6 9 13 9 20a9 9 0 1 1-18 0c0-7 3-14 9-20Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
-    <path d="M24 30v10" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-  </svg>,
-];
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -38,11 +13,16 @@ function StepText({ index, item }) {
     <>
       <div className="flex items-center gap-4">
         <div className="glass relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-brand-600 dark:text-brand-400">
-          {Reflect.get(ICONS, index)}
+          <JourneyIcon index={index} />
         </div>
         <span className="font-display text-5xl font-bold text-brand-600/25 dark:text-brand-400/25">
           {String(index + 1).padStart(2, '0')}
         </span>
+        {item.tag && (
+          <span dir="ltr" className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-brand-700/70 dark:text-brand-300/70">
+            {item.tag}
+          </span>
+        )}
       </div>
       <h3 className="mt-6 text-3xl font-bold text-ink-900 dark:text-night-50 xl:text-4xl">{item.title}</h3>
       <p className="mt-4 max-w-md text-lg leading-loose text-ink-400 dark:text-night-200">{item.desc}</p>
@@ -51,6 +31,7 @@ function StepText({ index, item }) {
 }
 
 function PinnedScrolly({ items }) {
+  const COUNT = items.length;
   const sectionRef = useRef(null);
   const [active, setActive] = useState(0);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] });
@@ -69,18 +50,18 @@ function PinnedScrolly({ items }) {
   };
 
   return (
-    <section ref={sectionRef} className="relative hidden motion-safe:lg:block" style={{ height: `${COUNT * 75}vh` }}>
+    <section ref={sectionRef} className="relative hidden motion-safe:lg:block" style={{ height: `${COUNT * 60}vh` }}>
       <div className="sticky top-0 h-screen overflow-hidden pt-20">
-        <div className="container-px mx-auto flex h-full flex-col justify-center gap-10 py-8">
+        <div className="container-px mx-auto flex h-full flex-col justify-center gap-8 py-6">
           <div>
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-center gap-1.5">
               {items.map((item, i) => (
                 <button
                   key={item.title}
                   type="button"
                   onClick={() => goTo(i)}
                   aria-current={active === i ? 'step' : undefined}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
                     active === i
                       ? 'bg-brand-600 text-white shadow-sm'
                       : 'text-ink-600 hover:bg-white/60 hover:text-ink-900 dark:text-night-200 dark:hover:bg-white/10 dark:hover:text-night-50'
@@ -118,13 +99,13 @@ function PinnedScrolly({ items }) {
 
             <div
               className="glass relative mx-auto aspect-[4/3] w-full rounded-3xl p-2"
-              style={{ maxWidth: 'calc((100vh - 18rem) * 4 / 3)' }}
+              style={{ maxWidth: 'calc((100vh - 17rem) * 4 / 3)' }}
             >
               <div className="relative h-full w-full overflow-hidden rounded-2xl">
                 <AnimatePresence initial={false}>
                   <motion.img
                     key={active}
-                    src={Reflect.get(IMAGES, active)}
+                    src={Reflect.get(JOURNEY_IMAGES, active)}
                     alt={Reflect.get(items, active).title}
                     className="absolute inset-0 h-full w-full object-cover"
                     initial={{ opacity: 0, scale: 1.05 }}

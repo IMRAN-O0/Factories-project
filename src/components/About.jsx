@@ -5,7 +5,8 @@ import { useLanguage } from '../context/LanguageContext.jsx';
 
 export default function About() {
   const { t } = useLanguage();
-  const points = t('about.points');
+  const paragraphs = t('about.paragraphs');
+  const markets = t('about.markets');
 
   return (
     <section className="section-py bg-white dark:bg-night-900">
@@ -26,7 +27,12 @@ export default function About() {
             <h2 className="mt-3 text-3xl font-bold text-ink-900 dark:text-night-50 md:text-4xl text-balance">
               {t('about.title')}
             </h2>
-            <p className="mt-5 leading-loose text-ink-400 dark:text-night-200">{t('about.paragraph')}</p>
+            {paragraphs.map((p) => (
+              <p key={p} className="mt-5 leading-loose text-ink-400 dark:text-night-200">
+                {p}
+              </p>
+            ))}
+            <h3 className="mt-8 font-bold text-ink-900 dark:text-night-50">{t('about.marketsTitle')}</h3>
           </Reveal>
 
           <motion.ul
@@ -34,9 +40,9 @@ export default function About() {
             whileInView="animate"
             viewport={{ once: true, margin: '-60px' }}
             variants={{ animate: { transition: { staggerChildren: 0.1 } } }}
-            className="mt-8 space-y-4"
+            className="mt-4 space-y-3"
           >
-            {points.map((point) => (
+            {markets.map((point) => (
               <motion.li
                 key={point}
                 variants={{

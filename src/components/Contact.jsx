@@ -3,7 +3,9 @@ import Reveal from './Reveal.jsx';
 import { useLanguage } from '../context/LanguageContext.jsx';
 import { isBackendConfigured } from '../lib/supabaseClient.js';
 
-const CONTACT_EMAIL = 'info@awalhelm.com';
+const CONTACT_EMAIL = 'info@firstdream1.com';
+const STORE_URL = 'https://firstdream1.com';
+const INDUSTRIAL_LICENSE = '441101122756';
 const CONTACT_PHONE = '+966 57 731 5331';
 const WHATSAPP_LINK = 'https://wa.me/966577315331';
 
@@ -113,6 +115,42 @@ export default function Contact() {
                 {t('contact.whatsappLabel')}
               </span>
             </a>
+
+            <a href={STORE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 transition-colors group-hover:bg-brand-600 group-hover:text-white dark:bg-brand-950/50 dark:text-brand-400">
+                <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                  <path d="M4 9h16l-1.2 10.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8L4 9Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+                  <path d="M8.5 9V7a3.5 3.5 0 0 1 7 0v2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                </svg>
+              </span>
+              <span className="text-ink-700 dark:text-night-100 group-hover:text-brand-700 dark:group-hover:text-brand-400">
+                {t('contact.storeLabel')}: <span dir="ltr">firstdream1.com</span>
+              </span>
+            </a>
+
+            <div className="flex items-center gap-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 dark:bg-brand-950/50 dark:text-brand-400">
+                <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                  <path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+                  <circle cx="12" cy="11" r="2.4" stroke="currentColor" strokeWidth="1.8" />
+                </svg>
+              </span>
+              <span className="text-ink-700 dark:text-night-100">
+                {t('contact.addressLabel')}: {t('contact.address')}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 dark:bg-brand-950/50 dark:text-brand-400">
+                <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                  <path d="M5 21V4a1 1 0 0 1 1-1h9l4 4v14" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+                  <path d="M15 3v4h4M8.5 11h7M8.5 14.5h7M8.5 18h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span className="text-ink-700 dark:text-night-100">
+                {t('contact.licenseLabel')}: <span dir="ltr">{INDUSTRIAL_LICENSE}</span>
+              </span>
+            </div>
           </div>
         </Reveal>
 
