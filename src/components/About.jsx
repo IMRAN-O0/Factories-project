@@ -14,10 +14,7 @@ export default function About() {
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-500 to-brand-700 px-8 py-14 md:px-10 md:py-16 flex flex-col items-center gap-8 text-center">
             <div className="absolute -bottom-10 -left-10 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
             <img src={logoWhite} alt="مصنع أول حلم" className="relative h-20 w-auto md:h-24" />
-            <div className="relative">
-              <p className="text-xl font-bold leading-relaxed text-white md:text-2xl">{t('about.quote')}</p>
-              <p className="mt-3 text-sm text-white/75">{t('about.quoteAuthor')}</p>
-            </div>
+            <p className="relative text-xl font-bold leading-relaxed text-white md:text-2xl">{t('about.quote')}</p>
           </div>
         </Reveal>
 

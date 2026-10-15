@@ -41,7 +41,7 @@ export const translations = {
     },
     certifications: {
       eyebrow: 'شهاداتنا واعتماداتنا',
-      title: 'جودة موثّقة بمعايير عالمية',
+      title: 'جودة موثقة بمعايير عالمية',
       subtitle: 'اعتمادات رسمية ورقابة صارمة تقف خلف كل منتج يخرج من مصنعنا.',
       badges: [
         { title: 'آيزو 9001', desc: 'نظام إدارة الجودة' },
@@ -62,7 +62,6 @@ export const translations = {
       paragraph:
         'مصنع أول حلم متخصص في تصنيع مستحضرات التجميل بجميع أنواعها؛ العناية بالبشرة، العناية بالشعر، العناية الشخصية والمكياج، وذلك تحت علامتك التجارية الخاصة. نؤمن بأن كل فكرة تستحق أن تتحول إلى منتج حقيقي بجودة تنافس الأسواق العالمية، وبانسجام تام مع توجهات رؤية المملكة 2030 في دعم الصناعة الوطنية وتنويع الاقتصاد.',
       quote: '"نصنع الثقة قبل أن نصنع المنتج"',
-      quoteAuthor: 'فلسفتنا في مصنع أول حلم لصناعة مستحضرات التجميل',
       points: [
         'التزام كامل بمعايير الجودة والسلامة في كل مراحل التصنيع',
         'دعم مباشر لرؤية 2030 وتوطين صناعة مستحضرات التجميل محلياً',
@@ -384,7 +383,6 @@ export const translations = {
       paragraph:
         'Awal Helm Factory specializes in manufacturing all types of cosmetics — skincare, haircare, personal care, and makeup — under your own brand. We believe every idea deserves to become a real product with quality that rivals global markets, fully aligned with Saudi Vision 2030 in supporting national industry and economic diversification.',
       quote: '"We build trust before we build the product"',
-      quoteAuthor: 'Our philosophy at Awal Helm Cosmetics Manufacturing Factory',
       points: [
         'Full commitment to quality and safety standards at every stage of manufacturing',
         'Direct support for Vision 2030 and localizing the cosmetics industry',
