@@ -38,14 +38,9 @@ function CatalogGroup({ group, index, itemsLabel }) {
       </Reveal>
 
       <Reveal y={30} className={`lg:col-span-5 ${flip ? 'lg:order-2' : ''}`}>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2">
+        <div className={`grid grid-cols-2 gap-3 ${images.length >= 4 ? 'sm:grid-cols-4 lg:grid-cols-2' : ''}`}>
           {images.map((src, i) => (
-            <div
-              key={src}
-              className={`overflow-hidden rounded-2xl bg-[#f6f1e4] ${
-                images.length === 3 && i === 0 ? 'col-span-2 aspect-[2/1]' : 'aspect-square'
-              }`}
-            >
+            <div key={src} className="aspect-square overflow-hidden rounded-2xl bg-[#f6f1e4]">
               <img src={src} alt={`${group.title} ${i + 1}`} loading="lazy" className="h-full w-full object-cover" />
             </div>
           ))}
