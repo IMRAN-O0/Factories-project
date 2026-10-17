@@ -1,9 +1,9 @@
 // Image sets shared across sections. Product and packaging photos come from the company profile;
 // the profile's card photos that bleed off their frame are replaced by complete shots of similar containers.
 import stepConcept from '../assets/profile/step-concept.jpg';
+import stepSelection from '../assets/profile/step-selection.jpg';
 import stepSampling from '../assets/profile/step-sampling.jpg';
 import stepPackaging from '../assets/profile/step-packaging.jpg';
-import formulation from '../assets/stock/formulation.jpg';
 import launch from '../assets/stock/launch.jpg';
 import manufacturing from '../assets/stock/manufacturing.jpg';
 import delivery from '../assets/stock/delivery.jpg';
@@ -39,7 +39,7 @@ import hair7 from '../assets/profile/hair-7.jpg';
 import hair8 from '../assets/profile/hair-8.jpg';
 
 // One image per partnership-journey step, in step order.
-export const JOURNEY_IMAGES = [stepConcept, formulation, stepSampling, stepPackaging, launch, manufacturing, delivery];
+export const JOURNEY_IMAGES = [stepConcept, stepSelection, stepSampling, stepPackaging, launch, manufacturing, delivery];
 
 export const MANUFACTURING_IMAGE = manufacturing;
 
