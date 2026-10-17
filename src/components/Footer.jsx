@@ -2,15 +2,16 @@ import { Link } from 'react-router-dom';
 import logoWhite from '../assets/logo-white.png';
 import { useLanguage } from '../context/LanguageContext.jsx';
 
-const LINK_ROUTES = ['/', '/services', '/about', '/booking', '/contact'];
-const LINK_KEYS = ['nav.home', 'nav.services', 'nav.about', 'nav.bookNow', 'nav.contact'];
+const LINK_ROUTES = ['/', '/services', '/products', '/about', '/booking', '/contact'];
+const LINK_KEYS = ['nav.home', 'nav.services', 'nav.products', 'nav.about', 'nav.bookNow', 'nav.contact'];
 
 const LEGAL_KEYS = [
+  { key: 'footer.license', value: '441101122756' },
   { key: 'footer.cr', value: '7002138936' },
   { key: 'footer.taxNumber', value: '300029859300003' },
 ];
 
-const CONTACT_EMAIL = 'info@awalhelm.com';
+const CONTACT_EMAIL = 'info@firstdream1.com';
 const CONTACT_PHONE = '+966 57 731 5331';
 
 const SOCIAL = [
@@ -90,6 +91,7 @@ export default function Footer() {
                   {CONTACT_EMAIL}
                 </a>
               </li>
+              <li className="text-sm text-white/60">{t('footer.address')}</li>
               <li className="text-sm text-white/60">
                 <a href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`} dir="ltr" className="inline-block transition-colors hover:text-brand-400">
                   {CONTACT_PHONE}

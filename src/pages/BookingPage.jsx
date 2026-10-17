@@ -12,7 +12,7 @@ import { useLanguage } from '../context/LanguageContext.jsx';
 import { isBackendConfigured } from '../lib/supabaseClient.js';
 import { uploadBookingFiles } from '../lib/uploadBookingFiles.js';
 
-const CONTACT_EMAIL = 'info@awalhelm.com';
+const CONTACT_EMAIL = 'info@firstdream1.com';
 const TOTAL_STEPS = 5;
 
 const stepVariants = {

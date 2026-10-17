@@ -1,8 +1,10 @@
 import PageHeader from '../components/PageHeader.jsx';
 import About from '../components/About.jsx';
+import VisionValues from '../components/VisionValues.jsx';
 import WhyUs from '../components/WhyUs.jsx';
-import CtaBanner from '../components/CtaBanner.jsx';
+import Infrastructure from '../components/Infrastructure.jsx';
 import Certifications from '../components/Certifications.jsx';
+import CtaBanner from '../components/CtaBanner.jsx';
 import { useLanguage } from '../context/LanguageContext.jsx';
 
 export default function AboutPage() {
@@ -13,8 +15,10 @@ export default function AboutPage() {
     <>
       <PageHeader eyebrow={p.eyebrow} title={p.title} description={p.description} />
       <About />
-      <Certifications />
+      <VisionValues />
       <WhyUs />
+      <Infrastructure />
+      <Certifications />
       <CtaBanner />
     </>
   );

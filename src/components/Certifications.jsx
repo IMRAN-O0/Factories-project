@@ -4,26 +4,36 @@ import Reveal from './Reveal.jsx';
 import { useLanguage } from '../context/LanguageContext.jsx';
 
 const BADGE_ICONS = [
+  // SFDA licence
   <svg key="1" viewBox="0 0 24 24" fill="none" className="h-7 w-7">
     <path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
     <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
   </svg>,
+  // Industrial licence
   <svg key="2" viewBox="0 0 24 24" fill="none" className="h-7 w-7">
-    <path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-    <path d="M12 8v5M12 15.5v.01" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M5 21V4a1 1 0 0 1 1-1h9l4 4v14" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    <path d="M15 3v4h4" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    <path d="M8.5 11h7M8.5 14.5h7M8.5 18h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
   </svg>,
+  // ISO 9001 — quality
   <svg key="3" viewBox="0 0 24 24" fill="none" className="h-7 w-7">
-    <path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-    <path d="M12 8c-2 1.5-2 3 0 4.5s2 3 0 4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-  </svg>,
-  <svg key="4" viewBox="0 0 24 24" fill="none" className="h-7 w-7">
     <circle cx="12" cy="9" r="6" stroke="currentColor" strokeWidth="1.8" />
     <path d="M8.5 14.5 7 21l5-2.5 5 2.5-1.5-6.5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
   </svg>,
+  // ISO 14001 — environment
+  <svg key="4" viewBox="0 0 24 24" fill="none" className="h-7 w-7">
+    <path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M5 19c3-4 6-7 10-9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+  </svg>,
+  // ISO 45001 — health & safety
   <svg key="5" viewBox="0 0 24 24" fill="none" className="h-7 w-7">
-    <path d="M5 21V4a1 1 0 0 1 1-1h9l4 4v14" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-    <path d="M15 3v4h4" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-    <path d="m9 14 2 2 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    <path d="M12 8.5v6M9 11.5h6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+  </svg>,
+  // Saudi Made
+  <svg key="6" viewBox="0 0 24 24" fill="none" className="h-7 w-7">
+    <path d="M5 21V4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M5 4h12l-2.5 4L17 12H5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
   </svg>,
 ];
 
@@ -65,6 +75,7 @@ const cell = {
 export default function Certifications() {
   const { t, isRTL } = useLanguage();
   const badges = t('certifications.badges');
+  const qc = t('certifications.qc');
   const stats = t('certifications.stats');
 
   return (
@@ -77,7 +88,6 @@ export default function Certifications() {
           <h2 className="mt-3 text-3xl font-bold text-ink-900 dark:text-night-50 md:text-4xl">
             {t('certifications.title')}
           </h2>
-          <p className="mt-4 text-ink-400 dark:text-night-200">{t('certifications.subtitle')}</p>
         </Reveal>
 
         <motion.div
@@ -85,22 +95,41 @@ export default function Certifications() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, margin: '-80px' }}
-          className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5"
+          className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {badges.map((b, i) => (
             <motion.div
               key={b.title}
               variants={cell}
-              className="glass dark:glass-dark relative flex flex-col items-center gap-3 rounded-2xl p-6 text-center transition-transform hover:-translate-y-1"
+              className="glass dark:glass-dark relative flex items-start gap-4 rounded-2xl p-6 transition-transform hover:-translate-y-1"
             >
-              <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">
                 {Reflect.get(BADGE_ICONS, i)}
               </span>
-              <span className="font-bold text-ink-900 dark:text-night-50">{b.title}</span>
-              <span className="text-xs leading-relaxed text-ink-400 dark:text-night-200">{b.desc}</span>
+              <span>
+                <span className="block font-bold text-ink-900 dark:text-night-50">{b.title}</span>
+                <span className="mt-1.5 block text-sm leading-relaxed text-ink-400 dark:text-night-200">{b.desc}</span>
+              </span>
             </motion.div>
           ))}
         </motion.div>
+
+        <Reveal
+          delay={0.1}
+          className="relative mt-6 flex flex-col gap-5 overflow-hidden rounded-2xl bg-gradient-to-l from-brand-600 to-brand-700 p-7 text-white sm:flex-row sm:items-center md:p-8"
+        >
+          <div className="pointer-events-none absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
+          <span className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/15">
+            <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7">
+              <path d="M9 3h6M10 3v6.5L5 18a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-8.5V3" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+              <path d="M7.5 15h9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+          </span>
+          <div className="relative">
+            <h3 className="text-lg font-bold">{qc.title}</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-white/85 md:text-base">{qc.desc}</p>
+          </div>
+        </Reveal>
 
         <Reveal delay={0.15} className="mesh-bg mt-16 grid grid-cols-1 gap-8 rounded-3xl px-6 py-10 sm:grid-cols-3 md:px-12">
           {stats.map((s) => (
