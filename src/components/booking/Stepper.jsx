@@ -13,7 +13,12 @@ export default function Stepper({ current }) {
         const isActive = stepNum === current;
         return (
           <div key={label} className="flex flex-1 items-center last:flex-none">
-            <div className="flex flex-col items-center gap-2">
+            {/* first/last labels hug the edges so long labels never spill past the screen */}
+            <div
+              className={`flex flex-col gap-2 ${
+                i === 0 ? 'items-start' : stepNum === steps.length ? 'items-end' : 'items-center'
+              }`}
+            >
               <motion.div
                 animate={{ scale: isActive ? 1.1 : 1 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -35,7 +40,7 @@ export default function Stepper({ current }) {
                   stepNum
                 )}
               </motion.div>
-              <span className={`text-xs font-medium ${isActive ? 'text-brand-700 dark:text-brand-400' : 'text-ink-400 dark:text-night-200'}`}>
+              <span className={`whitespace-nowrap text-xs font-medium ${isActive ? 'text-brand-700 dark:text-brand-400' : 'text-ink-400 dark:text-night-200'}`}>
                 {label}
               </span>
             </div>

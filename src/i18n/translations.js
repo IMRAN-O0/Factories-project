@@ -214,7 +214,7 @@ export const translations = {
       },
       mission: {
         title: 'رسالتنا',
-        desc: 'تمكين أصحاب العلامات التجارية والمستثمرين من تحويل رؤاهم إلى منتجات واقعية فاخرة، مطابقة لأعلى المعايير التنظيمية.',
+        desc: 'تمكين أصحاب العلامات التجارية والمستثمرين من تحويل رؤيتهم إلى منتجات واقعية فاخرة، مطابقة لأعلى المعايير التنظيمية.',
       },
       valuesTitle: 'قيمنا المؤسسية',
       values: [
@@ -229,7 +229,7 @@ export const translations = {
       intro:
         'تم إعداد وتجهيز مصنع أول حلم وفق أعلى المعايير الهندسية والصناعية لضمان إنتاج آمن وبيئة تصنيع معقمة ومحفزة على الإبداع.',
       items: [
-        { title: 'صالة الإنتاج الرئيسية', desc: 'مجهزة بأحدث خطوط الخلط والتجنيس الآلية المصنوعة من الستانلس ستيل المعقم.' },
+        { title: 'صالة الإنتاج الرئيسية', desc: 'مجهزة بأحدث خطوط الخلط والتجانس الآلية المصنوعة من الستانلس ستيل المعقم.' },
         { title: 'قسم المختبرات وضبط الجودة', desc: 'مختبر مجهز بأحدث الأجهزة الكيميائية والميكروبيولوجية لفحص المنتجات.' },
         {
           title: 'المستودعات والمخازن',
@@ -310,7 +310,7 @@ export const translations = {
       ],
       lines: {
         title: 'خطوط الصناعة والتعبئة المتطورة',
-        desc: 'خلاطات ستانلس ستيل مخصصة تضمن تجنيس القوام دون فقاعات، وخطوط تعبئة آلية معقمة تحافظ على نقاء المنتجات وثبات الجودة.',
+        desc: 'خلاطات ستانلس ستيل مخصصة تضمن تجانس القوام دون فقاعات، وخطوط تعبئة آلية معقمة تحافظ على نقاء المنتجات وثبات الجودة.',
       },
       export: {
         title: 'الأوراق النظامية للتصدير الدولي',
@@ -379,7 +379,7 @@ export const translations = {
           title: 'العناية بالجسم',
           items: [
             { n: '09', title: 'زيوت ترطيب البشرة العطرية', desc: 'زيوت طبيعية معصورة على البارد معطرة بنسب متوازنة.' },
-            { n: '10', title: 'غسول المناطق الحساسة', desc: 'تركيبة لطيفة ومتوازنة الحامضية (pH Balanced) للعناية اليومية.' },
+            { n: '10', title: 'غسول المناطق الحساسة', desc: 'تركيبة لطيفة ومتوازنة الحموضة (pH Balanced) للعناية اليومية.' },
             { n: '11', title: 'معطرات الجسم والشعر', desc: 'رذاذ عطري خفيف (Mist) يدوم طويلاً وينعش الحواس.' },
             { n: '12', title: 'بودرة الجسم العطرية الفاخرة', desc: 'بودرة فائقة النعومة معززة بروائح عطرية ثابتة.' },
           ],
@@ -453,7 +453,7 @@ export const translations = {
       licenseLabel: 'الترخيص الصناعي',
       form: {
         name: 'الاسم الثلاثي',
-        namePlaceholder: 'مثال: عبدالله محمد العتيبي',
+        namePlaceholder: 'مثال: عبدالله محمد أحمد',
         phone: 'رقم الجوال',
         phonePlaceholder: '05XXXXXXXX',
         brand: 'اسم العلامة التجارية (اختياري)',
@@ -589,7 +589,7 @@ export const translations = {
       },
       dateTime: {
         heading: 'اختر الموعد المناسب',
-        subheading: 'نعمل من السبت إلى الخميس، وسنؤكد الموعد معك خلال 24 ساعة',
+        subheading: 'نعمل من السبت إلى الخميس، وسيتواصل معك فريقنا لتأكيد الموعد',
         timeLabel: 'الوقت المناسب',
         emptyState: 'اختر تاريخاً أولاً لعرض الأوقات المتاحة',
         timeSlots: ['10:00 ص', '11:00 ص', '12:00 م', '01:00 م', '02:00 م', '04:00 م', '05:00 م'],
@@ -598,7 +598,7 @@ export const translations = {
         heading: 'بياناتك ومرفقاتك',
         subheading: 'سنستخدمها للتواصل معك وتأكيد الموعد',
         name: 'الاسم الثلاثي',
-        namePlaceholder: 'مثال: عبدالله محمد العتيبي',
+        namePlaceholder: 'مثال: عبدالله محمد أحمد',
         phone: 'رقم الجوال',
         phonePlaceholder: '05XXXXXXXX',
         brand: 'اسم العلامة التجارية (اختياري)',
@@ -632,7 +632,7 @@ export const translations = {
       },
       success: {
         title: 'تم إرسال طلبك بنجاح',
-        desc: 'شكراً لتواصلك مع مصنع أول حلم. سيقوم فريقنا بمراجعة طلبك والتواصل معك خلال 24 ساعة لتأكيد موعدك النهائي.',
+        desc: 'شكراً لتواصلك مع مصنع أول حلم. سيقوم فريقنا بمراجعة طلبك والتواصل معك قريباً لتأكيد موعدك النهائي.',
         cta: 'العودة للرئيسية',
       },
       email: {
@@ -1024,7 +1024,7 @@ export const translations = {
       licenseLabel: 'Industrial License',
       form: {
         name: 'Full Name',
-        namePlaceholder: 'e.g. Abdullah Mohammed Al-Otaibi',
+        namePlaceholder: 'e.g. Abdullah Mohammed Ahmed',
         phone: 'Phone Number',
         phonePlaceholder: '05XXXXXXXX',
         brand: 'Brand Name (optional)',
@@ -1160,7 +1160,7 @@ export const translations = {
       },
       dateTime: {
         heading: 'Choose a Suitable Date',
-        subheading: 'We work Saturday to Thursday, and will confirm your appointment within 24 hours',
+        subheading: 'We work Saturday to Thursday, and our team will contact you to confirm your appointment',
         timeLabel: 'Suitable Time',
         emptyState: 'Choose a date first to see available times',
         timeSlots: ['10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '04:00 PM', '05:00 PM'],
@@ -1169,7 +1169,7 @@ export const translations = {
         heading: 'Your Details & Attachments',
         subheading: "We'll use these to contact you and confirm your appointment",
         name: 'Full Name',
-        namePlaceholder: 'e.g. Abdullah Mohammed Al-Otaibi',
+        namePlaceholder: 'e.g. Abdullah Mohammed Ahmed',
         phone: 'Phone Number',
         phonePlaceholder: '05XXXXXXXX',
         brand: 'Brand Name (optional)',
@@ -1203,7 +1203,7 @@ export const translations = {
       },
       success: {
         title: 'Your Request Was Sent Successfully',
-        desc: 'Thank you for reaching out to Awal Helm Factory. Our team will review your request and contact you within 24 hours to confirm your final appointment.',
+        desc: 'Thank you for reaching out to Awal Helm Factory. Our team will review your request and contact you soon to confirm your final appointment.',
         cta: 'Back to Home',
       },
       email: {

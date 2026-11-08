@@ -9,18 +9,26 @@ export const SERVICE_ICONS = {
       <path d="M5.5 9h13l-.8 9.2a2 2 0 0 1-2 1.8H8.3a2 2 0 0 1-2-1.8L5.5 9Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
     </svg>
   ),
-  // Body care — oil drop
+  // Body care — torso silhouette
   body: (
     <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7">
-      <path d="M12 3c3.5 4 5.5 7.3 5.5 10.2a5.5 5.5 0 0 1-11 0C6.5 10.3 8.5 7 12 3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-      <path d="M9.5 14a2.5 2.5 0 0 0 2.5 2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path
+        d="M10.6 3h2.8v1.4c0 .8.6 1.5 1.4 1.7l2.1.5c1.1.3 1.9 1.3 1.9 2.5v.3c0 1.5-.6 2.9-1.5 4-.8 1-.8 2.5 0 3.5.8 1 1.2 2.3 1.1 3.6l-.1.5H5.7l-.1-.5c-.1-1.3.3-2.6 1.1-3.6.8-1 .8-2.5 0-3.5-.9-1.1-1.5-2.5-1.5-4v-.3c0-1.2.8-2.2 1.9-2.5l2.1-.5c.8-.2 1.4-.9 1.4-1.7V3Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
     </svg>
   ),
-  // Relaxation & bath — leaf
+  // Relaxation & bath — bathtub with bubbles
   relax: (
     <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7">
-      <path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M5 19c3-4 6-7 10-9" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M3 12h18v1.5a5.5 5.5 0 0 1-5.5 5.5h-7A5.5 5.5 0 0 1 3 13.5V12Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M7 19l-1 2M17 19l1 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M5.5 12V6.5a2.2 2.2 0 0 1 4-1.3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <circle cx="13" cy="8.6" r="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="16.8" cy="6.2" r="1.1" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="17.2" cy="9.9" r=".8" stroke="currentColor" strokeWidth="1.4" />
     </svg>
   ),
   // Shower & fragrance — spray bottle
