@@ -7,13 +7,13 @@ const AR_PACKAGING = [
     id: 'bottle',
     tag: 'Bottles',
     title: 'العبوات والزجاجات',
-    desc: 'تشكيلة واسعة من البلاستيك والزجاج بأشكال أحادية وحديثة وأحجام مختلفة (من 30 مل حتى 500 مل).',
+    desc: 'تشكيلة واسعة من العبوات البلاستيكية والزجاجية بأشكال أنيقة وحديثة وأحجام مختلفة (من 30 مل حتى 500 مل).',
   },
   {
     id: 'jar',
     tag: 'Jars',
     title: 'المرطبانات والعلب',
-    desc: 'علب أنيقة ومصممة خصيصاً للكريمات، أقنعة البشرة، والمقشرات مع أغطية محكمة.',
+    desc: 'علب أنيقة مصممة خصيصاً للكريمات وأقنعة البشرة والمقشرات، بأغطية محكمة الإغلاق.',
   },
   {
     id: 'tube',
@@ -31,7 +31,7 @@ const AR_PACKAGING = [
     id: 'spray',
     tag: 'Sprayers',
     title: 'الرشاشات والبخاخات',
-    desc: 'بخاخات رذاذ ناعم ودقيق لرشاشات الجسم والتونر وسبراي الشعر.',
+    desc: 'بخاخات برذاذ ناعم ودقيق لمعطرات الجسم والتونر وبخاخات الشعر.',
   },
   {
     id: 'labels',
@@ -43,7 +43,7 @@ const AR_PACKAGING = [
     id: 'custom',
     tag: 'Custom Packaging',
     title: 'التغليف المخصص',
-    desc: 'إمكانية تصنيع قوالب وعبوات مخصصة بالكامل لهوية علاماتكم لتضمن تميزاً مطلقاً في الأسواق.',
+    desc: 'تصنيع قوالب وعبوات مخصصة بالكامل لهوية علامتك التجارية، لتضمن لها تميزاً واضحاً في الأسواق.',
   },
 ];
 
@@ -132,7 +132,7 @@ export const translations = {
         },
         {
           title: 'مرونة استثنائية في حجم الإنتاج',
-          desc: 'جاهزية وسرعة لتلبية تطلعاتك، سواء بدأت بدفعات تجريبية محدودة لاختبار السوق، أو تتوسع نحو خطوط إنتاج ضخمة.',
+          desc: 'جاهزية وسرعة لتلبية تطلعاتك، سواء بدأت بدفعات تجريبية محدودة لاختبار السوق، أو توسّعت نحو خطوط إنتاج ضخمة.',
         },
         {
           title: 'تنوع تصنيعي شامل (45 فئة)',
@@ -140,7 +140,7 @@ export const translations = {
         },
         {
           title: 'دعم متكامل من الفكرة حتى الرف',
-          desc: 'نرافقك خطوة بخطوة: من الفكرة لتطوير المنتج واختيار الهوية العطرية والبصرية والقوام، مع تجهيز التعبئة والتغليف للانطلاق بثقة.',
+          desc: 'نرافقك خطوة بخطوة: من الفكرة إلى تطوير المنتج واختيار الهوية العطرية والبصرية والقوام، مع تجهيز التعبئة والتغليف للانطلاق بثقة.',
         },
         {
           title: 'الامتثال التنظيمي المعتمد',
@@ -152,7 +152,7 @@ export const translations = {
         },
         {
           title: 'أسعار تنافسية',
-          desc: 'أسعار مناسبة لجميع الأسواق العالمية ولسهولة الوصول لجميع العملاء والفئات التنافسية.',
+          desc: 'أسعار تناسب مختلف الأسواق العالمية، وتتيح لجميع العملاء الوصول إلى منتجات عالية الجودة.',
         },
       ],
       banner: 'شريك تصنيع واحد، لكل ما تحتاجه علامتك التجارية',
@@ -163,7 +163,7 @@ export const translations = {
       badges: [
         {
           title: 'ترخيص الغذاء والدواء (SFDA)',
-          desc: 'منشأة مسجلة ومصنعة وفق كافة الشروط والمواصفات الفنية المعتمدة من الهيئة العامة للغذاء والدواء.',
+          desc: 'منشأة مسجّلة تعمل وفق كافة الشروط والمواصفات الفنية المعتمدة من الهيئة العامة للغذاء والدواء.',
         },
         {
           title: 'الترخيص الصناعي الرسمي',
@@ -188,7 +188,7 @@ export const translations = {
       ],
       qc: {
         title: 'منظومة ضبط الجودة (QC)',
-        desc: 'فحوصات مخبرية دقيقة للمواد الخام، الرقابة البينية أثناء الإنتاج، والتحاليل الميكروبيولوجية لمنتج التشغيلة النهائي لضمان أعلى مستويات الأمان والسلامة.',
+        desc: 'فحوصات مخبرية دقيقة للمواد الخام، ورقابة مستمرة أثناء الإنتاج، وتحاليل ميكروبيولوجية للمنتج النهائي في كل تشغيلة لضمان أعلى مستويات الأمان والسلامة.',
       },
       stats: [
         { target: 50, label: 'عميل وعلامة تجارية' },
@@ -214,7 +214,7 @@ export const translations = {
       },
       mission: {
         title: 'رسالتنا',
-        desc: 'تمكين أصحاب العلامات التجارية والمستثمرين من تحويل رؤاهم إلى منتجات واقعية فاخرة، مطابقة لأعلى المعايير التنظيمية.',
+        desc: 'تمكين أصحاب العلامات التجارية والمستثمرين من تحويل رؤيتهم إلى منتجات واقعية فاخرة، مطابقة لأعلى المعايير التنظيمية.',
       },
       valuesTitle: 'قيمنا المؤسسية',
       values: [
@@ -229,11 +229,11 @@ export const translations = {
       intro:
         'تم إعداد وتجهيز مصنع أول حلم وفق أعلى المعايير الهندسية والصناعية لضمان إنتاج آمن وبيئة تصنيع معقمة ومحفزة على الإبداع.',
       items: [
-        { title: 'صالة الإنتاج الرئيسية', desc: 'مجهزة بأحدث خطوط الخلط والتجنيس الآلية المصنوعة من الستانلس ستيل المعقم.' },
+        { title: 'صالة الإنتاج الرئيسية', desc: 'مجهزة بأحدث خطوط الخلط والتجانس الآلية المصنوعة من الستانلس ستيل المعقم.' },
         { title: 'قسم المختبرات وضبط الجودة', desc: 'مختبر مجهز بأحدث الأجهزة الكيميائية والميكروبيولوجية لفحص المنتجات.' },
         {
           title: 'المستودعات والمخازن',
-          desc: 'مستودعات مكيفة ومسيطر على حرارتها وفق اشتراطات SFDA لحفظ سلامة المواد والمستحضرات.',
+          desc: 'مستودعات مكيّفة يتم التحكم في درجة حرارتها وفق اشتراطات SFDA للحفاظ على سلامة المواد والمستحضرات.',
         },
       ],
     },
@@ -249,12 +249,12 @@ export const translations = {
     services: {
       eyebrow: 'رحلة الشراكة',
       title: 'من الفكرة حتى الرف',
-      desc: 'نرافقك خطوة بخطوة: من الفكرة لتطوير المنتج واختيار الهوية العطرية والبصرية والقوام، مع تجهيز التعبئة والتغليف للانطلاق بثقة.',
+      desc: 'نرافقك خطوة بخطوة: من الفكرة إلى تطوير المنتج واختيار الهوية العطرية والبصرية والقوام، مع تجهيز التعبئة والتغليف للانطلاق بثقة.',
       items: [
         {
           tag: 'Concept',
           title: 'الفكرة والتخطيط',
-          desc: 'جلسة استكشافية لفهم هوية براندك، شريحة الجمهور المستهدف، والميزانية المحددة.',
+          desc: 'جلسة استكشافية لفهم هوية علامتك التجارية، وشريحة الجمهور المستهدف، والميزانية المحددة.',
         },
         {
           tag: 'Product Selection',
@@ -279,7 +279,7 @@ export const translations = {
         {
           tag: 'Manufacturing',
           title: 'التصنيع والإنتاج',
-          desc: 'بدء عمليات الإنتاج الفعلي والتعبئة تحت رقابة فريق الجودة المباشرة.',
+          desc: 'بدء عمليات الإنتاج الفعلي والتعبئة تحت الرقابة المباشرة لفريق الجودة.',
         },
         {
           tag: 'Delivery',
@@ -310,7 +310,7 @@ export const translations = {
       ],
       lines: {
         title: 'خطوط الصناعة والتعبئة المتطورة',
-        desc: 'خلاطات ستانلس ستيل مخصصة تضمن تجنيس القوام دون فقاعات، وخطوط تعبئة آلية معقمة تحافظ على نقاء المنتجات وثبات الجودة.',
+        desc: 'خلاطات ستانلس ستيل مخصصة تضمن تجانس القوام دون فقاعات، وخطوط تعبئة آلية معقمة تحافظ على نقاء المنتجات وثبات الجودة.',
       },
       export: {
         title: 'الأوراق النظامية للتصدير الدولي',
@@ -337,7 +337,7 @@ export const translations = {
         },
         {
           title: 'الهندسة والتصميم العطري',
-          desc: 'دمج وثبات الزيوت العطرية العالية التركيز وفق معايير الجمعية الدولية للعطور (IFRA).',
+          desc: 'دمج الزيوت العطرية عالية التركيز وضمان ثباتها وفق معايير الجمعية الدولية للعطور (IFRA).',
         },
         {
           title: 'اختبارات الثبات والأمان',
@@ -366,12 +366,12 @@ export const translations = {
           items: [
             { n: '01', title: 'كريمات ولوشن الترطيب', desc: 'تركيبات غنية تمنح البشرة ترطيباً عميقاً وملمساً مخملياً.' },
             { n: '02', title: 'كريمات التفتيح وتوحيد اللون', desc: 'مدعمة بمستخلصات طبيعية ومواد آمنة لتقليل التصبغات.' },
-            { n: '03', title: 'كريمات التوريد', desc: 'تمنح الوجه والجسم إشراقة وملمساً وردياً لطيفاً ومظهراً صحياً.' },
+            { n: '03', title: 'كريمات التوريد', desc: 'تمنح الوجه والجسم إشراقة ولوناً وردياً لطيفاً ومظهراً صحياً.' },
             { n: '04', title: 'أقنعة الوجه (كريمي / جل)', desc: 'أقنعة مغذية ومطهرة تعمل على تنظيف المسام وتجديد الخلايا.' },
             { n: '05', title: 'مقشرات الجسم والوجه', desc: 'حبيبات دقيقة وطبيعية تضمن تقشيراً ناعماً وتزيل الخلايا الميتة برفق.' },
-            { n: '06', title: 'سيرومات الوجه المركّزة', desc: 'تركيبات غنية بالهيالورونيك والفيتامينات لنتائج سريعة وملموسة.' },
+            { n: '06', title: 'سيرومات الوجه المركّزة', desc: 'تركيبات غنية بحمض الهيالورونيك والفيتامينات لنتائج سريعة وملموسة.' },
             { n: '07', title: 'غسول البشرة الدهنية', desc: 'تنظيف متوازن يزيل الدهون الزائدة ويحافظ على الرطوبة الطبيعية.' },
-            { n: '08', title: 'غسول البشرة الجافة والحساسة', desc: 'تنظيف لطيف جداً مدعم بمرطبات تهدئ البشرة.' },
+            { n: '08', title: 'غسول البشرة الجافة والحساسة', desc: 'تنظيف لطيف جداً مدعّم بمرطبات تهدّئ البشرة.' },
           ],
         },
         {
@@ -379,7 +379,7 @@ export const translations = {
           title: 'العناية بالجسم',
           items: [
             { n: '09', title: 'زيوت ترطيب البشرة العطرية', desc: 'زيوت طبيعية معصورة على البارد معطرة بنسب متوازنة.' },
-            { n: '10', title: 'غسول المناطق الحساسة', desc: 'تركيبة لطيفة ومتوازنة الحامضية (pH Balanced) للعناية اليومية.' },
+            { n: '10', title: 'غسول المناطق الحساسة', desc: 'تركيبة لطيفة ومتوازنة الحموضة (pH Balanced) للعناية اليومية.' },
             { n: '11', title: 'معطرات الجسم والشعر', desc: 'رذاذ عطري خفيف (Mist) يدوم طويلاً وينعش الحواس.' },
             { n: '12', title: 'بودرة الجسم العطرية الفاخرة', desc: 'بودرة فائقة النعومة معززة بروائح عطرية ثابتة.' },
           ],
@@ -388,22 +388,22 @@ export const translations = {
           id: 'relax',
           title: 'طقوس الاسترخاء والحمام',
           items: [
-            { n: '13', title: 'بودرة الاستحمام الفوارة', desc: 'تجربة حمام فوارة ومنعشة مع زبدة الترطيب والزيوت العطرية.' },
-            { n: '14', title: 'سبراي الاسترخاء ورذاذ النوم', desc: 'بخاخ معزز بالزيوت المهدئة (كاللافندر) يرش على المفارش لنوم مريح.' },
+            { n: '13', title: 'بودرة الاستحمام الفوارة', desc: 'تجربة استحمام فوّارة ومنعشة مع زبدة الترطيب والزيوت العطرية.' },
+            { n: '14', title: 'سبراي الاسترخاء ورذاذ النوم', desc: 'بخاخ معزّز بالزيوت المهدئة (كاللافندر) يُرشّ على الوسائد والمفارش لنوم مريح.' },
             { n: '15', title: 'أملاح الاسترخاء واستشفاء العضلات', desc: 'أملاح معدنية طبيعية تساعد على استرخاء الجسد وتجديد الطاقة.' },
             { n: '16', title: 'المياه المرجانية للاستحمام', desc: 'تركيبة فريدة تعيد للبشرة توازنها وحيويتها أثناء الاستحمام.' },
             { n: '17', title: 'زيوت المساج والتدليك', desc: 'زيوت انسيابية تساعد على تخفيف الإجهاد العضلي وتغذية الجلد.' },
             { n: '18', title: 'صابون الجسم المرطب السائل', desc: 'رغوة غنية وتنظيف فاخر يترك الجسم معطراً ومرطباً.' },
-            { n: '19', title: 'صابون اليدين المرطب والمغذي', desc: 'تنظيف يومي متكرر يحافظ على نعومة اليدين دون جفاف.' },
-            { n: '20', title: 'التبريمة والصقلة والصابون المغربي', desc: 'منتجات مستوحاة من طقوس الحمام الأصيلة بتركيبات بلدية فاخرة.' },
+            { n: '19', title: 'صابون اليدين المرطب والمغذي', desc: 'مناسب للاستخدام اليومي المتكرر، ويحافظ على نعومة اليدين دون أن يسبب الجفاف.' },
+            { n: '20', title: 'التبريمة والصقلة والصابون المغربي', desc: 'منتجات مستوحاة من طقوس الحمّام الأصيلة بتركيبات تقليدية فاخرة.' },
           ],
         },
         {
           id: 'shower',
           title: 'الشاور والعطور',
           items: [
-            { n: '21', title: 'العطر الصلب (Solid Perfume)', desc: 'تركيبة شمعية عطرية فاخرة تثبت على النبض وتدوم طويلاً.' },
-            { n: '22', title: 'شاور جل الاستحمام المنعش', desc: 'تنظيف عميق برغوة كثيفة وعطور فواحة يناسب العائلة.' },
+            { n: '21', title: 'العطر الصلب (Solid Perfume)', desc: 'تركيبة شمعية عطرية فاخرة توضع على نقاط النبض ويدوم أثرها طويلاً.' },
+            { n: '22', title: 'شاور جل الاستحمام المنعش', desc: 'تنظيف عميق برغوة كثيفة ورائحة فوّاحة، مناسب لجميع أفراد الأسرة.' },
             { n: '23', title: 'تونر شد الوجه وتقليص المسام', desc: 'ينظم إفراز الدهون ويشد البشرة لمظهر مشرق.' },
             { n: '24', title: 'تونر ترطيب وانتعاش البشرة', desc: 'خطوة عناية يومية تعيد الحيوية للبشرة المجهدة.' },
           ],
@@ -413,16 +413,16 @@ export const translations = {
           title: 'العناية بالشعر',
           items: [
             { n: '25', title: 'أقنعة الشعر المغذية', desc: 'زيوت وبودرة طبيعية ترمم الشعر التالف وتمنحه القوة واللمعان.' },
-            { n: '26', title: 'شامبوهات الكبار والأطفال', desc: 'تركيبات خالية من المواد القاسية (خالية من السلفات) وآمنة تماماً.' },
-            { n: '27', title: 'بلسم الشعر للكبار والأطفال', desc: 'فك تشابك فوري وترطيب يدوم لتسهيل التصفيف.' },
+            { n: '26', title: 'شامبوهات الكبار والأطفال', desc: 'تركيبات لطيفة خالية من المواد القاسية والسلفات، وآمنة تماماً.' },
+            { n: '27', title: 'بلسم الشعر للكبار والأطفال', desc: 'يفك التشابك فوراً ويمنح ترطيباً يدوم طويلاً ويسهّل التصفيف.' },
             { n: '28', title: 'شامبوهات 2 في 1 للرجال', desc: 'حل عملي يجمع بين التنظيف والترطيب الشامل للشعر والفروة.' },
             { n: '29', title: 'شامبوهات الشعر المعالج', desc: 'مخصصة للشعر المصبوغ أو المعالج بالكيراتين والبروتين.' },
-            { n: '30', title: 'شامبو الديتوكس للفروة', desc: 'لتنظيف فروة الرأس من الترسبات والزيوت الزائدة تنظيفاً عميقاً.' },
-            { n: '31', title: 'كريمات ترطيب وتنعيم الشعر', desc: 'تغذية خفيفة تمنع هيشان الشعر دون إثقال.' },
+            { n: '30', title: 'شامبو الديتوكس للفروة', desc: 'ينظف فروة الرأس بعمق من الترسبات والزيوت الزائدة.' },
+            { n: '31', title: 'كريمات ترطيب وتنعيم الشعر', desc: 'تغذية خفيفة تحدّ من تطاير الشعر وتجعّده دون أن تثقله.' },
             { n: '32', title: 'سبراي فك تشابك الشعر', desc: 'بخاخ خفيف يسهل تمشيط شعر الأطفال والكبار دون ألم.' },
-            { n: '33', title: 'معالجات الشعر المتقدمة', desc: 'سيرومات مرممة لأطراف الشعر والتلف الحراري والتقصف.' },
+            { n: '33', title: 'معالجات الشعر المتقدمة', desc: 'سيرومات ترمّم أطراف الشعر وتعالج التلف الحراري والتقصف.' },
             { n: '34', title: 'كريمات التصفيف الطبيعية', desc: 'تمنح الثبات والنعومة وتساعد على تشكيل الشعر بأسلوب طبيعي.' },
-            { n: '35', title: 'سيرومات اللمعان والحماية', desc: 'حماية ضد حرارة التصفيف ولمعان حريري وبراق.' },
+            { n: '35', title: 'سيرومات اللمعان والحماية', desc: 'تحمي الشعر من حرارة أدوات التصفيف وتمنحه لمعاناً حريرياً.' },
             { n: '36', title: 'زيوت تكثيف الشعر واللحية', desc: 'زيوت غنية بالفيتامينات لتحفيز البصيلات وتكثيف الشعر.' },
           ],
         },
@@ -432,7 +432,7 @@ export const translations = {
           items: [
             { n: '37–39', title: 'منتجات التان (زيت / بخاخ / كريم)', desc: 'إشراقة برونزية دافئة وجذابة مع ترطيب متوازن للبشرة.' },
             { n: '40–42', title: 'مرطب شفايف / بلاشر / قلوس', desc: 'زبدة مغذية، أحمر خدود كريمي، ولمعة شفافة براقة.' },
-            { n: '43–45', title: 'واقيات الشمس والزيوت المركّزة', desc: 'حماية SPF 30 و SPF 50 وزيوت عطرية عالية التركيز للبراندات.' },
+            { n: '43–45', title: 'واقيات الشمس والزيوت المركّزة', desc: 'حماية بعامل SPF 30 و SPF 50، وزيوت عطرية عالية التركيز للعلامات التجارية.' },
           ],
         },
       ],
@@ -453,7 +453,7 @@ export const translations = {
       licenseLabel: 'الترخيص الصناعي',
       form: {
         name: 'الاسم الثلاثي',
-        namePlaceholder: 'مثال: عبدالله محمد العتيبي',
+        namePlaceholder: 'مثال: عبدالله محمد أحمد',
         phone: 'رقم الجوال',
         phonePlaceholder: '05XXXXXXXX',
         brand: 'اسم العلامة التجارية (اختياري)',
@@ -589,7 +589,7 @@ export const translations = {
       },
       dateTime: {
         heading: 'اختر الموعد المناسب',
-        subheading: 'نعمل من السبت إلى الخميس، وسنؤكد الموعد معك خلال 24 ساعة',
+        subheading: 'نعمل من السبت إلى الخميس، وسيتواصل معك فريقنا لتأكيد الموعد',
         timeLabel: 'الوقت المناسب',
         emptyState: 'اختر تاريخاً أولاً لعرض الأوقات المتاحة',
         timeSlots: ['10:00 ص', '11:00 ص', '12:00 م', '01:00 م', '02:00 م', '04:00 م', '05:00 م'],
@@ -598,7 +598,7 @@ export const translations = {
         heading: 'بياناتك ومرفقاتك',
         subheading: 'سنستخدمها للتواصل معك وتأكيد الموعد',
         name: 'الاسم الثلاثي',
-        namePlaceholder: 'مثال: عبدالله محمد العتيبي',
+        namePlaceholder: 'مثال: عبدالله محمد أحمد',
         phone: 'رقم الجوال',
         phonePlaceholder: '05XXXXXXXX',
         brand: 'اسم العلامة التجارية (اختياري)',
@@ -632,7 +632,7 @@ export const translations = {
       },
       success: {
         title: 'تم إرسال طلبك بنجاح',
-        desc: 'شكراً لتواصلك مع مصنع أول حلم. سيقوم فريقنا بمراجعة طلبك والتواصل معك خلال 24 ساعة لتأكيد موعدك النهائي.',
+        desc: 'شكراً لتواصلك مع مصنع أول حلم. سيقوم فريقنا بمراجعة طلبك والتواصل معك قريباً لتأكيد موعدك النهائي.',
         cta: 'العودة للرئيسية',
       },
       email: {
@@ -937,7 +937,7 @@ export const translations = {
           items: [
             { n: '01', title: 'Moisturizing Creams & Lotions', desc: 'Rich formulas that deeply hydrate and leave skin velvety soft.' },
             { n: '02', title: 'Brightening & Even-Tone Creams', desc: 'Enriched with natural extracts and safe ingredients to reduce pigmentation.' },
-            { n: '03', title: 'Rosy Glow Creams', desc: 'Give the face and body radiance, a soft rosy touch, and a healthy look.' },
+            { n: '03', title: 'Rosy Glow Creams', desc: 'Give the face and body radiance, a soft rosy tint, and a healthy look.' },
             { n: '04', title: 'Face Masks (Cream / Gel)', desc: 'Nourishing, purifying masks that clean pores and renew cells.' },
             { n: '05', title: 'Body & Face Scrubs', desc: 'Fine natural granules for gentle exfoliation that softly removes dead cells.' },
             { n: '06', title: 'Concentrated Face Serums', desc: 'Formulas rich in hyaluronic acid and vitamins for fast, visible results.' },
@@ -960,12 +960,12 @@ export const translations = {
           title: 'Relaxation & Bath Rituals',
           items: [
             { n: '13', title: 'Fizzing Bath Powder', desc: 'A fizzy, refreshing bath experience with moisturizing butter and fragrance oils.' },
-            { n: '14', title: 'Relaxation & Sleep Mist', desc: 'A spray enriched with calming oils (such as lavender) for bedding, for restful sleep.' },
+            { n: '14', title: 'Relaxation & Sleep Mist', desc: 'A spray enriched with calming oils (such as lavender) for pillows and bedding, for restful sleep.' },
             { n: '15', title: 'Relaxation & Muscle Recovery Salts', desc: 'Natural mineral salts that help the body relax and restore energy.' },
             { n: '16', title: 'Coral Bath Water', desc: 'A unique formula that restores the skin’s balance and vitality while bathing.' },
             { n: '17', title: 'Massage Oils', desc: 'Smooth-flowing oils that help relieve muscle tension and nourish the skin.' },
             { n: '18', title: 'Moisturizing Liquid Body Soap', desc: 'Rich lather and luxurious cleansing that leaves the body scented and moisturized.' },
-            { n: '19', title: 'Moisturizing & Nourishing Hand Soap', desc: 'Frequent daily cleansing that keeps hands soft without dryness.' },
+            { n: '19', title: 'Moisturizing & Nourishing Hand Soap', desc: 'Gentle enough for frequent daily use, keeping hands soft without drying them out.' },
             { n: '20', title: 'Tabrima, Saqla & Moroccan Soap', desc: 'Products inspired by authentic hammam rituals, with luxurious traditional formulas.' },
           ],
         },
@@ -973,7 +973,7 @@ export const translations = {
           id: 'shower',
           title: 'Shower & Fragrance',
           items: [
-            { n: '21', title: 'Solid Perfume', desc: 'A luxurious waxy fragrance formula that sets on pulse points and lasts long.' },
+            { n: '21', title: 'Solid Perfume', desc: 'A luxurious waxy fragrance formula applied to pulse points, with a long-lasting scent.' },
             { n: '22', title: 'Refreshing Shower Gel', desc: 'Deep cleansing with thick lather and rich fragrances, for the whole family.' },
             { n: '23', title: 'Firming & Pore-Minimizing Toner', desc: 'Regulates oil production and tightens the skin for a radiant look.' },
             { n: '24', title: 'Hydrating & Refreshing Toner', desc: 'A daily care step that brings tired skin back to life.' },
@@ -1024,7 +1024,7 @@ export const translations = {
       licenseLabel: 'Industrial License',
       form: {
         name: 'Full Name',
-        namePlaceholder: 'e.g. Abdullah Mohammed Al-Otaibi',
+        namePlaceholder: 'e.g. Abdullah Mohammed Ahmed',
         phone: 'Phone Number',
         phonePlaceholder: '05XXXXXXXX',
         brand: 'Brand Name (optional)',
@@ -1160,7 +1160,7 @@ export const translations = {
       },
       dateTime: {
         heading: 'Choose a Suitable Date',
-        subheading: 'We work Saturday to Thursday, and will confirm your appointment within 24 hours',
+        subheading: 'We work Saturday to Thursday, and our team will contact you to confirm your appointment',
         timeLabel: 'Suitable Time',
         emptyState: 'Choose a date first to see available times',
         timeSlots: ['10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '04:00 PM', '05:00 PM'],
@@ -1169,7 +1169,7 @@ export const translations = {
         heading: 'Your Details & Attachments',
         subheading: "We'll use these to contact you and confirm your appointment",
         name: 'Full Name',
-        namePlaceholder: 'e.g. Abdullah Mohammed Al-Otaibi',
+        namePlaceholder: 'e.g. Abdullah Mohammed Ahmed',
         phone: 'Phone Number',
         phonePlaceholder: '05XXXXXXXX',
         brand: 'Brand Name (optional)',
@@ -1203,7 +1203,7 @@ export const translations = {
       },
       success: {
         title: 'Your Request Was Sent Successfully',
-        desc: 'Thank you for reaching out to Awal Helm Factory. Our team will review your request and contact you within 24 hours to confirm your final appointment.',
+        desc: 'Thank you for reaching out to Awal Helm Factory. Our team will review your request and contact you soon to confirm your final appointment.',
         cta: 'Back to Home',
       },
       email: {
